@@ -221,41 +221,60 @@
             border: 1px solid rgba(233, 69, 96, 0.2);
             border-radius: 10px;
             padding: 12px 15px;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .car-price-label {
+        .car-price-label { color: #aaa; font-size: 0.9em; }
+        .car-price-value { color: #e94560; font-weight: bold; font-size: 1.2em; }
+
+        .whatsapp-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .whatsapp-section-label {
             color: #aaa;
-            font-size: 0.9em;
+            font-size: 0.8em;
+            text-align: center;
         }
 
-        .car-price-value {
-            color: #e94560;
-            font-weight: bold;
-            font-size: 1.2em;
+        .whatsapp-buttons {
+            display: flex;
+            gap: 10px;
         }
 
-        .car-whatsapp-btn {
-            display: block;
-            width: 100%;
-            background: #075e54;
+        .whatsapp-btn-1, .whatsapp-btn-2 {
+            flex: 1;
             color: white;
             border: none;
             padding: 12px;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 1em;
+            font-size: 0.9em;
             font-weight: bold;
             transition: all 0.3s;
-            text-decoration: none;
             text-align: center;
         }
 
-        .car-whatsapp-btn:hover {
+        .whatsapp-btn-1 {
+            background: #075e54;
+        }
+
+        .whatsapp-btn-1:hover {
             background: #128C7E;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn-2 {
+            background: #1a6b5a;
+        }
+
+        .whatsapp-btn-2:hover {
+            background: #0d9488;
             box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
         }
 
@@ -265,6 +284,7 @@
             .welcome-banner h1 { font-size: 2em; }
             .branch-tab { padding: 14px 30px; font-size: 1.1em; }
             .category-name { font-size: 1.1em; }
+            .whatsapp-buttons { flex-direction: column; }
         }
     </style>
 </head>
@@ -294,7 +314,12 @@
     <script>
         const SHEET_RUSTAQ = '1GYYo5T1iUlOtu_Qie2v_Me99l1yLivM2UrwLzW9Vpto';
         const SHEET_MABELA = '1MynVZ9abykJWym9GwzzJr0cRmYC4XenX7ReKNJpTwJE';
-        const WHATSAPP_NUMBER = '96895096865';
+        
+        // أرقام التواصل لكل فرع
+        const BRANCH_PHONES = {
+            rustaq: ['96895096865', '96872222242'],
+            mabela: ['96892256223', '96878080132']
+        };
         
         const RUSTAQ_CATEGORIES = [
             'نيسان', 'كامري', 'لكزس', 'تويوتا', 'هوندا', 'هايونداي', 'أخرى'
@@ -308,8 +333,7 @@
         let allCars = { rustaq: [], mabela: [] };
         let currentBranch = 'rustaq';
 
-        // وظيفة واتساب عامة
-        function openWhatsApp(car) {
+        function openWhatsApp(car, phoneNumber) {
             const branchNames = { rustaq: 'فرع الرستاق', mabela: 'فرع المعبيلة' };
             const message = `السلام عليكم ورحمة الله وبركاته
 
@@ -323,11 +347,10 @@
 
 هل يمكنكم تزويدي بمزيد من المعلومات؟`;
             
-            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
         }
 
-        // تخزين بيانات السيارات للوصول من onclick
         window.carsData = {};
 
         async function loadAllCars() {
@@ -456,6 +479,7 @@
         function displayBranch(branch) {
             const cars = allCars[branch];
             const container = document.getElementById('carsContainer');
+            const phones = BRANCH_PHONES[branch];
             
             if (cars.length === 0) {
                 container.innerHTML = '<div class="loading-section">🚫 لا توجد سيارات في هذا الفرع حالياً</div>';
@@ -479,7 +503,6 @@
                     <div class="category-content ${isFirst ? 'open' : ''}">
                         <div class="cars-list">
                             ${categoryCars.map((car, index) => {
-                                // تخزين بيانات السيارة برقم فريد
                                 const carKey = `${branch}-${index}`;
                                 window.carsData[carKey] = car;
                                 
@@ -505,7 +528,13 @@
                                         <span class="car-price-value">${car.priceText || 'السعر غير محدد'} ريال عماني</span>
                                     </div>
                                     
-                                    <button class="car-whatsapp-btn" onclick="window.openWhatsApp(window.carsData['${carKey}'])">💬 واتساب</button>
+                                    <div class="whatsapp-section">
+                                        <div class="whatsapp-section-label">📞 تواصل عبر واتساب:</div>
+                                        <div class="whatsapp-buttons">
+                                            <button class="whatsapp-btn-1" onclick="window.openWhatsApp(window.carsData['${carKey}'], '${phones[0]}')">💬 واتساب 1</button>
+                                            <button class="whatsapp-btn-2" onclick="window.openWhatsApp(window.carsData['${carKey}'], '${phones[1]}')">💬 واتساب 2</button>
+                                        </div>
+                                    </div>
                                 </div>`;
                             }).join('')}
                         </div>

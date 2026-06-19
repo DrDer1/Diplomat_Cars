@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدبلوماسي للسيارات</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0f;
+            min-height: 100vh;
+            color: #ffffff;
+        }
+
+        .welcome-banner {
+            background: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 30%, #0f1419 60%, #0a0a0f 100%);
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid rgba(233, 69, 96, 0.3);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(233, 69, 96, 0.03),
+                rgba(233, 69, 96, 0.06),
+                rgba(233, 69, 96, 0.03),
+                transparent
+            );
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .welcome-banner h1 {
+            font-size: 3em;
+            font-weight: 900;
+            letter-spacing: 3px;
+            background: linear-gradient(135deg, #e94560 0%, #ff6b6b 30%, #c23152 60%, #e94560 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            z-index: 1;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { filter: brightness(1); }
+            100% { filter: brightness(1.3); }
+        }
+
+        .welcome-banner .subtitle {
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 10px;
+            position: relative;
+            z-index: 1;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+        }
+
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px 20px;
+        }
+
+        .car-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s;
+        }
+
+        .car-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(233, 69, 96, 0.3);
+            box-shadow: 0 8px 30px rgba(233, 69, 96, 0.15);
+        }
+
+        .detail-row {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .detail-label {
+            color: #666;
+            font-size: 0.75em;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-value {
+            color: #fff;
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+
+        .color-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: 2px solid rgba(255,255,255,0.5);
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+
+        .price-row {
+            background: rgba(233, 69, 96, 0.1);
+            border: 1px solid rgba(233, 69, 96, 0.2);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .whatsapp-btn {
+            display: block;
+            width: 100%;
+            background: #075e54;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            transition: 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .cars-grid { grid-template-columns: 1fr; }
+            .welcome-banner h1 { font-size: 2em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-banner">
+        <h1>الدبلوماسي للسيارات</h1>
+        <div class="subtitle">● DIPLOMAT CARS ●</div>
+    </div>
+
+    <div class="cars-grid" id="carsContainer">
+        <div style="text-align:center;padding:50px;color:#888;">جاري تحميل السيارات...</div>
+    </div>
+
+    <script>
+        const SHEET_ID = '1GYYo5T1iUlOtu_Qie2v_Me99l1yLivM2UrwLzW9Vpto';
+        const WHATSAPP_NUMBER = '96895096865';
+        let allCars = [];
+
+        async function loadCars() {
+            allCars = [];
+            
+            try {
+                const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+                const response = await fetch(url);
+                const text = await response.text();
+                
+                const jsonStart = text.indexOf('{');
+                const jsonEnd = text.lastIndexOf('}') + 1;
+                const jsonStr = text.substring(jsonStart, jsonEnd);
+                const data = JSON.parse(jsonStr);
+                
+                const rows = data.table.rows;
+                let startRow = 0;
+                
+                if (rows.length > 0 && rows[0].c) {
+                    const firstRowValues = rows[0].c.map(c => (c?.v || '').toString().toLowerCase().trim());
+                    const hasHeaders = firstRowValues.some(v => 
+                        v.includes('اسم') || v.includes('نوع') || v.includes('موديل') || 
+                        v.includes('لون') || v.includes('سعر')
+                    );
+                    if (hasHeaders) startRow = 1;
+                }
+                
+                for (let i = startRow; i < rows.length; i++) {
+                    const row = rows[i].c;
+                    if (!row) continue;
+                    
+                    const price = row[0]?.v?.toString().trim() || '';
+                    const color = row[1]?.v?.toString().trim() || '';
+                    const model = row[2]?.v?.toString().trim() || '';
+                    const type = row[3]?.v?.toString().trim() || '';
+                    
+                    if (!type && !model && !color && !price) continue;
+                    
+                    allCars.push({
+                        type: type,
+                        model: model,
+                        color: color,
+                        priceText: price
+                    });
+                }
+                
+            } catch (error) {
+                console.error('خطأ:', error);
+                document.getElementById('carsContainer').innerHTML = `
+                    <div style="text-align:center;padding:50px;color:#ff4444;">
+                        <p>خطأ في تحميل البيانات</p>
+                        <button onclick="loadCars()" style="margin-top:15px;padding:10px 20px;background:#e94560;color:white;border:none;border-radius:5px;cursor:pointer;">إعادة المحاولة</button>
+                    </div>
+                `;
+                return;
+            }
+            
+            const seen = new Set();
+            allCars = allCars.filter(c => {
+                const k = `${c.type}|${c.model}|${c.color}|${c.priceText}`;
+                if (seen.has(k)) return false;
+                seen.add(k);
+                return true;
+            });
+            
+            displayCars(allCars);
+        }
+
+        function getColorCode(color) {
+            const c = color.toLowerCase();
+            if (c.includes('ابيض') || c.includes('white')) return '#fff';
+            if (c.includes('اسود') || c.includes('black')) return '#000';
+            if (c.includes('فضي') || c.includes('silver')) return '#c0c0c0';
+            if (c.includes('رصاصي') || c.includes('رمادي') || c.includes('gray')) return '#808080';
+            if (c.includes('احمر') || c.includes('red')) return '#f00';
+            if (c.includes('ازرق') || c.includes('blue')) return '#00f';
+            if (c.includes('اخضر') || c.includes('green')) return '#0f0';
+            if (c.includes('ذهبي') || c.includes('gold')) return '#ffd700';
+            return '#ccc';
+        }
+
+        function openWhatsApp(car) {
+            const message = `السلام عليكم ورحمة الله وبركاته
+
+أرغب في الاستفسار عن السيارة التالية:
+
+🚗 *نوع المركبة:* ${car.type}
+📅 *الموديل:* ${car.model}
+🎨 *اللون:* ${car.color}
+💰 *السعر:* ${car.priceText}
+
+هل يمكنكم تزويدي بمزيد من المعلومات؟`;
+            
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function displayCars(cars) {
+            const container = document.getElementById('carsContainer');
+            
+            if (cars.length === 0) {
+                container.innerHTML = '<div style="text-align:center;padding:50px;">لا توجد سيارات</div>';
+                return;
+            }
+            
+            container.innerHTML = cars.map((car, index) => {
+                const colorHex = getColorCode(car.color);
+                const carId = `car-${index}`;
+                
+                setTimeout(() => {
+                    const btn = document.getElementById(carId);
+                    if (btn) {
+                        btn.addEventListener('click', () => openWhatsApp(car));
+                    }
+                }, 100);
+                
+                return `
+                <div class="car-card">
+                    <div class="detail-row">
+                        <div class="detail-label">🚗 نوع المركبة</div>
+                        <div class="detail-value">${car.type}</div>
+                    </div>
+                    
+                    <div class="detail-row">
+                        <div class="detail-label">📅 الموديل</div>
+                        <div class="detail-value">${car.model}</div>
+                    </div>
+                    
+                    <div class="detail-row">
+                        <div class="detail-label">🎨 اللون</div>
+                        <div class="detail-value">
+                            <span class="color-dot" style="background:${colorHex};"></span>
+                            ${car.color}
+                        </div>
+                    </div>
+                    
+                    <div class="price-row">
+                        <div class="detail-label" style="color:#999;">💰 السعر</div>
+                        <div class="detail-value" style="color:#e94560; font-size:1.3em;">${car.priceText}</div>
+                    </div>
+                    
+                    <button id="${carId}" class="whatsapp-btn">
+                        💬 واتساب
+                    </button>
+                </div>`;
+            }).join('');
+        }
+
+        loadCars();
+    </script>
+</body>
+</html>

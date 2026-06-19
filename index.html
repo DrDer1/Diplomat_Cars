@@ -32,21 +32,11 @@
             left: -50%;
             width: 200%;
             height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(233, 69, 96, 0.03),
-                rgba(233, 69, 96, 0.06),
-                rgba(233, 69, 96, 0.03),
-                transparent
-            );
+            background: linear-gradient(90deg, transparent, rgba(233, 69, 96, 0.03), rgba(233, 69, 96, 0.06), rgba(233, 69, 96, 0.03), transparent);
             animation: shimmer 3s infinite;
         }
 
-        @keyframes shimmer {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
+        @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
         .welcome-banner h1 {
             font-size: 3em;
@@ -61,10 +51,7 @@
             animation: glow 2s ease-in-out infinite alternate;
         }
 
-        @keyframes glow {
-            0% { filter: brightness(1); }
-            100% { filter: brightness(1.3); }
-        }
+        @keyframes glow { 0% { filter: brightness(1); } 100% { filter: brightness(1.3); } }
 
         .welcome-banner .subtitle {
             color: #888;
@@ -73,99 +60,194 @@
             position: relative;
             z-index: 1;
             letter-spacing: 8px;
-            text-transform: uppercase;
         }
 
-        .cars-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        .branch-tabs {
+            display: flex;
+            justify-content: center;
             gap: 15px;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px 20px;
+            margin: 0 20px 25px;
+            flex-wrap: wrap;
         }
 
-        .car-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12px;
-            padding: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        .branch-tab {
+            padding: 18px 45px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 1.3em;
+            font-weight: bold;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.03);
+            color: #888;
             transition: all 0.3s;
         }
 
-        .car-card:hover {
-            background: rgba(255, 255, 255, 0.08);
+        .branch-tab:hover {
             border-color: rgba(233, 69, 96, 0.3);
-            box-shadow: 0 8px 30px rgba(233, 69, 96, 0.15);
-        }
-
-        .detail-row {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .detail-label {
-            color: #666;
-            font-size: 0.75em;
-            margin-bottom: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .detail-value {
             color: #fff;
-            font-size: 1.1em;
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .branch-tab.active {
+            background: rgba(233, 69, 96, 0.15);
+            border-color: #e94560;
+            color: #e94560;
+            box-shadow: 0 8px 30px rgba(233, 69, 96, 0.25);
+        }
+
+        .branch-tab .car-count {
+            display: block;
+            font-size: 0.65em;
+            color: #666;
+            margin-top: 5px;
+            font-weight: normal;
+        }
+
+        .branch-tab.active .car-count { color: #e94560; opacity: 0.8; }
+
+        .branch-title {
+            text-align: center;
+            font-size: 1.6em;
+            margin: 25px 20px;
+            color: #e94560;
             font-weight: bold;
         }
 
-        .color-dot {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            border: 2px solid rgba(255,255,255,0.5);
-            vertical-align: middle;
-            margin-left: 5px;
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px 30px; }
+
+        .category-accordion {
+            margin-bottom: 15px;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
         }
 
-        .price-row {
+        .category-header {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            user-select: none;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .category-header:hover { background: rgba(233, 69, 96, 0.08); }
+
+        .category-header.active {
+            background: rgba(233, 69, 96, 0.12);
+            border-bottom: 1px solid rgba(233, 69, 96, 0.2);
+        }
+
+        .category-title-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .category-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s;
+        }
+
+        .category-header.active .category-icon { transform: rotate(180deg); }
+
+        .category-name { font-size: 1.4em; font-weight: bold; color: #e94560; }
+
+        .category-badge {
+            background: rgba(233, 69, 96, 0.2);
+            color: #e94560;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .category-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-content.open { max-height: 5000px; }
+
+        .cars-list { padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+
+        .car-item {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 18px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .car-item:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(233, 69, 96, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .car-info { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; flex: 1; }
+
+        .car-spec { display: flex; align-items: center; gap: 6px; color: #ccc; font-size: 0.95em; }
+        .car-spec .spec-icon { font-size: 1.1em; }
+        .car-spec .spec-value { font-weight: bold; color: #fff; }
+
+        .car-name-tag {
+            font-weight: bold;
+            color: #ff6b6b;
+            font-size: 1em;
             background: rgba(233, 69, 96, 0.1);
-            border: 1px solid rgba(233, 69, 96, 0.2);
-            border-radius: 8px;
-            padding: 12px;
-            text-align: center;
-            margin-bottom: 8px;
+            padding: 4px 10px;
+            border-radius: 15px;
         }
 
-        .whatsapp-btn {
-            display: block;
-            width: 100%;
+        .car-price-tag {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #e94560;
+            background: rgba(233, 69, 96, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .car-whatsapp-btn {
             background: #075e54;
             color: white;
             border: none;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 10px 18px;
+            border-radius: 20px;
             cursor: pointer;
-            font-size: 1em;
+            font-size: 0.9em;
             font-weight: bold;
+            transition: all 0.3s;
+            white-space: nowrap;
             text-decoration: none;
-            text-align: center;
-            transition: 0.3s;
-            letter-spacing: 1px;
         }
 
-        .whatsapp-btn:hover {
+        .car-whatsapp-btn:hover {
             background: #128C7E;
             box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
+            transform: scale(1.05);
         }
 
+        .loading-section { text-align: center; padding: 50px; color: #888; }
+
         @media (max-width: 768px) {
-            .cars-grid { grid-template-columns: 1fr; }
             .welcome-banner h1 { font-size: 2em; }
+            .branch-tab { padding: 14px 30px; font-size: 1.1em; }
+            .category-name { font-size: 1.1em; }
+            .car-item { flex-direction: column; align-items: flex-start; }
+            .car-info { flex-direction: column; align-items: flex-start; gap: 8px; }
         }
     </style>
 </head>
@@ -175,164 +257,244 @@
         <div class="subtitle">● DIPLOMAT CARS ●</div>
     </div>
 
-    <div class="cars-grid" id="carsContainer">
-        <div style="text-align:center;padding:50px;color:#888;">جاري تحميل السيارات...</div>
+    <div class="branch-tabs">
+        <div class="branch-tab active" onclick="switchBranch('rustaq')" id="tab-rustaq">
+            🏛️ فرع الرستاق
+            <span class="car-count" id="count-rustaq">0</span>
+        </div>
+        <div class="branch-tab" onclick="switchBranch('mabela')" id="tab-mabela">
+            🏛️ فرع المعبيلة
+            <span class="car-count" id="count-mabela">0</span>
+        </div>
+    </div>
+
+    <div class="branch-title" id="branchTitle">🚗 سيارات فرع الرستاق</div>
+
+    <div class="container" id="carsContainer">
+        <div class="loading-section">جاري تحميل السيارات...</div>
     </div>
 
     <script>
-        const SHEET_ID = '1GYYo5T1iUlOtu_Qie2v_Me99l1yLivM2UrwLzW9Vpto';
+        const SHEET_RUSTAQ = '1GYYo5T1iUlOtu_Qie2v_Me99l1yLivM2UrwLzW9Vpto';
+        const SHEET_MABELA = '1MynVZ9abykJWym9GwzzJr0cRmYC4XenX7ReKNJpTwJE';
         const WHATSAPP_NUMBER = '96895096865';
-        let allCars = [];
+        
+        const RUSTAQ_CATEGORIES = [
+            'نيسان', 'كامري', 'لكزس', 'تويوتا', 'هوندا', 'هايونداي', 'أخرى'
+        ];
+        
+        const MABELA_CATEGORIES = [
+            'نيسان', 'لكزس', 'لينكولن', 'تويوتا', 'كامري', 'مرسيدس',
+            'هونداي', 'كيا', 'هوندا', 'شيفروليه', 'فوورد', 'أخرى'
+        ];
+        
+        let allCars = { rustaq: [], mabela: [] };
+        let currentBranch = 'rustaq';
 
-        async function loadCars() {
-            allCars = [];
+        async function loadAllCars() {
+            await loadBranchCars('rustaq', SHEET_RUSTAQ, RUSTAQ_CATEGORIES);
+            await loadBranchCars('mabela', SHEET_MABELA, MABELA_CATEGORIES);
+            updateCounts();
+            displayBranch(currentBranch);
+        }
+
+        function normalizeText(text) {
+            return text.trim().replace(/\s+/g, ' ');
+        }
+
+        function isCategoryHeader(firstCell, nonEmptyCount, categoryList) {
+            if (nonEmptyCount !== 1) return false;
+            const normalized = normalizeText(firstCell);
+            return categoryList.some(name => normalizeText(name) === normalized);
+        }
+
+        async function loadBranchCars(branch, sheetId, categoryList) {
+            allCars[branch] = [];
             
             try {
-                const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
-                const response = await fetch(url);
-                const text = await response.text();
+                const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv`;
+                const response = await fetch(csvUrl);
+                const csvText = await response.text();
                 
-                const jsonStart = text.indexOf('{');
-                const jsonEnd = text.lastIndexOf('}') + 1;
-                const jsonStr = text.substring(jsonStart, jsonEnd);
-                const data = JSON.parse(jsonStr);
+                const lines = csvText.split('\n');
+                let currentCategory = null;
                 
-                const rows = data.table.rows;
-                let startRow = 0;
-                
-                if (rows.length > 0 && rows[0].c) {
-                    const firstRowValues = rows[0].c.map(c => (c?.v || '').toString().toLowerCase().trim());
-                    const hasHeaders = firstRowValues.some(v => 
-                        v.includes('اسم') || v.includes('نوع') || v.includes('موديل') || 
-                        v.includes('لون') || v.includes('سعر')
-                    );
-                    if (hasHeaders) startRow = 1;
+                for (let i = 0; i < lines.length; i++) {
+                    const line = lines[i].trim();
+                    if (!line) continue;
+                    
+                    const cells = parseCSVLine(line);
+                    const nonEmptyCells = cells.filter(c => c !== '');
+                    
+                    if (nonEmptyCells.length === 0) continue;
+                    
+                    const firstCell = cells[0]?.trim() || '';
+                    
+                    if (isCategoryHeader(firstCell, nonEmptyCells.length, categoryList)) {
+                        currentCategory = normalizeText(firstCell);
+                        continue;
+                    }
+                    
+                    if (currentCategory && nonEmptyCells.length >= 2) {
+                        const price = cells[0] || '';
+                        const color = cells[1] || '';
+                        const model = cells[2] || '';
+                        const carName = cells[3] || model || '';
+                        
+                        allCars[branch].push({
+                            category: currentCategory,
+                            name: carName,
+                            model: model,
+                            color: color,
+                            priceText: price,
+                            branch: branch
+                        });
+                    }
                 }
                 
-                for (let i = startRow; i < rows.length; i++) {
-                    const row = rows[i].c;
-                    if (!row) continue;
-                    
-                    const price = row[0]?.v?.toString().trim() || '';
-                    const color = row[1]?.v?.toString().trim() || '';
-                    const model = row[2]?.v?.toString().trim() || '';
-                    const type = row[3]?.v?.toString().trim() || '';
-                    
-                    if (!type && !model && !color && !price) continue;
-                    
-                    allCars.push({
-                        type: type,
-                        model: model,
-                        color: color,
-                        priceText: price
-                    });
-                }
+                console.log(`✅ ${branch}: ${allCars[branch].length} سيارة`);
                 
             } catch (error) {
-                console.error('خطأ:', error);
-                document.getElementById('carsContainer').innerHTML = `
-                    <div style="text-align:center;padding:50px;color:#ff4444;">
-                        <p>خطأ في تحميل البيانات</p>
-                        <button onclick="loadCars()" style="margin-top:15px;padding:10px 20px;background:#e94560;color:white;border:none;border-radius:5px;cursor:pointer;">إعادة المحاولة</button>
-                    </div>
-                `;
+                console.error(`❌ خطأ ${branch}:`, error);
+            }
+        }
+
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+            
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current.trim());
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            result.push(current.trim());
+            return result;
+        }
+
+        function groupCarsByCategory(cars) {
+            const grouped = {};
+            cars.forEach(car => {
+                const category = car.category || 'أخرى';
+                if (!grouped[category]) grouped[category] = [];
+                grouped[category].push(car);
+            });
+            return grouped;
+        }
+
+        function toggleCategory(headerElement) {
+            const content = headerElement.nextElementSibling;
+            const isOpen = content.classList.contains('open');
+            
+            if (isOpen) {
+                headerElement.classList.remove('active');
+                content.classList.remove('open');
+            } else {
+                headerElement.classList.add('active');
+                content.classList.add('open');
+            }
+        }
+
+        function switchBranch(branch) {
+            currentBranch = branch;
+            document.querySelectorAll('.branch-tab').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(`tab-${branch}`).classList.add('active');
+            document.getElementById('branchTitle').textContent = 
+                branch === 'rustaq' ? '🚗 سيارات فرع الرستاق' : '🚗 سيارات فرع المعبيلة';
+            displayBranch(branch);
+        }
+
+        function updateCounts() {
+            document.getElementById('count-rustaq').textContent = `${allCars.rustaq.length} سيارة`;
+            document.getElementById('count-mabela').textContent = `${allCars.mabela.length} سيارة`;
+        }
+
+        function displayBranch(branch) {
+            const cars = allCars[branch];
+            const container = document.getElementById('carsContainer');
+            
+            if (cars.length === 0) {
+                container.innerHTML = '<div class="loading-section">🚫 لا توجد سيارات في هذا الفرع حالياً</div>';
                 return;
             }
             
-            const seen = new Set();
-            allCars = allCars.filter(c => {
-                const k = `${c.type}|${c.model}|${c.color}|${c.priceText}`;
-                if (seen.has(k)) return false;
-                seen.add(k);
-                return true;
-            });
+            const groupedCars = groupCarsByCategory(cars);
+            let html = '';
+            let isFirst = true;
             
-            displayCars(allCars);
-        }
-
-        function getColorCode(color) {
-            const c = color.toLowerCase();
-            if (c.includes('ابيض') || c.includes('white')) return '#fff';
-            if (c.includes('اسود') || c.includes('black')) return '#000';
-            if (c.includes('فضي') || c.includes('silver')) return '#c0c0c0';
-            if (c.includes('رصاصي') || c.includes('رمادي') || c.includes('gray')) return '#808080';
-            if (c.includes('احمر') || c.includes('red')) return '#f00';
-            if (c.includes('ازرق') || c.includes('blue')) return '#00f';
-            if (c.includes('اخضر') || c.includes('green')) return '#0f0';
-            if (c.includes('ذهبي') || c.includes('gold')) return '#ffd700';
-            return '#ccc';
+            for (const [category, categoryCars] of Object.entries(groupedCars)) {
+                html += `
+                <div class="category-accordion">
+                    <div class="category-header ${isFirst ? 'active' : ''}" onclick="toggleCategory(this)">
+                        <div class="category-title-group">
+                            <span class="category-icon">▼</span>
+                            <span class="category-name">🏭 ${category}</span>
+                        </div>
+                        <span class="category-badge">${categoryCars.length} سيارات</span>
+                    </div>
+                    <div class="category-content ${isFirst ? 'open' : ''}">
+                        <div class="cars-list">
+                            ${categoryCars.map((car, index) => {
+                                const carId = `car-${branch}-${index}`;
+                                
+                                setTimeout(() => {
+                                    const btn = document.getElementById(carId);
+                                    if (btn) btn.addEventListener('click', (e) => {
+                                        e.stopPropagation();
+                                        openWhatsApp(car);
+                                    });
+                                }, 100);
+                                
+                                return `
+                                <div class="car-item">
+                                    <div class="car-info">
+                                        <span class="car-name-tag">🚗 ${car.name}</span>
+                                        <div class="car-spec">
+                                            <span class="spec-icon">📅</span>
+                                            <span class="spec-value">${car.model}</span>
+                                        </div>
+                                        <div class="car-spec">
+                                            <span class="spec-icon">🎨</span>
+                                            <span>${car.color}</span>
+                                        </div>
+                                    </div>
+                                    <div class="car-price-tag">${car.priceText}</div>
+                                    <button id="${carId}" class="car-whatsapp-btn">💬 واتساب</button>
+                                </div>`;
+                            }).join('')}
+                        </div>
+                    </div>
+                </div>`;
+                isFirst = false;
+            }
+            
+            container.innerHTML = html;
         }
 
         function openWhatsApp(car) {
+            const branchNames = { rustaq: 'فرع الرستاق', mabela: 'فرع المعبيلة' };
             const message = `السلام عليكم ورحمة الله وبركاته
 
-أرغب في الاستفسار عن السيارة التالية:
+أرغب في الاستفسار عن السيارة التالية من ${branchNames[car.branch]}:
 
-🚗 *نوع المركبة:* ${car.type}
+🏭 *الفئة:* ${car.category}
+🚗 *اسم المركبة:* ${car.name}
 📅 *الموديل:* ${car.model}
 🎨 *اللون:* ${car.color}
 💰 *السعر:* ${car.priceText}
 
 هل يمكنكم تزويدي بمزيد من المعلومات؟`;
-            
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-            
-            window.open(whatsappUrl, '_blank');
+            window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        function displayCars(cars) {
-            const container = document.getElementById('carsContainer');
-            
-            if (cars.length === 0) {
-                container.innerHTML = '<div style="text-align:center;padding:50px;">لا توجد سيارات</div>';
-                return;
-            }
-            
-            container.innerHTML = cars.map((car, index) => {
-                const colorHex = getColorCode(car.color);
-                const carId = `car-${index}`;
-                
-                setTimeout(() => {
-                    const btn = document.getElementById(carId);
-                    if (btn) {
-                        btn.addEventListener('click', () => openWhatsApp(car));
-                    }
-                }, 100);
-                
-                return `
-                <div class="car-card">
-                    <div class="detail-row">
-                        <div class="detail-label">🚗 نوع المركبة</div>
-                        <div class="detail-value">${car.type}</div>
-                    </div>
-                    
-                    <div class="detail-row">
-                        <div class="detail-label">📅 الموديل</div>
-                        <div class="detail-value">${car.model}</div>
-                    </div>
-                    
-                    <div class="detail-row">
-                        <div class="detail-label">🎨 اللون</div>
-                        <div class="detail-value">
-                            <span class="color-dot" style="background:${colorHex};"></span>
-                            ${car.color}
-                        </div>
-                    </div>
-                    
-                    <div class="price-row">
-                        <div class="detail-label" style="color:#999;">💰 السعر</div>
-                        <div class="detail-value" style="color:#e94560; font-size:1.3em;">${car.priceText}</div>
-                    </div>
-                    
-                    <button id="${carId}" class="whatsapp-btn">
-                        💬 واتساب
-                    </button>
-                </div>`;
-            }).join('');
-        }
-
-        loadCars();
+        loadAllCars();
     </script>
 </body>
 </html>

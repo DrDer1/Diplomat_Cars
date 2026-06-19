@@ -12,15 +12,42 @@
             background: #0a0a0f;
             min-height: 100vh;
             color: #ffffff;
+            transition: background 0.5s;
         }
 
-        .welcome-banner {
+        body.rustaq { background: #0a0a0f; }
+        body.rustaq .welcome-banner {
             background: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 30%, #0f1419 60%, #0a0a0f 100%);
-            padding: 40px 20px;
+            border-bottom: 2px solid rgba(233, 69, 96, 0.4);
+        }
+        body.rustaq .category-header.active { background: rgba(233, 69, 96, 0.15); border-bottom: 1px solid rgba(233, 69, 96, 0.3); }
+        body.rustaq .category-name { color: #e94560; }
+        body.rustaq .category-badge { background: rgba(233, 69, 96, 0.2); color: #e94560; }
+        body.rustaq .branch-tab.active { background: rgba(233, 69, 96, 0.15); border-color: #e94560; color: #e94560; }
+        body.rustaq .branch-title { color: #e94560; }
+        body.rustaq .car-item:hover { border-color: rgba(233, 69, 96, 0.3); }
+        body.rustaq .car-price-section { background: rgba(233, 69, 96, 0.1); border: 1px solid rgba(233, 69, 96, 0.2); }
+        body.rustaq .car-price-value { color: #e94560; }
+
+        body.mabela { background: #1a1a2e; }
+        body.mabela .welcome-banner {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 30%, #1a1a2e 60%, #0f3460 100%);
+            border-bottom: 2px solid rgba(0, 212, 255, 0.4);
+        }
+        body.mabela .category-header.active { background: rgba(0, 212, 255, 0.12); border-bottom: 1px solid rgba(0, 212, 255, 0.3); }
+        body.mabela .category-name { color: #00d4ff; }
+        body.mabela .category-badge { background: rgba(0, 212, 255, 0.15); color: #00d4ff; }
+        body.mabela .branch-tab.active { background: rgba(0, 212, 255, 0.12); border-color: #00d4ff; color: #00d4ff; }
+        body.mabela .branch-title { color: #00d4ff; }
+        body.mabela .car-item:hover { border-color: rgba(0, 212, 255, 0.3); }
+        body.mabela .car-price-section { background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.2); }
+        body.mabela .car-price-value { color: #00d4ff; }
+
+        .welcome-banner {
+            padding: 30px 20px;
             text-align: center;
             margin-bottom: 30px;
-            border-bottom: 2px solid rgba(233, 69, 96, 0.3);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
             position: relative;
             overflow: hidden;
         }
@@ -32,34 +59,118 @@
             left: -50%;
             width: 200%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(233, 69, 96, 0.03), rgba(233, 69, 96, 0.06), rgba(233, 69, 96, 0.03), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.02), rgba(255,255,255,0.04), rgba(255,255,255,0.02), transparent);
             animation: shimmer 3s infinite;
         }
 
         @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
         .welcome-banner h1 {
-            font-size: 3em;
+            font-size: 2.2em;
             font-weight: 900;
             letter-spacing: 3px;
-            background: linear-gradient(135deg, #e94560 0%, #ff6b6b 30%, #c23152 60%, #e94560 100%);
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 30px rgba(233, 69, 96, 0.4), 0 0 60px rgba(233, 69, 96, 0.2);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        body.rustaq .welcome-banner h1 {
+            background: linear-gradient(135deg, #e94560 0%, #ff6b6b 30%, #ffd700 60%, #e94560 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            position: relative;
-            z-index: 1;
-            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        body.mabela .welcome-banner h1 {
+            background: linear-gradient(135deg, #00d4ff 0%, #00b4d8 30%, #90e0ef 60%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.4), 0 0 60px rgba(0, 212, 255, 0.2);
         }
 
         @keyframes glow { 0% { filter: brightness(1); } 100% { filter: brightness(1.3); } }
 
         .welcome-banner .subtitle {
             color: #888;
-            font-size: 0.9em;
+            font-size: 0.85em;
             margin-top: 10px;
             position: relative;
             z-index: 1;
             letter-spacing: 8px;
+        }
+
+        .search-bar {
+            max-width: 600px;
+            margin: 0 auto 25px;
+            padding: 0 20px;
+            position: relative;
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            font-size: 1.3em;
+            color: #888;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 45px 15px 50px;
+            border-radius: 30px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            font-size: 1em;
+            outline: none;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        body.rustaq .search-input:focus {
+            border-color: #e94560;
+            box-shadow: 0 0 25px rgba(233, 69, 96, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        body.mabela .search-input:focus {
+            border-color: #00d4ff;
+            box-shadow: 0 0 25px rgba(0, 212, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .search-input::placeholder { color: #666; }
+
+        .clear-search {
+            position: absolute;
+            left: 15px;
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 1.2em;
+            cursor: pointer;
+            padding: 5px;
+            display: none;
+            z-index: 2;
+        }
+
+        .clear-search:hover { color: #fff; }
+
+        .search-results-count {
+            text-align: center;
+            color: #888;
+            font-size: 0.85em;
+            margin-top: 8px;
+            display: none;
         }
 
         .branch-tabs {
@@ -83,34 +194,23 @@
         }
 
         .branch-tab:hover {
-            border-color: rgba(233, 69, 96, 0.3);
+            border-color: rgba(255, 255, 255, 0.2);
             color: #fff;
             background: rgba(255, 255, 255, 0.05);
             transform: translateY(-2px);
         }
 
-        .branch-tab.active {
-            background: rgba(233, 69, 96, 0.15);
-            border-color: #e94560;
-            color: #e94560;
-            box-shadow: 0 8px 30px rgba(233, 69, 96, 0.25);
-        }
-
         .branch-tab .car-count {
             display: block;
             font-size: 0.65em;
-            color: #666;
             margin-top: 5px;
             font-weight: normal;
         }
-
-        .branch-tab.active .car-count { color: #e94560; opacity: 0.8; }
 
         .branch-title {
             text-align: center;
             font-size: 1.6em;
             margin: 25px 20px;
-            color: #e94560;
             font-weight: bold;
         }
 
@@ -135,12 +235,7 @@
             background: rgba(255, 255, 255, 0.03);
         }
 
-        .category-header:hover { background: rgba(233, 69, 96, 0.08); }
-
-        .category-header.active {
-            background: rgba(233, 69, 96, 0.12);
-            border-bottom: 1px solid rgba(233, 69, 96, 0.2);
-        }
+        .category-header:hover { background: rgba(255, 255, 255, 0.05); }
 
         .category-title-group {
             display: flex;
@@ -155,11 +250,9 @@
 
         .category-header.active .category-icon { transform: rotate(180deg); }
 
-        .category-name { font-size: 1.4em; font-weight: bold; color: #e94560; }
+        .category-name { font-size: 1.4em; font-weight: bold; }
 
         .category-badge {
-            background: rgba(233, 69, 96, 0.2);
-            color: #e94560;
             padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.8em;
@@ -186,7 +279,7 @@
 
         .car-item:hover {
             background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(233, 69, 96, 0.2);
+            border-color: rgba(255, 255, 255, 0.15);
             transform: translateX(-5px);
         }
 
@@ -204,21 +297,10 @@
             font-size: 1em;
         }
 
-        .car-detail-label {
-            color: #888;
-            min-width: 100px;
-            font-size: 0.9em;
-        }
-
-        .car-detail-value {
-            color: #fff;
-            font-weight: bold;
-            font-size: 1.05em;
-        }
+        .car-detail-label { color: #888; min-width: 100px; font-size: 0.9em; }
+        .car-detail-value { color: #fff; font-weight: bold; font-size: 1.05em; }
 
         .car-price-section {
-            background: rgba(233, 69, 96, 0.1);
-            border: 1px solid rgba(233, 69, 96, 0.2);
             border-radius: 10px;
             padding: 12px 15px;
             margin-bottom: 15px;
@@ -228,24 +310,11 @@
         }
 
         .car-price-label { color: #aaa; font-size: 0.9em; }
-        .car-price-value { color: #e94560; font-weight: bold; font-size: 1.2em; }
+        .car-price-value { font-weight: bold; font-size: 1.2em; }
 
-        .whatsapp-section {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .whatsapp-section-label {
-            color: #aaa;
-            font-size: 0.8em;
-            text-align: center;
-        }
-
-        .whatsapp-buttons {
-            display: flex;
-            gap: 10px;
-        }
+        .whatsapp-section { display: flex; flex-direction: column; gap: 8px; }
+        .whatsapp-section-label { color: #aaa; font-size: 0.8em; text-align: center; }
+        .whatsapp-buttons { display: flex; gap: 10px; }
 
         .whatsapp-btn-1, .whatsapp-btn-2 {
             flex: 1;
@@ -260,38 +329,35 @@
             text-align: center;
         }
 
-        .whatsapp-btn-1 {
-            background: #075e54;
-        }
-
-        .whatsapp-btn-1:hover {
-            background: #128C7E;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
-        }
-
-        .whatsapp-btn-2 {
-            background: #1a6b5a;
-        }
-
-        .whatsapp-btn-2:hover {
-            background: #0d9488;
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
-        }
+        .whatsapp-btn-1 { background: #075e54; }
+        .whatsapp-btn-1:hover { background: #128C7E; box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3); }
+        .whatsapp-btn-2 { background: #1a6b5a; }
+        .whatsapp-btn-2:hover { background: #0d9488; box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3); }
 
         .loading-section { text-align: center; padding: 50px; color: #888; }
 
         @media (max-width: 768px) {
-            .welcome-banner h1 { font-size: 2em; }
+            .welcome-banner h1 { font-size: 1.8em; }
             .branch-tab { padding: 14px 30px; font-size: 1.1em; }
             .category-name { font-size: 1.1em; }
             .whatsapp-buttons { flex-direction: column; }
+            .search-input { font-size: 0.9em; padding: 12px 40px 12px 45px; }
         }
     </style>
 </head>
-<body>
+<body class="rustaq">
     <div class="welcome-banner">
         <h1>الدبلوماسي للسيارات</h1>
         <div class="subtitle">● DIPLOMAT CARS ●</div>
+    </div>
+
+    <div class="search-bar">
+        <div class="search-input-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" class="search-input" id="searchInput" placeholder="ابحث عن مركبة بالاسم، الموديل، أو السعر..." oninput="handleSearch()">
+            <button class="clear-search" id="clearSearch" onclick="clearSearch()">✕</button>
+        </div>
+        <div class="search-results-count" id="searchResultsCount"></div>
     </div>
 
     <div class="branch-tabs">
@@ -315,23 +381,14 @@
         const SHEET_RUSTAQ = '1GYYo5T1iUlOtu_Qie2v_Me99l1yLivM2UrwLzW9Vpto';
         const SHEET_MABELA = '1MynVZ9abykJWym9GwzzJr0cRmYC4XenX7ReKNJpTwJE';
         
-        // أرقام التواصل لكل فرع
         const BRANCH_PHONES = {
-            rustaq: ['96895096865', '96872222242'],
+            rustaq: ['96872222242', '96895096865'],
             mabela: ['96892256223', '96878080132']
         };
         
-        const RUSTAQ_CATEGORIES = [
-            'نيسان', 'كامري', 'لكزس', 'تويوتا', 'هوندا', 'هايونداي', 'أخرى'
-        ];
-        
-        const MABELA_CATEGORIES = [
-            'نيسان', 'لكزس', 'لينكولن', 'تويوتا', 'كامري', 'مرسيدس',
-            'هونداي', 'كيا', 'هوندا', 'شيفروليه', 'فوورد', 'أخرى'
-        ];
-        
         let allCars = { rustaq: [], mabela: [] };
         let currentBranch = 'rustaq';
+        let searchQuery = '';
 
         function openWhatsApp(car, phoneNumber) {
             const branchNames = { rustaq: 'فرع الرستاق', mabela: 'فرع المعبيلة' };
@@ -347,30 +404,64 @@
 
 هل يمكنكم تزويدي بمزيد من المعلومات؟`;
             
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-            window.open(whatsappUrl, '_blank');
+            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
         window.carsData = {};
 
+        function handleSearch() {
+            const input = document.getElementById('searchInput');
+            const clearBtn = document.getElementById('clearSearch');
+            searchQuery = input.value.toLowerCase().trim();
+            
+            clearBtn.style.display = searchQuery ? 'block' : 'none';
+            displayBranch(currentBranch);
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('clearSearch').style.display = 'none';
+            document.getElementById('searchResultsCount').style.display = 'none';
+            searchQuery = '';
+            displayBranch(currentBranch);
+        }
+
+        function filterCars(cars) {
+            if (!searchQuery) return cars;
+            
+            return cars.filter(car => {
+                if (car.name && car.name.toLowerCase().includes(searchQuery)) return true;
+                if (car.model && car.model.toLowerCase().includes(searchQuery)) return true;
+                if (car.priceText && car.priceText.toLowerCase().includes(searchQuery)) return true;
+                if (car.category && car.category.toLowerCase().includes(searchQuery)) return true;
+                if (car.color && car.color.toLowerCase().includes(searchQuery)) return true;
+                return false;
+            });
+        }
+
         async function loadAllCars() {
-            await loadBranchCars('rustaq', SHEET_RUSTAQ, RUSTAQ_CATEGORIES);
-            await loadBranchCars('mabela', SHEET_MABELA, MABELA_CATEGORIES);
+            await loadBranchCars('rustaq', SHEET_RUSTAQ);
+            await loadBranchCars('mabela', SHEET_MABELA);
             updateCounts();
             displayBranch(currentBranch);
         }
 
-        function normalizeText(text) {
-            return text.trim().replace(/\s+/g, ' ');
+        function isCategoryHeader(cells) {
+            const nonEmptyCells = cells.filter(c => c !== '');
+            if (nonEmptyCells.length !== 1) return false;
+            
+            const text = cells[0]?.trim() || '';
+            if (!text || text.length > 50) return false;
+            if (/^\d+$/.test(text)) return false;
+            if (/^(19|20)\d{2}$/.test(text)) return false;
+            
+            const colors = ['ابيض', 'أبيض', 'اسود', 'أسود', 'فضي', 'رصاصي', 'رمادي', 'احمر', 'أحمر', 'ازرق', 'أزرق', 'اخضر', 'أخضر', 'ذهبي', 'white', 'black', 'silver', 'gray', 'red', 'blue', 'green', 'gold'];
+            if (colors.some(c => text.toLowerCase().includes(c.toLowerCase())) && text.length < 10) return false;
+            
+            return true;
         }
 
-        function isCategoryHeader(firstCell, nonEmptyCount, categoryList) {
-            if (nonEmptyCount !== 1) return false;
-            const normalized = normalizeText(firstCell);
-            return categoryList.some(name => normalizeText(name) === normalized);
-        }
-
-        async function loadBranchCars(branch, sheetId, categoryList) {
+        async function loadBranchCars(branch, sheetId) {
             allCars[branch] = [];
             
             try {
@@ -387,16 +478,14 @@
                     
                     const cells = parseCSVLine(line);
                     const nonEmptyCells = cells.filter(c => c !== '');
-                    
                     if (nonEmptyCells.length === 0) continue;
                     
-                    const firstCell = cells[0]?.trim() || '';
-                    
-                    if (isCategoryHeader(firstCell, nonEmptyCells.length, categoryList)) {
-                        currentCategory = normalizeText(firstCell);
+                    if (isCategoryHeader(cells)) {
+                        currentCategory = cells[0].trim();
                         continue;
                     }
                     
+                    // فقط أضف السيارة إذا كان هناك عنوان حالي
                     if (currentCategory && nonEmptyCells.length >= 2) {
                         const price = cells[0] || '';
                         const color = cells[1] || '';
@@ -464,10 +553,17 @@
 
         function switchBranch(branch) {
             currentBranch = branch;
+            document.body.className = branch;
             document.querySelectorAll('.branch-tab').forEach(tab => tab.classList.remove('active'));
             document.getElementById(`tab-${branch}`).classList.add('active');
             document.getElementById('branchTitle').textContent = 
                 branch === 'rustaq' ? '🚗 سيارات فرع الرستاق' : '🚗 سيارات فرع المعبيلة';
+            
+            document.getElementById('searchInput').value = '';
+            document.getElementById('clearSearch').style.display = 'none';
+            document.getElementById('searchResultsCount').style.display = 'none';
+            searchQuery = '';
+            
             displayBranch(branch);
         }
 
@@ -481,26 +577,40 @@
             const container = document.getElementById('carsContainer');
             const phones = BRANCH_PHONES[branch];
             
-            if (cars.length === 0) {
-                container.innerHTML = '<div class="loading-section">🚫 لا توجد سيارات في هذا الفرع حالياً</div>';
+            const filteredCars = filterCars(cars);
+            
+            const resultsCount = document.getElementById('searchResultsCount');
+            if (searchQuery) {
+                resultsCount.style.display = 'block';
+                resultsCount.textContent = `🔍 تم العثور على ${filteredCars.length} نتيجة لـ "${searchQuery}"`;
+            } else {
+                resultsCount.style.display = 'none';
+            }
+            
+            if (filteredCars.length === 0) {
+                container.innerHTML = searchQuery ? 
+                    '<div class="loading-section">🔍 لا توجد نتائج مطابقة للبحث</div>' : 
+                    '<div class="loading-section">🚫 لا توجد سيارات في هذا الفرع حالياً</div>';
                 return;
             }
             
-            const groupedCars = groupCarsByCategory(cars);
+            const groupedCars = groupCarsByCategory(filteredCars);
             let html = '';
             let isFirst = true;
             
             for (const [category, categoryCars] of Object.entries(groupedCars)) {
+                const isOpen = searchQuery ? true : isFirst;
+                
                 html += `
                 <div class="category-accordion">
-                    <div class="category-header ${isFirst ? 'active' : ''}" onclick="toggleCategory(this)">
+                    <div class="category-header ${isOpen ? 'active' : ''}" onclick="toggleCategory(this)">
                         <div class="category-title-group">
                             <span class="category-icon">▼</span>
                             <span class="category-name">🏭 ${category}</span>
                         </div>
                         <span class="category-badge">${categoryCars.length} سيارات</span>
                     </div>
-                    <div class="category-content ${isFirst ? 'open' : ''}">
+                    <div class="category-content ${isOpen ? 'open' : ''}">
                         <div class="cars-list">
                             ${categoryCars.map((car, index) => {
                                 const carKey = `${branch}-${index}`;
@@ -511,21 +621,21 @@
                                     <div class="car-details">
                                         <div class="car-detail-row">
                                             <span class="car-detail-label">🚗 اسم المركبة:</span>
-                                            <span class="car-detail-value">${car.name || '---'}</span>
+                                            <span class="car-detail-value">${highlightText(car.name || '---')}</span>
                                         </div>
                                         <div class="car-detail-row">
                                             <span class="car-detail-label">📅 الموديل:</span>
-                                            <span class="car-detail-value">${car.model || '---'}</span>
+                                            <span class="car-detail-value">${highlightText(car.model || '---')}</span>
                                         </div>
                                         <div class="car-detail-row">
                                             <span class="car-detail-label">🎨 اللون:</span>
-                                            <span class="car-detail-value">${car.color || '---'}</span>
+                                            <span class="car-detail-value">${highlightText(car.color || '---')}</span>
                                         </div>
                                     </div>
                                     
                                     <div class="car-price-section">
                                         <span class="car-price-label">💰 السعر:</span>
-                                        <span class="car-price-value">${car.priceText || 'السعر غير محدد'} ريال عماني</span>
+                                        <span class="car-price-value">${highlightText(car.priceText || 'السعر غير محدد')} ريال عماني</span>
                                     </div>
                                     
                                     <div class="whatsapp-section">
@@ -546,10 +656,15 @@
             container.innerHTML = html;
         }
 
-        // تحميل أول مرة
+        function highlightText(text) {
+            if (!searchQuery || !text) return text;
+            const escapedQuery = searchQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            const regex = new RegExp(`(${escapedQuery})`, 'gi');
+            return text.replace(regex, '<mark style="background:#e94560;color:#fff;padding:0 3px;border-radius:3px;">$1</mark>');
+        }
+
         loadAllCars();
         
-        // تحديث تلقائي كل 10 دقائق
         setInterval(() => {
             loadAllCars();
         }, 600000);

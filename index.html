@@ -15,8 +15,72 @@
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0a0a0f; min-height: 100vh; color: #ffffff; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0a0a0f; min-height: 100vh; color: #ffffff; padding-bottom: 80px; }
         
+        /* بانر التثبيت */
+        .install-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #0d0d1a;
+            border-top: 2px solid #e94560;
+            padding: 15px 20px;
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            box-shadow: 0 -5px 30px rgba(0,0,0,0.5);
+        }
+        .install-banner.show { display: flex; }
+        .install-icon {
+            font-size: 2.5em;
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .install-text {
+            flex: 1;
+            color: #ccc;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+        .install-text strong {
+            color: #e94560;
+            display: block;
+            font-size: 1.1em;
+        }
+        .install-btn {
+            background: linear-gradient(135deg, #e94560, #c23152);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.95em;
+            white-space: nowrap;
+            box-shadow: 0 5px 20px rgba(233,69,96,0.3);
+            transition: all 0.3s;
+        }
+        .install-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(233,69,96,0.5);
+        }
+        .install-close {
+            position: absolute;
+            top: 8px;
+            left: 12px;
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+
         .welcome-banner { background: linear-gradient(135deg, #0d0d1a, #1a1a2e, #0a0a0f); padding: 30px 20px; text-align: center; margin-bottom: 30px; border-bottom: 2px solid #e94560; }
         .welcome-banner h1 { font-size: 2.2em; font-weight: 900; background: linear-gradient(135deg, #e94560, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .welcome-banner .subtitle { color: #888; font-size: 0.85em; margin-top: 10px; letter-spacing: 8px; }
@@ -92,10 +156,23 @@
             .category-name { font-size: 1.1em; }
             .whatsapp-buttons { flex-direction: column; }
             .car-image { height: 150px; }
+            .install-banner { flex-direction: column; text-align: center; padding: 20px 15px; }
+            .install-btn { width: 100%; }
         }
     </style>
 </head>
 <body>
+
+    <!-- بانر تثبيت التطبيق -->
+    <div class="install-banner" id="installBanner">
+        <span class="install-icon">📱</span>
+        <span class="install-text">
+            <strong>ثبّت التطبيق الآن</strong>
+            للوصول السريع وتجربة أفضل
+        </span>
+        <button class="install-btn" onclick="installApp()">تثبيت التطبيق</button>
+        <button class="install-close" onclick="closeBanner()">✕</button>
+    </div>
 
     <button class="side-menu-toggle" onclick="toggleSideMenu()">☰</button>
     <div class="side-menu-overlay" id="sideMenuOverlay" onclick="toggleSideMenu()"></div>
@@ -130,14 +207,61 @@
     </div>
 
     <script>
-        function toggleSideMenu() {
-            document.getElementById('sideMenu').classList.toggle('open');
-            document.getElementById('sideMenuOverlay').classList.toggle('show');
+        // ============ PWA Installation ============
+        let deferredPrompt;
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            // إظهار البانر بعد 3 ثواني
+            setTimeout(() => {
+                document.getElementById('installBanner').classList.add('show');
+            }, 3000);
+        });
+        
+        function installApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((result) => {
+                    if (result.outcome === 'accepted') {
+                        console.log('✅ تم تثبيت التطبيق');
+                    }
+                    deferredPrompt = null;
+                    document.getElementById('installBanner').classList.remove('show');
+                });
+            } else {
+                // إذا لم يظهر beforeinstallprompt، نعطي تعليمات يدوية
+                alert('للتثبيت:\n\n• أندرويد: اضغط ⁝ ثم "إضافة إلى الشاشة الرئيسية"\n• آيفون: اضغط ↩ ثم "Add to Home Screen"');
+            }
+        }
+        
+        function closeBanner() {
+            document.getElementById('installBanner').classList.remove('show');
+            // إخفاء لمدة يوم
+            localStorage.setItem('installBannerClosed', Date.now());
+        }
+        
+        window.addEventListener('appinstalled', () => {
+            document.getElementById('installBanner').classList.remove('show');
+        });
+
+        // إظهار البانر مرة أخرى بعد يوم إذا لم يثبت
+        const lastClosed = localStorage.getItem('installBannerClosed');
+        if (lastClosed && Date.now() - lastClosed < 86400000) {
+            // لم يمر يوم - لا تظهر البانر
+        } else {
+            // قد يظهر البانر لاحقاً عبر beforeinstallprompt
         }
 
         // Service Worker
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.register('/Diplomat_Cars/sw.js');
+        }
+
+        // ============ Main App ============
+        function toggleSideMenu() {
+            document.getElementById('sideMenu').classList.toggle('open');
+            document.getElementById('sideMenuOverlay').classList.toggle('show');
         }
 
         const SHEET_RUSTAQ = '1KIgAoTO0sbKtvVNt775ZCyuSAW8Bf8HbFyUXCY9pIV0';

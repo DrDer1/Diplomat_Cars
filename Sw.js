@@ -1,8 +1,8 @@
 const CACHE_NAME = 'diplomat-cars-v2';
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json'
+  '/diplomat-cars/',
+  '/diplomat-cars/index.html',
+  '/diplomat-cars/manifest.json'
 ];
 
 self.addEventListener('install', event => {

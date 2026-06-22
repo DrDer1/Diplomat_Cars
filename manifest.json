@@ -2,7 +2,7 @@
   "name": "الدبلوماسي للسيارات",
   "short_name": "الدبلوماسي",
   "description": "معرض الدبلوماسي للسيارات - فرع الرستاق وفرع المعبيلة",
-  "start_url": "/",
+  "start_url": "/diplomat-cars/",
   "display": "standalone",
   "background_color": "#0a0a0f",
   "theme_color": "#e94560",

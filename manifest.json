@@ -1,7 +1,7 @@
 {
     "name": "الدبلوماسي للسيارات",
     "short_name": "الدبلوماسي",
-    "start_url": ".",
+    "start_url": "/Diplomat_Cars/",
     "display": "standalone",
     "background_color": "#0a0a0f",
     "theme_color": "#e94560",

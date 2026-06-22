@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>الدبلوماسي للسيارات</title>
-    <link rel="manifest" href="manifest.json">
+    
+    <link rel="manifest" href="/Diplomat_Cars/manifest.json">
     <meta name="theme-color" content="#0a0a0f">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -132,6 +133,11 @@
         function toggleSideMenu() {
             document.getElementById('sideMenu').classList.toggle('open');
             document.getElementById('sideMenuOverlay').classList.toggle('show');
+        }
+
+        // Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/Diplomat_Cars/sw.js');
         }
 
         const SHEET_RUSTAQ = '1KIgAoTO0sbKtvVNt775ZCyuSAW8Bf8HbFyUXCY9pIV0';

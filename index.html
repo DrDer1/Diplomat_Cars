@@ -6,7 +6,7 @@
     <title>الدبلوماسي للسيارات</title>
     
     <!-- PWA Meta Tags -->
-    <link rel="manifest" href="manifest.json">
+    <link rel="manifest" href="/diplomat-cars/manifest.json">
     <meta name="theme-color" content="#0a0a0f">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -128,7 +128,6 @@
 </head>
 <body class="rustaq">
 
-    <!-- بانر تثبيت التطبيق -->
     <div class="install-banner" id="installBanner">
         <span class="install-text">📱 ثبّت التطبيق للوصول السريع</span>
         <button class="install-btn" id="installBtn" onclick="installApp()">تثبيت</button>
@@ -181,7 +180,7 @@
 
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').catch(() => {});
+                navigator.serviceWorker.register('/diplomat-cars/sw.js').catch(() => {});
             });
         }
 

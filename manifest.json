@@ -1,23 +1,15 @@
 {
-  "name": "الدبلوماسي للسيارات",
-  "short_name": "الدبلوماسي",
-  "description": "معرض الدبلوماسي للسيارات - فرع الرستاق وفرع المعبيلة",
-  "start_url": "/diplomat-cars/",
-  "display": "standalone",
-  "background_color": "#0a0a0f",
-  "theme_color": "#e94560",
-  "orientation": "portrait-primary",
-  "icons": [
-    {
-      "src": "https://i.ibb.co/QFKYPWBc/IMG-20260622-WA0006.jpg",
-      "sizes": "192x192",
-      "type": "image/jpeg"
-    },
-    {
-      "src": "https://i.ibb.co/QFKYPWBc/IMG-20260622-WA0006.jpg",
-      "sizes": "512x512",
-      "type": "image/jpeg",
-      "purpose": "any maskable"
-    }
-  ]
+    "name": "الدبلوماسي للسيارات",
+    "short_name": "الدبلوماسي",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0a0a0f",
+    "theme_color": "#e94560",
+    "icons": [
+        {
+            "src": "https://i.ibb.co/QFKYPWBc/IMG-20260622-WA0006.jpg",
+            "sizes": "512x512",
+            "type": "image/jpeg"
+        }
+    ]
 }

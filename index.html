@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الدبلوماسي للسيارات</title>
+    <title>الدبلوماسي للسيارات - Diplomat Cars</title>
     
     <link rel="manifest" href="/Diplomat_Cars/manifest.json">
     <meta name="theme-color" content="#0a0a0f">
@@ -15,236 +15,346 @@
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0a0a0f; min-height: 100vh; color: #ffffff; padding-bottom: 80px; transition: all 0.5s; }
-        
-        body.rustaq { background: #0a0a0f; }
-        body.rustaq .welcome-banner { background: linear-gradient(135deg, #0d0d1a, #1a1a2e, #0a0a0f); border-bottom: 2px solid #e94560; }
-        body.rustaq .branch-tab.active { background: rgba(233,69,96,0.15); border-color: #e94560; color: #e94560; }
-        body.rustaq .branch-title { color: #e94560; }
-        body.rustaq .category-name { color: #e94560; }
-        body.rustaq .category-badge { background: rgba(233,69,96,0.2); color: #e94560; }
-        body.rustaq .category-header.active { background: rgba(233,69,96,0.1); border-bottom: 1px solid rgba(233,69,96,0.2); }
-        body.rustaq .car-price-section { background: rgba(233,69,96,0.1); border: 1px solid rgba(233,69,96,0.2); }
-        body.rustaq .car-price-value { color: #e94560; }
-        body.rustaq .welcome-banner h1 { background: linear-gradient(135deg, #e94560, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        body.rustaq .search-input:focus { border-color: #e94560; }
-        body.rustaq .side-menu-tab { background: #e94560; }
+        :root { --primary: #e94560; }
 
-        body.mabela { background: #1a1a2e; }
-        body.mabela .welcome-banner { background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); border-bottom: 2px solid #00d4ff; }
-        body.mabela .branch-tab.active { background: rgba(0,212,255,0.12); border-color: #00d4ff; color: #00d4ff; }
-        body.mabela .branch-title { color: #00d4ff; }
-        body.mabela .category-name { color: #00d4ff; }
-        body.mabela .category-badge { background: rgba(0,212,255,0.15); color: #00d4ff; }
-        body.mabela .category-header.active { background: rgba(0,212,255,0.08); border-bottom: 1px solid rgba(0,212,255,0.2); }
-        body.mabela .car-price-section { background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.2); }
-        body.mabela .car-price-value { color: #00d4ff; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0a0a0f; min-height: 100vh; color: #ffffff; transition: background 0.5s; }
+        body.rustaq { background: #0a0a0f; } body.mabela { background: #1a1a2e; }
+
+        .welcome-banner { background: linear-gradient(135deg, #0d0d1a, #1a1a2e, #0a0a0f); padding: 18px 15px; text-align: center; border-bottom: 2px solid rgba(233,69,96,0.4); margin-bottom: 15px; }
+        .welcome-banner h1 { font-size: 1.7em; font-weight: 900; background: linear-gradient(135deg, #e94560, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         body.mabela .welcome-banner h1 { background: linear-gradient(135deg, #00d4ff, #90e0ef); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        body.mabela .search-input:focus { border-color: #00d4ff; }
-        body.mabela .side-menu-tab { background: #00d4ff; }
+        .welcome-banner .subtitle { color: #888; font-size: 0.7em; margin-top: 5px; letter-spacing: 5px; }
 
-        .side-menu-tab { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 1001; width: 22px; height: 60px; border-radius: 12px 0 0 12px; cursor: pointer; border: none; display: flex; align-items: center; justify-content: center; box-shadow: -3px 0 20px rgba(0,0,0,0.4); transition: all 0.3s; }
-        .side-menu-tab:hover { width: 28px; }
-        .side-menu-arrow { color: #fff; font-size: 0.8em; transition: transform 0.4s; }
-        .side-menu-tab.open .side-menu-arrow { transform: rotate(180deg); }
-        body.ltr .side-menu-tab { right: auto; left: 0; border-radius: 0 12px 12px 0; }
-
-        .side-menu { position: fixed; right: -320px; top: 0; width: 300px; height: 100%; background: rgba(10,10,15,0.98); backdrop-filter: blur(20px); border-left: 1px solid rgba(255,255,255,0.08); z-index: 999; transition: right 0.4s; padding: 30px 20px 20px; overflow-y: auto; }
-        body.ltr .side-menu { right: auto; left: -320px; border-left: none; border-right: 1px solid rgba(255,255,255,0.08); transition: left 0.4s; }
-        .side-menu.open { right: 0; } body.ltr .side-menu.open { left: 0; right: auto; }
-        .side-menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 998; display: none; }
-        .side-menu-overlay.show { display: block; }
-        .side-menu-title { color: #e94560; font-size: 1.2em; font-weight: bold; margin-bottom: 20px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; }
-
-        .lang-section { border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-bottom: 15px; }
-        .lang-section-label { color: #888; font-size: 0.8em; text-align: center; margin-bottom: 10px; letter-spacing: 2px; }
-        .lang-buttons { display: flex; gap: 8px; }
-        .lang-btn { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); color: #888; padding: 10px; border-radius: 10px; cursor: pointer; font-size: 0.85em; font-weight: bold; text-align: center; transition: all 0.3s; }
-        .lang-btn:hover { border-color: #e94560; color: #fff; }
-        .lang-btn.active { background: #e94560; color: #fff; border-color: #e94560; }
-
-        .side-menu-item { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 12px; cursor: pointer; text-decoration: none; color: #ccc; margin-bottom: 6px; font-size: 0.95em; transition: all 0.3s; }
-        .side-menu-item:hover { background: rgba(255,255,255,0.05); color: #fff; }
-        .side-menu-item .menu-icon { font-size: 1.3em; width: 35px; height: 35px; background: rgba(255,255,255,0.05); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
-        .side-menu-item .menu-label { flex: 1; }
-        .side-menu-item.whatsapp { background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.2); }
-        .side-menu-item.whatsapp:hover { background: rgba(37,211,102,0.2); border-color: #25D366; }
-        .side-menu-item.whatsapp .menu-icon { background: #075e54; }
-
-        .notify-banner { position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #0d0d1a, #1a1a2e); border-bottom: 2px solid #e94560; padding: 10px 20px; z-index: 10000; display: none; align-items: center; justify-content: space-between; gap: 10px; font-size: 0.8em; }
-        .notify-banner.show { display: flex; }
-        .notify-banner .notify-text { color: #ccc; flex: 1; }
-        .notify-banner .notify-btn { background: #e94560; color: white; border: none; padding: 6px 16px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 0.85em; white-space: nowrap; }
-        .notify-banner .notify-later { background: none; border: 1px solid #666; color: #888; padding: 6px 12px; border-radius: 20px; cursor: pointer; font-size: 0.8em; }
-
-        .install-banner { position: fixed; bottom: 0; left: 0; right: 0; background: #0d0d1a; border-top: 2px solid #e94560; padding: 15px 20px; z-index: 9999; display: none; align-items: center; justify-content: space-between; gap: 12px; }
-        .install-banner.show { display: flex; }
-        .install-icon { font-size: 2.5em; animation: bounce 1s infinite; }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        .install-text { flex: 1; color: #ccc; font-size: 0.9em; }
-        .install-text strong { color: #e94560; display: block; font-size: 1.1em; }
-        .install-btn { background: linear-gradient(135deg, #e94560, #c23152); color: white; border: none; padding: 12px 25px; border-radius: 25px; cursor: pointer; font-weight: bold; font-size: 0.95em; white-space: nowrap; }
-        .install-close { position: absolute; top: 8px; right: 12px; background: none; border: none; color: #666; font-size: 1.2em; cursor: pointer; }
-
-        .welcome-banner { padding: 30px 20px; text-align: center; margin-bottom: 30px; }
-        .welcome-banner h1 { font-size: 2.2em; font-weight: 900; }
-        .welcome-banner .subtitle { color: #888; font-size: 0.85em; margin-top: 10px; letter-spacing: 8px; }
-
-        .search-bar { max-width: 600px; margin: 0 auto 25px; padding: 0 20px; }
+        .search-bar { max-width: 600px; margin: 0 auto 12px; padding: 0 15px; }
         .search-input-wrapper { position: relative; }
-        .search-icon { position: absolute; right: 15px; top: 15px; font-size: 1.3em; color: #888; }
-        .search-input { width: 100%; padding: 15px 45px 15px 50px; border-radius: 30px; border: 2px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05); color: white; font-size: 1em; outline: none; }
-        .search-input::placeholder { color: #666; }
-        .clear-search { position: absolute; left: 15px; top: 15px; background: none; border: none; color: #888; font-size: 1.2em; cursor: pointer; display: none; }
-        .search-results-count { text-align: center; color: #888; font-size: 0.85em; margin-top: 8px; display: none; }
+        .search-input { width: 100%; padding: 10px 38px 10px 40px; border-radius: 25px; border: 2px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: white; font-size: 0.88em; outline: none; }
+        .search-input:focus { border-color: var(--primary); } .search-input::placeholder { color: #666; }
+        .search-icon { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 1em; color: #888; }
+        .clear-search { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #888; font-size: 0.9em; cursor: pointer; display: none; }
+        .search-results-count { text-align: center; color: #888; font-size: 0.72em; margin-top: 3px; display: none; }
 
-        .branch-tabs { display: flex; justify-content: center; gap: 15px; margin: 0 20px 25px; flex-wrap: wrap; }
-        .branch-tab { padding: 18px 45px; border-radius: 15px; cursor: pointer; font-size: 1.3em; font-weight: bold; border: 2px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: #888; transition: all 0.3s; }
-        .branch-tab:hover { border-color: #e94560; color: #fff; }
-        .branch-tab .car-count { display: block; font-size: 0.65em; margin-top: 5px; font-weight: normal; }
-        .branch-title { text-align: center; font-size: 1.6em; margin: 25px 20px; font-weight: bold; }
-        .container { max-width: 900px; margin: 0 auto; padding: 0 20px 30px; }
+        .branch-tabs { display: flex; justify-content: center; gap: 10px; margin: 0 15px 14px; }
+        .branch-tab { padding: 11px 28px; border-radius: 12px; cursor: pointer; font-size: 1em; font-weight: bold; border: 2px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); color: #888; }
+        .branch-tab:hover { border-color: rgba(255,255,255,0.2); color: #fff; }
+        .branch-tab.active { background: rgba(233,69,96,0.12); border-color: var(--primary); color: var(--primary); }
+        body.mabela .branch-tab.active { background: rgba(0,212,255,0.1); border-color: #00d4ff; color: #00d4ff; }
+        .branch-tab .car-count { display: block; font-size: 0.55em; margin-top: 2px; opacity: 0.7; }
 
-        .category-accordion { margin-bottom: 15px; border-radius: 15px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); }
-        .category-header { padding: 20px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: all 0.3s; user-select: none; }
-        .category-header:hover { background: rgba(255,255,255,0.05); }
-        .category-title-group { display: flex; align-items: center; gap: 12px; }
-        .category-icon { font-size: 1.5em; transition: transform 0.3s; }
-        .category-header.active .category-icon { transform: rotate(180deg); }
-        .category-name { font-size: 1.4em; font-weight: bold; }
-        .category-badge { padding: 4px 12px; border-radius: 20px; font-size: 0.8em; font-weight: bold; }
-        .category-content { display: none; }
-        .category-content.open { display: block; }
-        .cars-list { padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+        .branch-title { text-align: center; font-size: 1.2em; margin: 14px 15px; font-weight: bold; color: var(--primary); }
+        body.mabela .branch-title { color: #00d4ff; }
 
-        .car-item { background: rgba(255,255,255,0.04); border-radius: 12px; padding: 20px; border: 1px solid rgba(255,255,255,0.06); transition: all 0.3s; }
-        .car-item:hover { background: rgba(255,255,255,0.07); border-color: rgba(233,69,96,0.2); }
-        .car-image { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; background: rgba(255,255,255,0.03); }
-        .car-image.no-image { display: flex; align-items: center; justify-content: center; font-size: 3em; color: #444; }
-        .car-details { display: flex; flex-direction: column; gap: 12px; margin-bottom: 15px; }
-        .car-detail-row { display: flex; align-items: center; gap: 10px; font-size: 1em; }
-        .car-detail-label { color: #888; min-width: 100px; font-size: 0.9em; }
-        .car-detail-value { color: #fff; font-weight: bold; font-size: 1.05em; }
-        .car-price-section { border-radius: 10px; padding: 12px 15px; margin-bottom: 15px; text-align: center; }
-        .car-price-value { font-weight: bold; font-size: 1.2em; }
-        .whatsapp-section { display: flex; flex-direction: column; gap: 8px; }
-        .whatsapp-section-label { color: #aaa; font-size: 0.8em; text-align: center; }
-        .whatsapp-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
-        .whatsapp-btn-1, .whatsapp-btn-2, .whatsapp-btn-3 { flex: 1; min-width: 100px; color: white; border: none; padding: 12px; border-radius: 10px; cursor: pointer; font-size: 0.9em; font-weight: bold; transition: all 0.3s; text-align: center; }
-        .whatsapp-btn-1 { background: #075e54; }
-        .whatsapp-btn-2 { background: #1a6b5a; }
-        .whatsapp-btn-3 { background: #0d9488; }
+        .container { max-width: 850px; margin: 0 auto; padding: 0 15px 25px; }
 
-        .footer { text-align: center; padding: 20px; color: #666; font-size: 0.8em; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 30px; }
-        .loading-section { text-align: center; padding: 50px; color: #888; }
+        .category-accordion { margin-bottom: 8px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); }
+        .category-header { padding: 12px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .category-header:hover { background: rgba(255,255,255,0.03); } .category-header.active { background: rgba(233,69,96,0.08); }
+        .category-title-group { display: flex; align-items: center; gap: 8px; }
+        .category-icon { font-size: 1em; transition: transform 0.2s; } .category-header.active .category-icon { transform: rotate(180deg); }
+        .category-name { font-size: 1.05em; font-weight: bold; color: var(--primary); } body.mabela .category-name { color: #00d4ff; }
+        .category-badge { background: rgba(233,69,96,0.15); color: var(--primary); padding: 2px 8px; border-radius: 12px; font-size: 0.68em; }
+        .category-content { display: none; } .category-content.open { display: block; }
+        .cars-list { padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; }
 
-        @media (max-width: 768px) {
-            .welcome-banner h1 { font-size: 1.8em; }
-            .branch-tab { padding: 14px 30px; font-size: 1.1em; }
-            .category-name { font-size: 1.1em; }
-            .car-image { height: 150px; }
-        }
+        .car-item { background: rgba(255,255,255,0.03); border-radius: 10px; padding: 10px 14px; border: 1px solid rgba(255,255,255,0.04); }
+        .car-item:hover { background: rgba(255,255,255,0.06); border-color: rgba(233,69,96,0.2); }
+        .car-image { width: 100%; height: 120px; object-fit: cover; border-radius: 6px; margin-bottom: 8px; background: rgba(255,255,255,0.02); }
+        .car-image.no-image { display: flex; align-items: center; justify-content: center; font-size: 1.8em; color: #333; height: 100px; }
+        .car-details { display: flex; flex-direction: column; gap: 5px; margin-bottom: 7px; }
+        .car-detail-row { display: flex; align-items: center; gap: 6px; font-size: 0.8em; }
+        .car-detail-label { color: #888; min-width: 70px; font-size: 0.8em; } .car-detail-value { color: #fff; font-weight: bold; font-size: 0.9em; }
+        .car-price-section { background: rgba(233,69,96,0.08); border: 1px solid rgba(233,69,96,0.15); border-radius: 8px; padding: 6px 10px; margin-bottom: 6px; text-align: center; }
+        body.mabela .car-price-section { background: rgba(0,212,255,0.06); border-color: rgba(0,212,255,0.12); }
+        .car-price-value { font-weight: bold; font-size: 0.95em; color: var(--primary); } body.mabela .car-price-value { color: #00d4ff; }
+        
+        .action-buttons { display: flex; gap: 4px; flex-wrap: wrap; }
+        .action-btn { flex: 1; min-width: 55px; color: white; border: none; padding: 6px 5px; border-radius: 4px; cursor: pointer; font-size: 0.7em; font-weight: bold; text-align: center; }
+        .btn-wa { background: #075e54; } .btn-wa2 { background: #1a6b5a; } .btn-wa3 { background: #0d9488; }
+        .btn-copy { background: #3b5998; } .btn-share { background: #25D366; }
+        .action-label { color: #888; font-size: 0.65em; text-align: center; margin-bottom: 3px; }
+
+        .side-menu-tab { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 1000; background: rgba(233,69,96,0.8); color: #fff; width: 20px; height: 45px; border-radius: 8px 0 0 8px; cursor: pointer; border: none; font-size: 0.65em; display: flex; align-items: center; justify-content: center; }
+        .side-menu { position: fixed; right: -300px; top: 0; width: 260px; height: 100%; background: rgba(10,10,15,0.98); border-left: 1px solid rgba(255,255,255,0.06); z-index: 999; transition: right 0.3s; padding: 22px 16px; overflow-y: auto; }
+        .side-menu.open { right: 0; } .side-menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 998; display: none; } .side-menu-overlay.show { display: block; }
+        .side-menu-title { color: var(--primary); font-size: 1em; font-weight: bold; margin-bottom: 14px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px; }
+        .lang-section { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); } .lang-section-label { color: #888; font-size: 0.7em; text-align: center; margin-bottom: 6px; }
+        .lang-buttons { display: flex; gap: 5px; }
+        .lang-btn { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: #888; padding: 8px; border-radius: 7px; cursor: pointer; font-size: 0.75em; font-weight: bold; text-align: center; }
+        .lang-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .side-menu-item { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 8px; text-decoration: none; color: #ccc; margin-bottom: 2px; font-size: 0.8em; }
+        .side-menu-item:hover { background: rgba(255,255,255,0.04); color: #fff; } .side-menu-item .menu-icon { font-size: 1.1em; }
+        .side-menu-item.whatsapp { background: rgba(37,211,102,0.08); }
+
+        .install-banner { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10,10,15,0.95); border-top: 2px solid var(--primary); padding: 12px 16px; z-index: 9999; display: none; align-items: center; justify-content: space-between; gap: 10px; }
+        .install-banner.show { display: flex; } .install-text { color: #ccc; font-size: 0.8em; }
+        .install-text strong { color: var(--primary); display: block; font-size: 0.95em; }
+        .install-btn { background: var(--primary); color: #fff; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 0.8em; }
+
+        .footer { text-align: center; padding: 12px; color: #555; font-size: 0.68em; border-top: 1px solid rgba(255,255,255,0.04); }
+        .loading-section { text-align: center; padding: 30px; color: #888; }
+        .toast { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); color: #fff; padding: 8px 20px; border-radius: 8px; z-index: 9999; font-weight: bold; font-size: 0.8em; animation: slideIn 0.3s ease; }
+        .toast-success { background: #28a745; } @keyframes slideIn { from { top: -50px; opacity: 0; } to { top: 15px; opacity: 1; } }
+
+        @media (max-width: 768px) { .welcome-banner h1 { font-size: 1.4em; } .branch-tab { padding: 10px 22px; font-size: 0.9em; } .category-name { font-size: 0.95em; } .car-image { height: 100px; } .action-btn { font-size: 0.62em; } .install-banner { flex-direction: column; text-align: center; } }
     </style>
 </head>
-<body class="rustaq rtl">
+<body class="rustaq">
 
-    <div class="notify-banner" id="notifyBanner">
-        <span>🔔</span>
-        <span class="notify-text" data-ar="احصل على إشعارات دورية بأفضل العروض" data-en="Get periodic notifications for best offers">احصل على إشعارات دورية بأفضل العروض</span>
-        <button class="notify-btn" onclick="enableNotifications()" data-ar="تفعيل" data-en="Enable">تفعيل</button>
-        <button class="notify-later" onclick="closeNotifyBanner()" data-ar="لاحقاً" data-en="Later">لاحقاً</button>
+    <div class="install-banner" id="installBanner">
+        <span class="install-text"><strong data-ar="ثبّت التطبيق الآن" data-en="Install the app now">ثبّت التطبيق الآن</strong><span data-ar=" للوصول السريع" data-en=" for quick access"> للوصول السريع</span></span>
+        <button class="install-btn" onclick="installApp()" data-ar="تثبيت" data-en="Install">تثبيت</button>
     </div>
 
-    <button class="side-menu-tab" onclick="toggleSideMenu()" id="sideMenuTab">
-        <span class="side-menu-arrow">◀</span>
-    </button>
-
+    <button class="side-menu-tab" onclick="toggleSideMenu()">◀</button>
     <div class="side-menu-overlay" id="sideMenuOverlay" onclick="toggleSideMenu()"></div>
     <div class="side-menu" id="sideMenu">
         <div class="side-menu-title" data-ar="🔗 روابط سريعة" data-en="🔗 Quick Links">🔗 روابط سريعة</div>
-        
-        <div class="lang-section">
-            <div class="lang-section-label" data-ar="اللغة" data-en="Language">اللغة</div>
-            <div class="lang-buttons">
-                <button class="lang-btn active" onclick="setLang('ar')">🇴🇲 العربية</button>
-                <button class="lang-btn" onclick="setLang('en')">🇬🇧 English</button>
-            </div>
-        </div>
-        
-        <a href="https://maps.app.goo.gl/9cKpPNdt1FX8q5cj6" target="_blank" class="side-menu-item"><span class="menu-icon">📍</span><span class="menu-label" data-ar="موقع معرض الرستاق" data-en="Rustaq Showroom">موقع معرض الرستاق</span></a>
-        <a href="https://maps.app.goo.gl/QfPrKgZBmfB62yHJ6" target="_blank" class="side-menu-item"><span class="menu-icon">📍</span><span class="menu-label" data-ar="موقع معرض المعبيله" data-en="Mabela Showroom">موقع معرض المعبيله</span></a>
-        <a href="https://wa.me/96872222242" target="_blank" class="side-menu-item whatsapp"><span class="menu-icon">💬</span><span class="menu-label"><span data-ar="للإستفسار (صاحب المعرض)" data-en="Inquiry (Owner)">للإستفسار (صاحب المعرض)</span><br><small>مروان سالم الخاطري</small></span></a>
-    </div>
-
-    <div class="install-banner" id="installBanner">
-        <span class="install-icon">📱</span>
-        <span class="install-text"><strong data-ar="ثبّت التطبيق الآن" data-en="Install the app now">ثبّت التطبيق الآن</strong><span data-ar="للوصول السريع وتجربة أفضل" data-en="For quick access and better experience">للوصول السريع وتجربة أفضل</span></span>
-        <button class="install-btn" onclick="installApp()" data-ar="تثبيت التطبيق" data-en="Install App">تثبيت التطبيق</button>
-        <button class="install-close" onclick="closeBanner()">✕</button>
+        <div class="lang-section"><div class="lang-section-label" data-ar="اللغة" data-en="Language">اللغة</div><div class="lang-buttons"><button class="lang-btn active" onclick="setLang('ar')">🇴🇲 عربي</button><button class="lang-btn" onclick="setLang('en')">🇬🇧 English</button></div></div>
+        <a href="https://maps.app.goo.gl/9cKpPNdt1FX8q5cj6" target="_blank" class="side-menu-item"><span class="menu-icon">📍</span> <span data-ar="موقع معرض الرستاق" data-en="Rustaq Showroom">موقع معرض الرستاق</span></a>
+        <a href="https://maps.app.goo.gl/QfPrKgZBmfB62yHJ6" target="_blank" class="side-menu-item"><span class="menu-icon">📍</span> <span data-ar="موقع معرض المعبيله" data-en="Mabela Showroom">موقع معرض المعبيله</span></a>
+        <a href="https://wa.me/96872222242" target="_blank" class="side-menu-item whatsapp"><span class="menu-icon">💬</span> <span data-ar="للإستفسار - مروان سالم الخاطري" data-en="Inquiry - Marwan Al Khatri">للإستفسار - مروان سالم الخاطري</span></a>
     </div>
 
     <div class="welcome-banner"><h1>الدبلوماسي للسيارات</h1><div class="subtitle">● DIPLOMAT CARS ●</div></div>
-    
-    <div class="search-bar">
-        <div class="search-input-wrapper">
-            <span class="search-icon">🔍</span>
-            <input type="text" class="search-input" id="searchInput" data-ar="ابحث عن مركبة..." data-en="Search for a vehicle..." placeholder="ابحث عن مركبة..." oninput="handleSearch()">
-            <button class="clear-search" id="clearSearch" onclick="clearSearch()">✕</button>
-        </div>
-        <div class="search-results-count" id="searchResultsCount"></div>
-    </div>
-
-    <div class="branch-tabs">
-        <div class="branch-tab active" onclick="switchBranch('rustaq')" id="tab-rustaq"><span data-ar="🏛️ فرع الرستاق" data-en="🏛️ Rustaq Branch">🏛️ فرع الرستاق</span> <span class="car-count" id="count-rustaq">0</span></div>
-        <div class="branch-tab" onclick="switchBranch('mabela')" id="tab-mabela"><span data-ar="🏛️ فرع المعبيلة" data-en="🏛️ Mabela Branch">🏛️ فرع المعبيلة</span> <span class="car-count" id="count-mabela">0</span></div>
-    </div>
-
+    <div class="search-bar"><div class="search-input-wrapper"><span class="search-icon">🔍</span><input type="text" class="search-input" id="searchInput" data-ar="ابحث عن مركبة..." data-en="Search..." placeholder="ابحث عن مركبة..." oninput="handleSearch()"><button class="clear-search" id="clearSearch" onclick="clearSearch()">✕</button></div><div class="search-results-count" id="searchResultsCount"></div></div>
+    <div class="branch-tabs"><div class="branch-tab active" onclick="switchBranch('rustaq')" id="tab-rustaq"><span data-ar="🏛️ فرع الرستاق" data-en="🏛️ Rustaq">🏛️ فرع الرستاق</span> <span class="car-count" id="count-rustaq">0</span></div><div class="branch-tab" onclick="switchBranch('mabela')" id="tab-mabela"><span data-ar="🏛️ فرع المعبيلة" data-en="🏛️ Mabela">🏛️ فرع المعبيلة</span> <span class="car-count" id="count-mabela">0</span></div></div>
     <div class="branch-title" id="branchTitle">🚗 سيارات فرع الرستاق</div>
-    <div class="container" id="carsContainer"><div class="loading-section" data-ar="جاري تحميل السيارات..." data-en="Loading cars...">جاري تحميل السيارات...</div></div>
-
-    <div class="footer"><p>© 2026 <span data-ar="الدبلوماسي للسيارات - جميع الحقوق محفوظة" data-en="Diplomat Cars - All Rights Reserved">الدبلوماسي للسيارات - جميع الحقوق محفوظة</span></p></div>
+    <div class="container" id="carsContainer"><div class="loading-section">جاري تحميل السيارات...</div></div>
+    <div class="footer">© 2026 <span data-ar="الدبلوماسي للسيارات" data-en="Diplomat Cars">الدبلوماسي للسيارات</span></div>
 
     <script>
-        // ============ Web Push Notifications (كل 6 ساعات) ============
-        let swRegistration = null;
-        setTimeout(() => { if (Notification.permission === 'default') document.getElementById('notifyBanner').classList.add('show'); }, 5000);
-        function closeNotifyBanner() { document.getElementById('notifyBanner').classList.remove('show'); localStorage.setItem('notifyBannerClosed', Date.now()); }
-        async function enableNotifications() {
-            try { const permission = await Notification.requestPermission(); if (permission === 'granted') { document.getElementById('notifyBanner').classList.remove('show'); sendNotification(currentLang === 'ar' ? '🏎️ الدبلوماسي للسيارات' : '🏎️ Diplomat Cars', currentLang === 'ar' ? 'تم تفعيل الإشعارات!' : 'Notifications enabled!'); scheduleAllNotifications(); } } catch (e) {}
-        }
-        function sendNotification(title, body) { if (Notification.permission === 'granted') { const options = { body, icon: 'https://i.ibb.co/QFKYPWBc/IMG-20260622-WA0006.jpg', badge: 'https://i.ibb.co/QFKYPWBc/IMG-20260622-WA0006.jpg', vibrate: [200, 100, 200], tag: 'diplomat-cars' }; if (swRegistration) swRegistration.showNotification(title, options); else new Notification(title, options); } }
-        function scheduleAllNotifications() { const messages = [{ ar: '☀️ صباح الخير! سيارات جديدة بانتظارك', en: '☀️ Good morning! New cars waiting' }, { ar: '🚗 تصفح أحدث العروض الآن', en: '🚗 Browse latest offers now' }, { ar: '🌙 مساء الخير! لا تفوت عروض اليوم', en: '🌙 Good evening! Don\'t miss deals' }, { ar: '🏎️ سيارة أحلامك أقرب مما تتخيل', en: '🏎️ Your dream car is closer' }]; let mi = 0; setTimeout(() => { sendNotification(currentLang === 'ar' ? 'الدبلوماسي للسيارات' : 'Diplomat Cars', messages[mi][currentLang]); mi++; setInterval(() => { sendNotification(currentLang === 'ar' ? 'الدبلوماسي للسيارات' : 'Diplomat Cars', messages[mi % messages.length][currentLang]); mi++; }, 21600000); }, 21600000); }
-        if ('serviceWorker' in navigator) { window.addEventListener('load', async () => { try { swRegistration = await navigator.serviceWorker.register('/Diplomat_Cars/sw.js'); if (Notification.permission === 'granted') scheduleAllNotifications(); } catch (e) {} }); }
-
-        // ============ Language ============
-        let currentLang = 'ar';
-        function setLang(lang) { currentLang = lang; document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active')); document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active'); document.body.className = document.body.className.replace(/rtl|ltr/g, ''); document.body.classList.add(lang === 'ar' ? 'rtl' : 'ltr'); document.documentElement.lang = lang; document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr'; document.querySelectorAll('[data-ar][data-en]').forEach(el => { if (el.tagName === 'INPUT') el.placeholder = el.getAttribute(`data-${lang}`); else el.textContent = el.getAttribute(`data-${lang}`); }); updateBranchTitle(); show(); }
-        function updateBranchTitle() { const names = { rustaq: { ar: '🚗 سيارات فرع الرستاق', en: '🚗 Rustaq Branch Cars' }, mabela: { ar: '🚗 سيارات فرع المعبيلة', en: '🚗 Mabela Branch Cars' } }; document.getElementById('branchTitle').textContent = names[branch][currentLang]; }
-
-        // PWA
-        let dp; window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); dp = e; setTimeout(() => document.getElementById('installBanner').classList.add('show'), 3000); });
-        function installApp() { if (dp) { dp.prompt(); dp.userChoice.then(() => { dp = null; document.getElementById('installBanner').classList.remove('show'); }); } else { alert(currentLang === 'ar' ? 'للتثبيت:\n• أندرويد: ⁝ → إضافة للشاشة\n• آيفون: ↩ → Add to Home Screen' : 'To install:\n• Android: ⁝ → Add to Home Screen\n• iPhone: ↩ → Add to Home Screen'); } }
-        function closeBanner() { document.getElementById('installBanner').classList.remove('show'); } window.addEventListener('appinstalled', () => document.getElementById('installBanner').classList.remove('show'));
-
-        function toggleSideMenu() { document.getElementById('sideMenu').classList.toggle('open'); document.getElementById('sideMenuOverlay').classList.toggle('show'); document.getElementById('sideMenuTab').classList.toggle('open'); }
-
         const SHEETS = { rustaq: '1KIgAoTO0sbKtvVNt775ZCyuSAW8Bf8HbFyUXCY9pIV0', mabela: '1C_zsV_9l_SN0O5YN118OT49ng9H67sFIBWvk1Qr_3Gg' };
-        const PHONES = { rustaq: ['96872222242', '96895096865', '96898825877'], mabela: ['96892256223', '96878080132'] };
-        let allCars = { rustaq: [], mabela: [] }, branch = 'rustaq', sq = ''; window.cs = {};
+        const PHONES = { rustaq: ['96872222242', '96898825877', '96895096865'], mabela: ['96892256223', '96878080132'] };
+        const BASE_URL = 'https://drder1.github.io/Diplomat_Cars/';
+        
+        // ✅ قاموس كامل بجميع البيانات الواقعية
+        const dict = {
+            // مصنعين - جميعهم
+            'تويوتا':'Toyota','نيسان':'Nissan','لكزس':'Lexus','هوندا':'Honda','هونداي':'Hyundai',
+            'هايونداي':'Hyundai','هاييونداي':'Hyundai','كيا':'Kia','مرسيدس':'Mercedes',
+            'شيفروليه':'Chevrolet','فورد':'Ford','لينكولن':'Lincoln','كامري':'Camry',
+            'أخرى':'Other','فوورد':'Ford','بي ام دبليو':'BMW','بي إم دبليو':'BMW',
+            'ميتسوبيشي':'Mitsubishi','موستبيشي':'Mitsubishi','سوزوكي':'Suzuki','جيب':'Jeep',
+            'رنج روفر':'Range Rover','اودي':'Audi','انفينيتي':'Infiniti','انفنتي':'Infinity',
+            'إنفينيتي':'Infiniti','كاديلاك':'Cadillac','كادليك':'Cadillac','بورش':'Porsche',
+            'دودج':'Dodge','كرايسلر':'Chrysler','جمس':'GMC','جي ام سي':'GMC',
+            'بيوك':'Buick','لاند روفر':'Land Rover','مازدا':'Mazda','رام':'Ram',
+            'لكزوس':'Lexus','MG':'MG','رينولت':'Renault','JETOR':'Jetour','جيتور':'Jetour',
+            'GMC + شيفروليه':'GMC + Chevrolet',
+            
+            // ألوان - جميعها مع المتغيرات
+            'ابيض':'White','أبيض':'White','اسود':'Black','أسود':'Black',
+            'فضي':'Silver','سلفر':'Silver','رصاصي':'Gray','رمادي':'Gray',
+            'احمر':'Red','أحمر':'Red','ازرق':'Blue','أزرق':'Blue',
+            'اخضر':'Green','أخضر':'Green','ذهبي':'Gold','بني':'Brown',
+            'عنابي':'Dark Red','نبيذي':'Burgundy','كحلي':'Navy','بيج':'Beige',
+            'برتقالي':'Orange','أصفر':'Yellow','بنفسجي':'Purple','برونزي':'Bronze',
+            'بحري':'Navy Blue','فضي وأسود':'Silver & Black',
+            
+            // نيسان - جميع الموديلات
+            'باترول':'Patrol','التيما':'Altima','ألتيما':'Altima','صني':'Sunny',
+            'مكسيما':'Maxima','اكس تريل':'X-Trail','باثفايندر':'Pathfinder',
+            'جوك':'Juke','قشقاي':'Qashqai','مورانو':'Murano','كويست':'Quest',
+            'روج':'Rogue','ميكرا':'Micra','تيتان':'Titan','ارمادا':'Armada',
+            'سنترا':'Sentra','فيرسا':'Versa','اكستيرا':'Xterra','أكستيرا':'Xterra',
+            'سفاري':'Safari','نايرفارا':'Navara','نيسان سنترا SV':'Nissan Sentra SV',
+            'نيسان ألتيما SR':'Nissan Altima SR','نيسان ألتيما SL V6':'Nissan Altima SL V6',
+            'نيسان فيرسا':'Nissan Versa','التيما S':'Altima S','التيما SR':'Altima SR',
+            'التيما SL':'Altima SL','التيما SV':'Altima SV','ألتيما SV':'Altima SV',
+            'نيسان روج':'Nissan Rogue','نيسان ميكرا خليجي':'Nissan Micra GCC',
+            'نيسان تيتان بلاتينيوم':'Nissan Titan Platinum','نيسان ارمادا':'Nissan Armada',
+            'نيسان التيما sl':'Nissan Altima SL',
+            
+            // تويوتا - جميع الموديلات
+            'راف فور':'RAV4','رافور':'RAV4','كامري':'Camry','لاند كروزر':'Land Cruiser',
+            'لاندكروزر':'Land Cruiser','كورولا':'Corolla','كرولا':'Corolla',
+            'يارس':'Yaris','بريوس':'Prius','هايلكس':'Hilux','فورتشنر':'Fortuner',
+            'برادو':'Prado','افالون':'Avalon','تندرا':'Tundra','تكوما':'Tacoma',
+            '86':'GT86','جي تي 86':'GT86','سوبرا':'Supra',
+            'كامري SE':'Camry SE','كامري LE':'Camry LE','كامري v6':'Camry V6',
+            'كامري XLE':'Camry XLE','كامري le':'Camry LE','كامري  هايبرد':'Camry Hybrid',
+            'كامري xse':'Camry XSE','كورولا هاتشباك':'Corolla Hatchback',
+            'تكوما SR':'Tacoma SR','كورولا':'Corolla','كرولا':'Corolla',
+            'كرولا LE':'Corolla LE','كرولا XSE':'Corolla XSE','كرولا SE':'Corolla SE',
+            'رافور ليمتد':'RAV4 Limited','تندرا':'Tundra',
+            
+            // هونداي - جميع الموديلات
+            'النترا':'Elantra','ألنترا':'Elantra','توسان':'Tucson',
+            'سانتافي':'Santa Fe','سينتافي':'Santa Fe','اكسنت':'Accent',
+            'كريتا':'Creta','سوناتا':'Sonata','فيلوستر':'Veloster',
+            'جينسس':'Genesis','فيراكروز':'Veracruz','ازيرا':'Azera',
+            'هايونداي ألنترا N':'Hyundai Elantra N','سوناتا سبورت':'Sonata Sport',
+            'هاييونداي فيراكروز':'Hyundai Veracruz',
+            'هايونداي سنتافي بانوراما':'Hyundai Santa Fe Panorama',
+            'هايونداي سنتافي':'Hyundai Santa Fe','النترا SEL':'Elantra SEL',
+            'هايونداي كريتا':'Hyundai Creta','هيونداي سنتافي':'Hyundai Santa Fe',
+            'سينتافي فل':'Santa Fe Full',
+            
+            // كيا
+            'سبورتاج':'Sportage','سيراتو':'Cerato','سورينتو':'Sorento',
+            'بيكانتو':'Picanto','ستينجر':'Stinger','K5':'K5',
+            
+            // هوندا
+            'سيفيك':'Civic','اكورد':'Accord','أكورد':'Accord','سي ار في':'CR-V',
+            
+            // مرسيدس
+            'C300':'C300','c300':'C300','E350':'E350','GLA250':'GLA250',
+            'مرسيدس C300':'Mercedes C300','c300مرسيدس':'Mercedes C300',
+            'مرسيدس GLA250':'Mercedes GLA250','مرسيدس E350':'Mercedes E350',
+            
+            // لكزس
+            'rx350':'RX350','IS250':'IS250','ls460':'LS460','UX':'UX',
+            'ES350':'ES350','LX570':'LX570','لكزس rx350':'Lexus RX350',
+            'لكزس ls460':'Lexus LS460','لكزس IS250':'Lexus IS250','لكزس UX':'Lexus UX',
+            
+            // فورد
+            'اكسبلورر':'Explorer','اكسبلور':'Explorer','موستنج':'Mustang',
+            'فيوجن':'Fusion','فورد اكسبلور':'Ford Explorer','فورد f150':'Ford F150',
+            
+            // شيفروليه/GMC
+            'تاهو':'Tahoe','ماليبو':'Malibu','سلفرادو':'Silverado',
+            'سوبربان':'Suburban','سيرا':'Sierra','كمارو':'Camaro',
+            'اكاديا':'Acadia','يوكن':'Yukon','جي ام سي اكاديا خليجي':'GMC Acadia GCC',
+            'جي ام سي يوكن':'GMC Yukon','جمس أكاديا خليجي':'GMC Acadia GCC',
+            'تاهو هاي كنتري':'Tahoe High Country',
+            
+            // ميتسوبيشي
+            'باجيرو':'Pajero','لانسر':'Lancer','اوتلاندر':'Outlander',
+            'اكليبس':'Eclipse','أكلبس':'Eclipse','ميتسوبيشي أكلبس':'Mitsubishi Eclipse',
+            'موستبيشي شاحنه':'Mitsubishi Truck',
+            
+            // سوزوكي
+            'جيمني':'Jimny','فيتارا':'Vitara','سياز':'Ciaz','سوزوكي سياز':'Suzuki Ciaz',
+            
+            // جيب
+            'رانجلر':'Wrangler','جيب رانجلر':'Jeep Wrangler',
+            'جيب رانجلر ريبكون':'Jeep Wrangler Rubicon',
+            
+            // رنج روفر/لاند روفر
+            'ايفوك':'Evoque','فيلار':'Velar','فوج':'Vogue',
+            'ديفندر':'Defender','ديسكفري':'Discovery','سبورت':'Sport',
+            'لاند روفر فيلار':'Land Rover Velar','رنج روفر سبورت':'Range Rover Sport',
+            'رنج روفر فوج':'Range Rover Vogue',
+            
+            // سيارات أخرى
+            'بيكاب':'Pickup','رام':'Ram','تشالنجر':'Challenger','تشالينجر':'Challenger',
+            'تشارجر':'Charger','ميني كوبر':'Mini Cooper','كيو 50':'Q50',
+            'QX80':'QX80','QX60':'QX60','XT6':'XT6','BMW535':'BMW 535',
+            'BMW325':'BMW 325','ZS':'ZS','GM zs':'MG ZS',
+            'انفينيتي QX80':'Infiniti QX80','إنفينيتي QX60':'Infiniti QX60',
+            'كادليك XT6':'Cadillac XT6','مازدا 6 تورينج':'Mazda 6 Touring',
+            'ميني كوبر اس':'Mini Cooper S','انفنتي كيو 50':'Infiniti Q50',
+            'بيكاب رام':'Ram Pickup','10 بلازا':'10 Plaza',
+            'لينكولن كينتونتل':'Lincoln Continental','رينولت شاحنة صغيرة':'Renault Small Truck',
+            
+            // كلمات وصفية
+            'خليجي':'GCC','ليمتد':'Limited','بلاتينيوم':'Platinum','فل':'Full',
+            'فول':'Full','دينالي':'Denali','هايبرد':'Hybrid','بانوراما':'Panorama',
+            'هاتشباك':'Hatchback','سبورت':'Sport','هاي كنتري':'High Country',
+            'تورينج':'Touring','ريبكون':'Rubicon','كوبيه':'Coupe',
+            'شاحنة':'Truck','شاحنه':'Truck','صغيرة':'Small',
+            'فول اوبشن':'Full Option','نص فل':'Mid Option','دفع رباعي':'4WD',
+            'دبل':'4x4','اوتوماتيك':'Automatic','عادي':'Manual',
+            
+            // رموز الطرازات
+            'SV':'SV','SR':'SR','SL':'SL','LE':'LE','SE':'SE','XLE':'XLE',
+            'XSE':'XSE','SEL':'SEL','V6':'V6','v6':'V6','N':'N','S':'S','ES':'ES'
+        };
 
-        function wa(key, pk) { const car = window.cs[key]; if (!car) return; const pidx = pk === 'p1' ? 0 : pk === 'p2' ? 1 : 2; const phone = PHONES[branch][pidx]; const names = { rustaq: currentLang === 'ar' ? 'فرع الرستاق' : 'Rustaq Branch', mabela: currentLang === 'ar' ? 'فرع المعبيلة' : 'Mabela Branch' }; const msg = currentLang === 'ar' ? `السلام عليكم\nأرغب في الاستفسار عن:\n${names[car.branch]}\n🏭 ${car.category}\n🚗 ${car.name}\n📅 ${car.model}\n🎨 ${car.color}\n💰 ${car.priceText} ريال عماني` : `Hello\nI would like to inquire about:\n${names[car.branch]}\n🏭 ${car.category}\n🚗 ${car.name}\n📅 ${car.model}\n🎨 ${car.color}\n💰 ${car.priceText} OMR`; window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank'); }
-        function handleSearch() { sq = document.getElementById('searchInput').value.toLowerCase().trim(); document.getElementById('clearSearch').style.display = sq ? 'block' : 'none'; show(); }
-        function clearSearch() { document.getElementById('searchInput').value = ''; document.getElementById('clearSearch').style.display = 'none'; document.getElementById('searchResultsCount').style.display = 'none'; sq = ''; show(); }
-        function filter(cars) { if (!sq) return cars; return cars.filter(c => (c.name&&c.name.toLowerCase().includes(sq))||(c.model&&c.model.toLowerCase().includes(sq))||(c.priceText&&c.priceText.toLowerCase().includes(sq))||(c.category&&c.category.toLowerCase().includes(sq))||(c.color&&c.color.toLowerCase().includes(sq))); }
-        async function load() { await loadBranch('rustaq', SHEETS.rustaq); await loadBranch('mabela', SHEETS.mabela); document.getElementById('count-rustaq').textContent = `${allCars.rustaq.length} ${currentLang === 'ar' ? 'سيارة' : 'cars'}`; document.getElementById('count-mabela').textContent = `${allCars.mabela.length} ${currentLang === 'ar' ? 'سيارة' : 'cars'}`; show(); }
-        function isHeader(cells) { const n = cells.filter(c => c !== '' && c !== null && c !== undefined); if (n.length !== 1) return false; const t = (cells[0] || '').trim(); if (!t || t.length > 50) return false; if (/^\d+$/.test(t)) return false; if (/^(19|20)\d{2}$/.test(t)) return false; return true; }
-        async function loadBranch(b, sid) { allCars[b] = []; try { const url = `https://docs.google.com/spreadsheets/d/${sid}/export?format=csv`; const r = await fetch(url); const t = await r.text(); const lines = t.split('\n'); let cat = null; for (let i = 0; i < lines.length; i++) { const line = lines[i].trim(); if (!line) continue; const cells = line.split(',').map(c => c.replace(/^"|"$/g, '').trim()); const ne = cells.filter(c => c !== '' && c !== null && c !== undefined); if (ne.length === 0) continue; if (isHeader(cells)) { cat = cells[0].trim(); continue; } if (cat && ne.length >= 2) { allCars[b].push({ category: cat, name: cells[3] || '', model: cells[2] || '', color: cells[1] || '', priceText: cells[0] || '', image: cells[4] || '', branch: b }); } } } catch (e) { console.error(e); } }
-        function group(cars) { const g = {}; cars.forEach(c => { const cat = c.category || (currentLang === 'ar' ? 'أخرى' : 'Other'); if (!g[cat]) g[cat] = []; g[cat].push(c); }); return g; }
-        function toggle(h) { const c = h.nextElementSibling; h.classList.toggle('active'); c.classList.toggle('open'); }
-        function switchBranch(b) { branch = b; document.body.className = document.body.className.replace(/rustaq|mabela/g, ''); document.body.classList.add(b); document.body.classList.add(currentLang === 'ar' ? 'rtl' : 'ltr'); document.querySelectorAll('.branch-tab').forEach(t => t.classList.remove('active')); document.getElementById(`tab-${b}`).classList.add('active'); updateBranchTitle(); document.getElementById('searchInput').value = ''; document.getElementById('clearSearch').style.display = 'none'; document.getElementById('searchResultsCount').style.display = 'none'; sq = ''; show(); }
-        function show() { const cars = allCars[branch]; const container = document.getElementById('carsContainer'); window.cs = {}; let ki = 0; const fc = filter(cars); document.getElementById('searchResultsCount').style.display = sq ? 'block' : 'none'; if (sq) document.getElementById('searchResultsCount').textContent = currentLang === 'ar' ? `🔍 ${fc.length} نتيجة` : `🔍 ${fc.length} results`; if (fc.length === 0) { container.innerHTML = `<div class="loading-section">${currentLang === 'ar' ? '🚫 لا توجد سيارات' : '🚫 No cars available'}</div>`; return; } const gc = group(fc); let html = ''; let first = true; const labels = currentLang === 'ar' ? { name: 'اسم المركبة', model: 'الموديل', color: 'اللون', price: 'السعر', currency: 'ريال عماني', wa: 'تواصل عبر واتساب' } : { name: 'Vehicle Name', model: 'Model', color: 'Color', price: 'Price', currency: 'OMR', wa: 'Contact via WhatsApp' }; for (const [cat, cc] of Object.entries(gc)) { const open = sq ? true : first; html += `<div class="category-accordion"><div class="category-header ${open?'active':''}" onclick="toggle(this)"><div class="category-title-group"><span class="category-icon">▼</span><span class="category-name">🏭 ${cat}</span></div><span class="category-badge">${cc.length} ${currentLang === 'ar' ? 'سيارات' : 'cars'}</span></div><div class="category-content ${open?'open':''}"><div class="cars-list">`; cc.forEach((car) => { const ck = `k${ki}`; window.cs[ck] = car; ki++; const img = car.image && car.image.startsWith('http') ? `<img src="${car.image}" class="car-image" onerror="this.style.display='none'">` : '<div class="car-image no-image">🚗</div>'; let waButtons = ''; PHONES[branch].forEach((p, i) => { waButtons += `<button class="whatsapp-btn-${i+1}" onclick="wa('${ck}','p${i+1}')">💬 WhatsApp ${i+1}</button>`; }); html += `<div class="car-item">${img}<div class="car-details"><div class="car-detail-row"><span class="car-detail-label">🚗 ${labels.name}:</span><span class="car-detail-value">${car.name || '---'}</span></div><div class="car-detail-row"><span class="car-detail-label">📅 ${labels.model}:</span><span class="car-detail-value">${car.model || '---'}</span></div><div class="car-detail-row"><span class="car-detail-label">🎨 ${labels.color}:</span><span class="car-detail-value">${car.color || '---'}</span></div></div><div class="car-price-section"><span class="car-price-value">💰 ${car.priceText || (currentLang === 'ar' ? 'السعر غير محدد' : 'Price not set')} ${labels.currency}</span></div><div class="whatsapp-section"><div class="whatsapp-section-label">📞 ${labels.wa}:</div><div class="whatsapp-buttons">${waButtons}</div></div></div>`; }); html += '</div></div></div>'; first = false; } container.innerHTML = html; }
+        // ✅ دالة ترجمة محسنة
+        function t(text) {
+            if (currentLang === 'ar' || !text) return text || '';
+            const s = String(text).trim();
+            if (!s) return text || '';
+            
+            // محاولة التطابق التام أولاً
+            if (dict[s]) return dict[s];
+            
+            // تقسيم وترجمة كلمة كلمة
+            const words = s.split(/\s+/);
+            const result = words.map(word => {
+                const clean = word.replace(/[،,]/g, '').trim();
+                if (!clean) return word;
+                
+                // تطابق تام
+                if (dict[clean]) return dict[clean];
+                
+                // تطابق غير حساس للحالة
+                const lc = clean.toLowerCase();
+                for (const [k, v] of Object.entries(dict)) {
+                    if (k.toLowerCase().trim() === lc) return v;
+                }
+                
+                return word;
+            });
+            
+            return result.join(' ');
+        }
 
-        load(); setInterval(load, 600000);
+        let allCars = { rustaq: [], mabela: [] }, branch = 'rustaq', sq = '', currentLang = 'ar', carsData = {}, updateTimer = null, deferredPrompt = null;
+
+        function toggleSideMenu() { document.getElementById('sideMenu').classList.toggle('open'); document.getElementById('sideMenuOverlay').classList.toggle('show'); }
+
+        function setLang(lang) { currentLang = lang; document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active')); document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active'); document.querySelectorAll('[data-ar][data-en]').forEach(el => { const text = el.getAttribute(`data-${lang}`); if (el.tagName === 'INPUT') el.placeholder = text; else el.textContent = text; }); document.getElementById('branchTitle').textContent = branch === 'rustaq' ? (lang === 'ar' ? '🚗 سيارات فرع الرستاق' : '🚗 Rustaq Branch Cars') : (lang === 'ar' ? '🚗 سيارات فرع المعبيلة' : '🚗 Mabela Branch Cars'); displayCars(); }
+
+        function handleSearch() { sq = document.getElementById('searchInput').value.toLowerCase().trim(); document.getElementById('clearSearch').style.display = sq ? 'block' : 'none'; displayCars(); }
+        function clearSearch() { document.getElementById('searchInput').value = ''; document.getElementById('clearSearch').style.display = 'none'; document.getElementById('searchResultsCount').style.display = 'none'; sq = ''; displayCars(); }
+
+        function copyLink(car) { const link = `${BASE_URL}?car=${btoa(unescape(encodeURIComponent(`${car.name}|${car.model}|${car.category}`)))}&branch=${car.branch}`; navigator.clipboard.writeText(link).then(() => showToast('✅ '+(currentLang==='ar'?'تم نسخ الرابط':'Link copied'))).catch(() => showToast('✅ '+(currentLang==='ar'?'تم نسخ الرابط':'Link copied'))); }
+        function shareWA(car) { const link = `${BASE_URL}?car=${btoa(unescape(encodeURIComponent(`${car.name}|${car.model}|${car.category}`)))}&branch=${car.branch}`; const msg = currentLang === 'ar' ? `🚗 ${car.category} - ${car.name}\n📅 ${car.model} | 🎨 ${car.color} | 💰 ${car.priceText} ر.ع\n🔗 ${link}` : `🚗 ${t(car.category)} - ${t(car.name)}\n📅 ${car.model} | 🎨 ${t(car.color)} | 💰 ${car.priceText} OMR\n🔗 ${link}`; window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank'); }
+
+        function showToast(msg) { const old = document.querySelector('.toast'); if (old) old.remove(); const el = document.createElement('div'); el.className = 'toast toast-success'; el.textContent = msg; document.body.appendChild(el); setTimeout(() => { el.style.opacity = '0'; el.style.transition = 'opacity 0.3s'; setTimeout(() => el.remove(), 300); }, 2500); }
+
+        async function loadAllCars() {
+            try {
+                const [rd, md] = await Promise.all([fetch(`https://docs.google.com/spreadsheets/d/${SHEETS.rustaq}/export?format=csv`).then(r => r.text()), fetch(`https://docs.google.com/spreadsheets/d/${SHEETS.mabela}/export?format=csv`).then(r => r.text())]);
+                allCars.rustaq = parseCSV(rd, 'rustaq'); allCars.mabela = parseCSV(md, 'mabela');
+                if (allCars.rustaq.length > 0) allCars.rustaq.pop(); if (allCars.mabela.length > 0) allCars.mabela.pop();
+                document.getElementById('count-rustaq').textContent = `${allCars.rustaq.length} ${currentLang==='ar'?'سيارة':'cars'}`;
+                document.getElementById('count-mabela').textContent = `${allCars.mabela.length} ${currentLang==='ar'?'سيارة':'cars'}`;
+                displayCars();
+            } catch (e) { document.getElementById('carsContainer').innerHTML = '<div class="loading-section">❌ '+(currentLang==='ar'?'خطأ':'Error')+'</div>'; }
+        }
+
+        function parseCSV(text, bn) { const cars = []; const lines = text.split('\n'); let cat = 'أخرى'; for (const line of lines) { const l = line.trim(); if (!l) continue; const c = l.split(',').map(x => x.replace(/^"|"$/g, '').trim()); const ne = c.filter(x => x !== ''); if (ne.length === 0) continue; if (ne.length === 1 && !/^\d+$/.test(c[0]) && !/^(19|20)\d{2}$/.test(c[0]) && c[0].length < 50) { cat = c[0].trim(); continue; } if (cat && ne.length >= 2) cars.push({ name: c[3]||'', model: c[2]||'', color: c[1]||'', priceText: c[0]||'', image: c[4]||'', category: cat, branch: bn }); } return cars; }
+
+        function displayCars() {
+            const cars = allCars[branch], container = document.getElementById('carsContainer'), phones = PHONES[branch];
+            let filtered = sq ? cars.filter(c => (c.name&&c.name.includes(sq))||(c.model&&c.model.includes(sq))||(c.priceText&&c.priceText.includes(sq))||(c.category&&c.category.includes(sq))||(c.color&&c.color.includes(sq))) : cars;
+            document.getElementById('searchResultsCount').style.display = sq ? 'block' : 'none';
+            if (sq) document.getElementById('searchResultsCount').textContent = `🔍 ${filtered.length} ${currentLang==='ar'?'نتيجة':'results'}`;
+            if (filtered.length === 0) { container.innerHTML = `<div class="loading-section">${currentLang==='ar'?'🚫 لا توجد سيارات في المعرض حالياً':'🚫 Not available at the showroom right now'}</div>`; return; }
+            const grouped = {}; filtered.forEach(c => { const cat = c.category||'أخرى'; if (!grouped[cat]) grouped[cat] = []; grouped[cat].push(c); });
+            const L = currentLang === 'ar' ? { name:'اسم المركبة', model:'الموديل', color:'اللون', price:'السعر', cur:'ر.ع', wa:'واتساب', cars:'سيارة', share:'مشاركة على واتساب', copy:'نسخ الرابط' } : { name:'Name', model:'Model', color:'Color', price:'Price', cur:'OMR', wa:'WhatsApp', cars:'cars', share:'Share on WhatsApp', copy:'Copy Link' };
+            let html = '', first = true;
+            for (const [cat, catCars] of Object.entries(grouped)) {
+                html += `<div class="category-accordion"><div class="category-header ${first?'active':''}" onclick="toggleCategory(this)"><div class="category-title-group"><span class="category-icon">▼</span><span class="category-name">🏭 ${t(cat)}</span></div><span class="category-badge">${catCars.length} ${L.cars}</span></div><div class="category-content ${first?'open':''}"><div class="cars-list">`;
+                catCars.forEach((car, idx) => {
+                    const ck = `${branch}_${cat}_${idx}`; carsData[ck] = car; window['cd_'+ck] = car;
+                    const img = car.image&&car.image.startsWith('http') ? `<img src="${car.image}" class="car-image" loading="lazy" onerror="this.style.display='none'">` : '<div class="car-image no-image">🚗</div>';
+                    html += `<div class="car-item">${img}<div class="car-details"><div class="car-detail-row"><span class="car-detail-label">🚗 ${L.name}:</span><span class="car-detail-value">${t(car.name)}</span></div><div class="car-detail-row"><span class="car-detail-label">📅 ${L.model}:</span><span class="car-detail-value">${car.model||'---'}</span></div><div class="car-detail-row"><span class="car-detail-label">🎨 ${L.color}:</span><span class="car-detail-value">${t(car.color)}</span></div></div><div class="car-price-section"><span class="car-price-value">💰 ${car.priceText||'-'} ${L.cur}</span></div><div class="action-label">🔗 ${L.share}:</div><div class="action-buttons"><button class="action-btn btn-share" onclick="shareWA(window['cd_${ck}'])">💬 ${L.share}</button><button class="action-btn btn-copy" onclick="copyLink(window['cd_${ck}'])">📋 ${L.copy}</button></div><div class="action-label">📞 ${L.wa}:</div><div class="action-buttons">`;
+                    phones.forEach((phone, i) => { html += `<button class="action-btn btn-wa${i>0?i+1:''}" onclick="openWA('${ck}',${i})">💬 ${L.wa}</button>`; });
+                    html += `</div></div>`;
+                });
+                html += '</div></div></div>'; first = false;
+            }
+            container.innerHTML = html;
+        }
+
+        function toggleCategory(h) { const c = h.nextElementSibling; h.classList.toggle('active'); c.classList.toggle('open'); }
+
+        function openWA(key, pi) { const car = carsData[key]; if (!car) return; const phone = PHONES[branch][pi]; const names = { rustaq: currentLang==='ar'?'فرع الرستاق':'Rustaq Branch', mabela: currentLang==='ar'?'فرع المعبيلة':'Mabela Branch' }; const msg = currentLang==='ar' ? `السلام عليكم\n${names[car.branch]}\n🏭 ${car.category}\n🚗 ${car.name}\n📅 ${car.model}\n🎨 ${car.color}\n💰 ${car.priceText} ر.ع` : `Hello\n${names[car.branch]}\n🏭 ${t(car.category)}\n🚗 ${t(car.name)}\n📅 ${car.model}\n🎨 ${t(car.color)}\n💰 ${car.priceText} OMR`; window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank'); }
+
+        function switchBranch(b) { branch = b; document.body.className = b; document.querySelectorAll('.branch-tab').forEach(t => t.classList.remove('active')); document.getElementById(`tab-${b}`).classList.add('active'); document.getElementById('branchTitle').textContent = b === 'rustaq' ? (currentLang==='ar'?'🚗 سيارات فرع الرستاق':'🚗 Rustaq Branch Cars') : (currentLang==='ar'?'🚗 سيارات فرع المعبيلة':'🚗 Mabela Branch Cars'); document.getElementById('searchInput').value = ''; document.getElementById('clearSearch').style.display = 'none'; document.getElementById('searchResultsCount').style.display = 'none'; sq = ''; displayCars(); }
+
+        function startAutoUpdate() { if (updateTimer) clearInterval(updateTimer); updateTimer = setInterval(() => { try { loadAllCars(); } catch(e) {} }, 600000); }
+
+        window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();deferredPrompt=e;setTimeout(()=>document.getElementById('installBanner').classList.add('show'),3000);});
+        function installApp(){if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.userChoice.then(()=>{deferredPrompt=null;document.getElementById('installBanner').classList.remove('show');});}}
+        window.addEventListener('appinstalled',()=>document.getElementById('installBanner').classList.remove('show'));
+        if('serviceWorker' in navigator) navigator.serviceWorker.register('/Diplomat_Cars/sw.js').catch(()=>{});
+
+        loadAllCars(); startAutoUpdate();
+        document.addEventListener('click',(e)=>{const m=document.getElementById('sideMenu');const t=document.querySelector('.side-menu-tab');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&!t.contains(e.target)){m.classList.remove('open');document.getElementById('sideMenuOverlay').classList.remove('show');}});
     </script>
 </body>
 </html>

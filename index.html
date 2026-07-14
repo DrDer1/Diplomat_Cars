@@ -263,5 +263,7 @@
 
         document.addEventListener('click',(e)=>{const m=document.getElementById('sideMenu');const t=document.querySelector('.side-menu-tab');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&!t.contains(e.target)){m.classList.remove('open');document.getElementById('sideMenuOverlay').classList.remove('show');}});
     </script>
+    <script type="module" src="https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js"></script>
+<script type="module" src="https://www.gstatic.com/firebasejs/12.0.0/firebase-messaging.js"></script>
 </body>
 </html>

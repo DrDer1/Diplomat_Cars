@@ -1,10 +1,9 @@
-const CACHE = 'diplomat-v1';
-const URLS = ['/Diplomat_Cars/', '/Diplomat_Cars/index.html', '/Diplomat_Cars/manifest.json'];
-
-self.addEventListener('install', e => {
-    e.waitUntil(caches.open(CACHE).then(c => c.addAll(URLS)));
-});
-
-self.addEventListener('fetch', e => {
-    e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
-});
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "a5ef5e42-56c9-4af7-a4e2-4cf17c8d7505",
+    });
+  });
+</script>

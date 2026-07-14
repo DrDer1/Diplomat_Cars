@@ -12,7 +12,6 @@
     <link rel="apple-touch-icon" href="https://i.ibb.co/QFKYPWBc/IMG-20260622-WA0006.jpg">
     <link rel="icon" href="https://i.ibb.co/QFKYPWBc/IMG-20260622-WA0006.jpg">
     
-    <!-- ✅ OneSignal SDK -->
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
     <script>
         window.OneSignalDeferred = window.OneSignalDeferred || [];
@@ -114,19 +113,6 @@
     .toast { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); color: #fff; padding: 8px 20px; border-radius: 8px; z-index: 9999; font-weight: bold; font-size: 0.8em; animation: slideIn 0.3s ease; }
     .toast-success { background: #28a745; } @keyframes slideIn { from { top: -50px; opacity: 0; } to { top: 15px; opacity: 1; } }
 
-    /* ✅ نموذج إضافة سيارة جديدة */
-    .admin-panel { display: none; background: rgba(233,69,96,0.05); border: 1px solid rgba(233,69,96,0.2); border-radius: 12px; padding: 15px; margin: 0 15px 15px; max-width: 600px; margin-left: auto; margin-right: auto; }
-    .admin-panel.show { display: block; }
-    .admin-title { color: var(--primary); font-size: 1em; font-weight: bold; margin-bottom: 10px; text-align: center; }
-    .admin-form { display: flex; flex-direction: column; gap: 8px; }
-    .admin-input { padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: white; font-size: 0.85em; outline: none; }
-    .admin-input:focus { border-color: var(--primary); }
-    .admin-select { padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: white; font-size: 0.85em; }
-    .admin-btn { background: var(--primary); color: white; border: none; padding: 10px; border-radius: 8px; cursor: pointer; font-weight: bold; font-size: 0.9em; }
-    .admin-btn:hover { background: #ff6b81; }
-    .admin-toggle { text-align: center; margin-bottom: 10px; }
-    .admin-toggle-btn { background: transparent; border: 1px solid rgba(233,69,96,0.3); color: var(--primary); padding: 6px 16px; border-radius: 20px; cursor: pointer; font-size: 0.75em; }
-
     @media (max-width: 768px) { .welcome-banner h1 { font-size: 1.4em; } .branch-tab { padding: 10px 22px; font-size: 0.9em; } .category-name { font-size: 0.95em; } .car-image { height: 100px; } .action-btn { font-size: 0.62em; } .install-banner { flex-direction: column; text-align: center; } }
 </style>
 
@@ -152,33 +138,9 @@
     <a href="https://maps.app.goo.gl/9cKpPNdt1FX8q5cj6" target="_blank" class="side-menu-item"><span class="menu-icon">📍</span> <span data-ar="موقع معرض الرستاق" data-en="Rustaq Showroom">موقع معرض الرستاق</span></a>
     <a href="https://maps.app.goo.gl/QfPrKgZBmfB62yHJ6" target="_blank" class="side-menu-item"><span class="menu-icon">📍</span> <span data-ar="موقع معرض المعبيله" data-en="Mabela Showroom">موقع معرض المعبيله</span></a>
     <a href="https://wa.me/96872222242" target="_blank" class="side-menu-item whatsapp"><span class="menu-icon">💬</span> <span data-ar="للإستفسار - مروان سالم الخاطري" data-en="Inquiry - Marwan Al Khatri">للإستفسار - مروان سالم الخاطري</span></a>
-    <div class="side-menu-item" onclick="toggleAdminPanel()" style="cursor:pointer; border-top:1px solid rgba(255,255,255,0.08); margin-top:10px; padding-top:12px;">
-        <span class="menu-icon">⚙️</span> <span>لوحة التحكم</span>
-    </div>
 </div>
 
 <div class="welcome-banner"><h1>الدبلوماسي للسيارات</h1><div class="subtitle">● DIPLOMAT CARS ●</div></div>
-
-<!-- ✅ نموذج إضافة سيارة جديدة -->
-<div class="admin-toggle">
-    <button class="admin-toggle-btn" onclick="toggleAdminPanel()">⚙️ إضافة سيارة جديدة + إشعار</button>
-</div>
-<div class="admin-panel" id="adminPanel">
-    <div class="admin-title">🚗 إضافة سيارة جديدة وإرسال إشعار</div>
-    <div class="admin-form">
-        <select class="admin-select" id="adminBranch">
-            <option value="rustaq">🏛️ فرع الرستاق</option>
-            <option value="mabela">🏛️ فرع المعبيلة</option>
-        </select>
-        <input class="admin-input" id="adminCategory" placeholder="الفئة (مثال: تويوتا)" value="تويوتا">
-        <input class="admin-input" id="adminName" placeholder="اسم السيارة (مثال: كامري)">
-        <input class="admin-input" id="adminModel" placeholder="الموديل (مثال: 2023)">
-        <input class="admin-input" id="adminColor" placeholder="اللون (مثال: أبيض)">
-        <input class="admin-input" id="adminPrice" placeholder="السعر (مثال: 6500)">
-        <input class="admin-input" id="adminImage" placeholder="رابط الصورة (اختياري)">
-        <button class="admin-btn" onclick="addCarAndNotify()">📤 إضافة السيارة + إرسال إشعار للجميع</button>
-    </div>
-</div>
 
 <div class="search-bar"><div class="search-input-wrapper"><span class="search-icon">🔍</span><input type="text" class="search-input" id="searchInput" placeholder="ابحث عن مركبة..." oninput="handleSearch()"><button class="clear-search" id="clearSearch" onclick="clearSearch()">✕</button></div><div class="search-results-count" id="searchResultsCount"></div></div>
 <div class="branch-tabs"><div class="branch-tab active" onclick="switchBranch('rustaq')" id="tab-rustaq">🏛️ فرع الرستاق <span class="car-count" id="count-rustaq">0</span></div><div class="branch-tab" onclick="switchBranch('mabela')" id="tab-mabela">🏛️ فرع المعبيلة <span class="car-count" id="count-mabela">0</span></div></div>
@@ -192,9 +154,6 @@
     const SHEETS = { rustaq: '1KIgAoTO0sbKtvVNt775ZCyuSAW8Bf8HbFyUXCY9pIV0', mabela: '1C_zsV_9l_SN0O5YN118OT49ng9H67sFIBWvk1Qr_3Gg' };
     const PHONES = { rustaq: ['96872222242', '96898825877', '96895096865'], mabela: ['96892256223', '96878080132'] };
     const BASE_URL = 'https://drder1.github.io/Diplomat_Cars/';
-    
-    // ✅ رابط Google Apps Script Web App
-    const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbxynAhef2WwmDaPUN3e2t4ZYTD4IbHlMNhvIexNGQ6LvWtQ0F7WfvjGYv29dlv5_tMP2A/exec';
     
     const dict = {
         'تويوتا':'Toyota','نيسان':'Nissan','لكزس':'Lexus','هوندا':'Honda','هونداي':'Hyundai','هايونداي':'Hyundai','هاييونداي':'Hyundai','كيا':'Kia','مرسيدس':'Mercedes','شيفروليه':'Chevrolet','فورد':'Ford','لينكولن':'Lincoln','كامري':'Camry','أخرى':'Other','فوورد':'Ford','بي ام دبليو':'BMW','ميتسوبيشي':'Mitsubishi','موستبيشي':'Mitsubishi','سوزوكي':'Suzuki','جيب':'Jeep','رنج روفر':'Range Rover','اودي':'Audi','انفينيتي':'Infiniti','انفنتي':'Infinity','إنفينيتي':'Infiniti','كاديلاك':'Cadillac','كادليك':'Cadillac','بورش':'Porsche','دودج':'Dodge','كرايسلر':'Chrysler','جمس':'GMC','جي ام سي':'GMC','بيوك':'Buick','لاند روفر':'Land Rover','مازدا':'Mazda','رام':'Ram','لكزوس':'Lexus','MG':'MG','رينولت':'Renault','JETOR':'Jetour','جيتور':'Jetour',
@@ -213,104 +172,6 @@
 
     let allCars = { rustaq: [], mabela: [] }, branch = 'rustaq', sq = '', currentLang = 'ar', carsData = {}, updateTimer = null, deferredPrompt = null, swReg = null;
 
-    // ✅ لوحة التحكم
-    function toggleAdminPanel() {
-        document.getElementById('adminPanel').classList.toggle('show');
-    }
-
-    // ✅ إضافة سيارة وإرسال إشعار
-    async function addCarAndNotify() {
-        const branchVal = document.getElementById('adminBranch').value;
-        const category = document.getElementById('adminCategory').value.trim();
-        const name = document.getElementById('adminName').value.trim();
-        const model = document.getElementById('adminModel').value.trim();
-        const color = document.getElementById('adminColor').value.trim();
-        const price = document.getElementById('adminPrice').value.trim();
-        const image = document.getElementById('adminImage').value.trim();
-
-        if (!name || !model || !price) {
-            showToast('❌ يرجى ملء الحقول المطلوبة');
-            return;
-        }
-
-        const branchName = branchVal === 'rustaq' ? 'الرستاق' : 'المعبيلة';
-        const carData = {
-            branch: branchVal,
-            category: category || 'أخرى',
-            name: name,
-            model: model,
-            color: color || '---',
-            price: price,
-            image: image || ''
-        };
-
-        // إرسال إشعار OneSignal فوري
-        await sendNewCarNotification(carData);
-
-        showToast('✅ تم إرسال الإشعار للجميع!');
-        
-        // مسح الحقول
-        document.getElementById('adminName').value = '';
-        document.getElementById('adminModel').value = '';
-        document.getElementById('adminColor').value = '';
-        document.getElementById('adminPrice').value = '';
-        document.getElementById('adminImage').value = '';
-        
-        // تحديث العرض
-        loadAllCars();
-    }
-
-    // ✅ إرسال إشعار OneSignal عبر Google Apps Script
-    async function sendNewCarNotification(car) {
-        const branchName = car.branch === 'rustaq' ? 'الرستاق' : 'المعبيلة';
-        
-        try {
-            // استخدام نموذج HTML form للتجاوز CORS
-            const formData = new FormData();
-            formData.append('action', 'new_car');
-            formData.append('branch', car.branch);
-            formData.append('carName', car.name);
-            formData.append('carModel', car.model);
-            formData.append('price', car.price);
-            formData.append('color', car.color);
-            formData.append('image', car.image);
-            formData.append('category', car.category);
-            formData.append('title', `🚗 ${car.name} ${car.model} - ${car.price} ر.ع`);
-            formData.append('message', `🎨 ${car.color} | 🏛️ فرع ${branchName} | تصفح الآن!`);
-
-            await fetch(GAS_WEB_APP_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                body: formData
-            });
-            
-            console.log('✅ إشعار مرسل عبر الخادم');
-        } catch (e) {
-            console.log('⚠️ خطأ في الإرسال:', e);
-            // إشعار محلي كبديل
-            sendLocalNotification(car);
-        }
-    }
-
-    // ✅ إشعار محلي (بديل)
-    function sendLocalNotification(car) {
-        const branchName = car.branch === 'rustaq' ? 'الرستاق' : 'المعبيلة';
-        if (Notification.permission === 'granted' && swReg) {
-            swReg.showNotification(`🚗 سيارة جديدة - ${car.name}`, {
-                body: `${car.model} | ${car.color} | ${car.price} ر.ع | فرع ${branchName}`,
-                icon: 'https://i.ibb.co/QFKYPWBc/IMG-20260622-WA0006.jpg',
-                badge: 'https://i.ibb.co/QFKYPWBc/IMG-20260622-WA0006.jpg',
-                vibrate: [200, 100, 200],
-                tag: 'new-car-' + Date.now(),
-                data: {
-                    url: '/Diplomat_Cars/',
-                    branch: car.branch
-                }
-            });
-        }
-    }
-
-    // ✅ إشعارات OneSignal
     function closeNotifyBanner() { 
         document.getElementById('notifyBanner').classList.remove('show'); 
         localStorage.setItem('notifyClosed', Date.now()); 
@@ -348,7 +209,6 @@
         }
     }
 
-    // ✅ PWA
     window.addEventListener('beforeinstallprompt', e => { 
         e.preventDefault(); 
         deferredPrompt = e; 
@@ -373,7 +233,6 @@
         console.log('✅ تطبيق مثبت'); 
     });
 
-    // ✅ Service Worker
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('/Diplomat_Cars/sw.js', { scope: '/Diplomat_Cars/' })
             .then(r => { 
@@ -383,7 +242,6 @@
             .catch(e => console.log('SW:', e));
     }
 
-    // ✅ إظهار البانرات
     setTimeout(() => {  
         if (Notification.permission === 'default') { 
             const lc = localStorage.getItem('notifyClosed'); 

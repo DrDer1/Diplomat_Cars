@@ -263,16 +263,27 @@
 
         document.addEventListener('click',(e)=>{const m=document.getElementById('sideMenu');const t=document.querySelector('.side-menu-tab');if(m&&m.classList.contains('open')&&!m.contains(e.target)&&!t.contains(e.target)){m.classList.remove('open');document.getElementById('sideMenuOverlay').classList.remove('show');}});
     <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+
 <script>
-  window.OneSignalDeferred = window.OneSignalDeferred || [];
-  OneSignalDeferred.push(async function(OneSignal) {
+window.OneSignalDeferred = window.OneSignalDeferred || [];
+
+OneSignalDeferred.push(async function(OneSignal) {
+
     await OneSignal.init({
-      appId: "a5ef5e42-56c9-4af7-a4e2-4cf17c8d7505",
-      notifyButton: {
-        enable: false
-      }
+        appId: "a5ef5e42-56c9-4af7-a4e2-4cf17c8d7505",
+
+        notifyButton: {
+            enable: false
+        }
     });
-  });
+
+    const permission = await OneSignal.Notifications.permission;
+
+    if (permission === "default") {
+        await OneSignal.Notifications.requestPermission();
+    }
+
+});
 </script>
 </body>
 </html>

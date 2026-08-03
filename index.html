@@ -152,6 +152,7 @@
     console.log('🚀 نظام الدبلوماسي للسيارات يبدأ التشغيل...');
     
     const SHEETS = { rustaq: '1KIgAoTO0sbKtvVNt775ZCyuSAW8Bf8HbFyUXCY9pIV0', mabela: '1C_zsV_9l_SN0O5YN118OT49ng9H67sFIBWvk1Qr_3Gg' };
+    const PHONES_DEFAULT = { rustaq: ['96872222242', '96898825877', '96895096865'], mabela: ['96892256223', '96878080132'] };
     const PHONES = { rustaq: ['96872222242', '96898825877', '96895096865'], mabela: ['96892256223', '96878080132'] };
     const BASE_URL = 'https://drder1.github.io/Diplomat_Cars/';
     
@@ -362,7 +363,14 @@
 
     function displayCars() {  
         console.log('🔄 عرض السيارات...');  
-        const cars = allCars[branch], container = document.getElementById('carsContainer'), phones = PHONES[branch];  
+        const cars = allCars[branch], container = document.getElementById('carsContainer');
+        var sharedPhones = window.diplomatSharedData && diplomatSharedData.getWhatsAppNumbers ? diplomatSharedData.getWhatsAppNumbers(branch) : null;
+        var phones;
+        if (sharedPhones && sharedPhones.length > 0) {
+            phones = sharedPhones.map(function(p) { return p.phone; });
+        } else {
+            phones = PHONES_DEFAULT[branch];
+        }
         let filtered = sq ? cars.filter(c => 
             (c.name&&c.name.includes(sq))||
             (c.model&&c.model.includes(sq))||
@@ -389,13 +397,19 @@
             catCars.forEach((car, idx) => { 
                 const ck = `${branch}_${cat}_${idx}`; 
                 carsData[ck] = car; 
-                window['cd_'+ck] = car; 
-                const img = car.image&&car.image.startsWith('http') ? 
-                    `<img src="${car.image}" class="car-image" loading="lazy" onerror="this.style.display='none'">` : 
-                    '<div class="car-image no-image">🚗</div>';  
+                window['cd_'+ck] = car;
+                var sharedImg = window.diplomatSharedData && diplomatSharedData.getCarImageUrl ? diplomatSharedData.getCarImageUrl(car.name, car.category, car.model, car.branch) : null;
+                var img;
+                if (sharedImg) {
+                    img = `<img src="${sharedImg}" class="car-image" loading="lazy" onerror="this.style.display='none'">`;
+                } else if (car.image&&car.image.startsWith('http')) {
+                    img = `<img src="${car.image}" class="car-image" loading="lazy" onerror="this.style.display='none'">`;
+                } else {
+                    img = '<div class="car-image no-image">🚗</div>';
+                }
                 html += `<div class="car-item">${img}<div class="car-details"><div class="car-detail-row"><span class="car-detail-label">🚗 ${L.name}:</span><span class="car-detail-value">${t(car.name)}</span></div><div class="car-detail-row"><span class="car-detail-label">📅 ${L.model}:</span><span class="car-detail-value">${car.model||'---'}</span></div><div class="car-detail-row"><span class="car-detail-label">🎨 ${L.color}:</span><span class="car-detail-value">${t(car.color)}</span></div></div><div class="car-price-section"><span class="car-price-value">💰 ${car.priceText||'-'} ${L.cur}</span></div><div class="action-label">🔗 ${L.share}:</div><div class="action-buttons"><button class="action-btn btn-share" onclick="shareWA(window['cd_${ck}'])">💬 ${L.share}</button><button class="action-btn btn-copy" onclick="copyLink(window['cd_${ck}'])">📋 ${L.copy}</button></div><div class="action-label">📞 ${L.wa}:</div><div class="action-buttons">`;  
                 phones.forEach((phone, i) => { 
-                    html += `<button class="action-btn btn-wa${i>0?i+1:''}" onclick="openWA('${ck}',${i})">💬 ${L.wa}</button>`; 
+                    html += `<button class="action-btn btn-wa${i>0?i+1:''}" onclick="openWA('${ck}',${i})">💬 ${L.wa} ${i+1}</button>`; 
                 });  
                 html += `</div></div>`; 
             });  
@@ -414,8 +428,16 @@
     
     function openWA(key, pi) { 
         const car = carsData[key]; 
-        if (!car) return; 
-        const phone = PHONES[branch][pi]; 
+        if (!car) return;
+        var sharedPhones = window.diplomatSharedData && diplomatSharedData.getWhatsAppNumbers ? diplomatSharedData.getWhatsAppNumbers(branch) : null;
+        var phones;
+        if (sharedPhones && sharedPhones.length > 0) {
+            phones = sharedPhones.map(function(p) { return p.phone; });
+        } else {
+            phones = PHONES_DEFAULT[branch];
+        }
+        if (pi >= phones.length) return;
+        const phone = phones[pi];
         const names = { 
             rustaq: currentLang==='ar'?'فرع الرستاق':'Rustaq Branch', 
             mabela: currentLang==='ar'?'فرع المعبيلة':'Mabela Branch' 
@@ -468,6 +490,14 @@
             document.getElementById('sideMenuOverlay').classList.remove('show');
         }
     });  
+</script>
+
+<script src="js/shared-data-loader.js"></script>
+<script>
+    window.onSharedDataLoaded = function() {
+        displayCars();
+    };
+    diplomatSharedData.loadSharedData();
 </script>
 
 </body>

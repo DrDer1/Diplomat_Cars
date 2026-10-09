@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الدبلوماسي للسيارات - Diplomat Cars</title>
+    <link rel="manifest" href="/Diplomat_Cars/manifest.json">
+    <meta name="theme-color" content="#0a0a0f">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="الدبلوماسي">
+    <link rel="apple-touch-icon" href="https://i.ibb.co/QFKYPWBc/IMG-20260622-WA0006.jpg">
+    <link rel="icon" href="https://i.ibb.co/QFKYPWBc/IMG-20260622-WA0006.jpg">
+    
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+    <script>
+        window.OneSignalDeferred = window.OneSignalDeferred || [];
+        OneSignalDeferred.push(async function(OneSignal) {
+            await OneSignal.init({
+                appId: "a5ef5e42-56c9-4af7-a4e2-4cf17c8d7505",
+                serviceWorkerParam: { scope: '/Diplomat_Cars/' },
+                serviceWorkerPath: '/Diplomat_Cars/sw.js',
+                allowLocalhostAsSecureOrigin: true,
+                notifyButton: { enable: false }
+            });
+            console.log('✅ OneSignal initialized');
+        });
+    </script>
+
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --primary: #e94560; }
+
+    body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0a0a0f; min-height: 100vh; color: #ffffff; transition: background 0.5s; }
+    body.rustaq { background: #0a0a0f; } body.mabela { background: #1a1a2e; }
+
+    .welcome-banner { background: linear-gradient(135deg, #0d0d1a, #1a1a2e, #0a0a0f); padding: 18px 15px; text-align: center; border-bottom: 2px solid rgba(233,69,96,0.4); margin-bottom: 15px; }
+    .welcome-banner h1 { font-size: 1.7em; font-weight: 900; background: linear-gradient(135deg, #e94560, #ffd700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    body.mabela .welcome-banner h1 { background: linear-gradient(135deg, #00d4ff, #90e0ef); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .welcome-banner .subtitle { color: #888; font-size: 0.7em; margin-top: 5px; letter-spacing: 5px; }
+
+    .search-bar { max-width: 600px; margin: 0 auto 12px; padding: 0 15px; }
+    .search-input-wrapper { position: relative; }
+    .search-input { width: 100%; padding: 10px 38px 10px 40px; border-radius: 25px; border: 2px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: white; font-size: 0.88em; outline: none; }
+    .search-input:focus { border-color: var(--primary); } .search-input::placeholder { color: #666; }
+    .search-icon { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 1em; color: #888; }
+    .clear-search { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #888; font-size: 0.9em; cursor: pointer; display: none; }
+    .search-results-count { text-align: center; color: #888; font-size: 0.72em; margin-top: 3px; display: none; }
+
+    .branch-tabs { display: flex; justify-content: center; gap: 10px; margin: 0 15px 14px; }
+    .branch-tab { padding: 11px 28px; border-radius: 12px; cursor: pointer; font-size: 1em; font-weight: bold; border: 2px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); color: #888; }
+    .branch-tab:hover { border-color: rgba(255,255,255,0.2); color: #fff; }
+    .branch-tab.active { background: rgba(233,69,96,0.12); border-color: var(--primary); color: var(--primary); }
+    body.mabela .branch-tab.active { background: rgba(0,212,255,0.1); border-color: #00d4ff; color: #00d4ff; }
+    .branch-tab .car-count { display: block; font-size: 0.55em; margin-top: 2px; opacity: 0.7; }
+
+    .branch-title { text-align: center; font-size: 1.2em; margin: 14px 15px; font-weight: bold; color: var(--primary); }
+    body.mabela .branch-title { color: #00d4ff; }
+
+    .container { max-width: 850px; margin: 0 auto; padding: 0 15px 25px; }
+
+    .category-accordion { margin-bottom: 8px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); background: rgba(255,255,255,0.02); }
+    .category-header { padding: 12px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .category-header:hover { background: rgba(255,255,255,0.03); } .category-header.active { background: rgba(233,69,96,0.08); }
+    .category-title-group { display: flex; align-items: center; gap: 8px; }
+    .category-icon { font-size: 1em; transition: transform 0.2s; } .category-header.active .category-icon { transform: rotate(180deg); }
+    .category-name { font-size: 1.05em; font-weight: bold; color: var(--primary); } body.mabela .category-name { color: #00d4ff; }
+    .category-badge { background: rgba(233,69,96,0.15); color: var(--primary); padding: 2px 8px; border-radius: 12px; font-size: 0.68em; }
+    .category-content { display: none; } .category-content.open { display: block; }
+    .cars-list { padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; }
+
+    .car-item { background: rgba(255,255,255,0.03); border-radius: 10px; padding: 10px 14px; border: 1px solid rgba(255,255,255,0.04); }
+    .car-item:hover { background: rgba(255,255,255,0.06); border-color: rgba(233,69,96,0.2); }
+    .car-image { width: 100%; height: 120px; object-fit: cover; border-radius: 6px; margin-bottom: 8px; background: rgba(255,255,255,0.02); }
+    .car-image.no-image { display: flex; align-items: center; justify-content: center; font-size: 1.8em; color: #333; height: 100px; }
+    .car-details { display: flex; flex-direction: column; gap: 5px; margin-bottom: 7px; }
+    .car-detail-row { display: flex; align-items: center; gap: 6px; font-size: 0.8em; }
+    .car-detail-label { color: #888; min-width: 70px; font-size: 0.8em; } .car-detail-value { color: #fff; font-weight: bold; font-size: 0.9em; }
+    .car-price-section { background: rgba(233,69,96,0.08); border: 1px solid rgba(233,69,96,0.15); border-radius: 8px; padding: 6px 10px; margin-bottom: 6px; text-align: center; }
+    body.mabela .car-price-section { background: rgba(0,212,255,0.06); border-color: rgba(0,212,255,0.12); }
+    .car-price-value { font-weight: bold; font-size: 0.95em; color: var(--primary); } body.mabela .car-price-value { color: #00d4ff; }
+      
+    .action-buttons { display: flex; gap: 4px; flex-wrap: wrap; }
+    .action-btn { flex: 1; min-width: 55px; color: white; border: none; padding: 6px 5px; border-radius: 4px; cursor: pointer; font-size: 0.7em; font-weight: bold; text-align: center; }
+    .btn-wa { background: #075e54; } .btn-wa2 { background: #1a6b5a; } .btn-wa3 { background: #0d9488; }
+    .btn-copy { background: #3b5998; } .btn-share { background: #25D366; }
+    .action-label { color: #888; font-size: 0.65em; text-align: center; margin-bottom: 3px; }
+
+    .notify-banner { position: fixed; top: 0; left: 0; right: 0; background: linear-gradient(135deg, #0d0d1a, #1a1a2e); border-bottom: 2px solid #e94560; padding: 10px 18px; z-index: 10000; display: none; align-items: center; justify-content: space-between; gap: 8px; font-size: 0.8em; }
+    .notify-banner.show { display: flex; } .notify-banner .notify-text { color: #ccc; flex: 1; font-size: 0.85em; }
+    .notify-banner .notify-btn { background: #e94560; color: white; border: none; padding: 6px 16px; border-radius: 18px; cursor: pointer; font-weight: bold; font-size: 0.8em; }
+    .notify-banner .notify-close { background: none; border: none; color: #888; font-size: 1.2em; cursor: pointer; padding: 5px; }
+
+    .side-menu-tab { position: fixed; right: 0; top: 50%; transform: translateY(-50%); z-index: 1000; background: rgba(233,69,96,0.8); color: #fff; width: 20px; height: 45px; border-radius: 8px 0 0 8px; cursor: pointer; border: none; font-size: 0.65em; display: flex; align-items: center; justify-content: center; }
+    .side-menu { position: fixed; right: -300px; top: 0; width: 260px; height: 100%; background: rgba(10,10,15,0.98); border-left: 1px solid rgba(255,255,255,0.06); z-index: 999; transition: right 0.3s; padding: 22px 16px; overflow-y: auto; }
+    .side-menu.open { right: 0; } .side-menu-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 998; display: none; } .side-menu-overlay.show { display: block; }
+    .side-menu-title { color: var(--primary); font-size: 1em; font-weight: bold; margin-bottom: 14px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 10px; }
+    .lang-section { margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.08); } .lang-section-label { color: #888; font-size: 0.7em; text-align: center; margin-bottom: 6px; }
+    .lang-buttons { display: flex; gap: 5px; }
+    .lang-btn { flex: 1; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: #888; padding: 8px; border-radius: 7px; cursor: pointer; font-size: 0.75em; font-weight: bold; text-align: center; }
+    .lang-btn.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .side-menu-item { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 8px; text-decoration: none; color: #ccc; margin-bottom: 2px; font-size: 0.8em; }
+    .side-menu-item:hover { background: rgba(255,255,255,0.04); color: #fff; } .side-menu-item .menu-icon { font-size: 1.1em; }
+    .side-menu-item.whatsapp { background: rgba(37,211,102,0.08); }
+
+    .install-banner { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(10,10,15,0.95); border-top: 2px solid var(--primary); padding: 12px 16px; z-index: 9999; display: none; align-items: center; justify-content: space-between; gap: 10px; }
+    .install-banner.show { display: flex; } .install-text { color: #ccc; font-size: 0.8em; }
+    .install-text strong { color: var(--primary); display: block; font-size: 0.95em; }
+    .install-btn { background: var(--primary); color: #fff; border: none; padding: 10px 20px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 0.8em; }
+
+    .footer { text-align: center; padding: 12px; color: #555; font-size: 0.68em; border-top: 1px solid rgba(255,255,255,0.04); }
+    .loading-section { text-align: center; padding: 30px; color: #888; }
+    .toast { position: fixed; top: 15px; left: 50%; transform: translateX(-50%); color: #fff; padding: 8px 20px; border-radius: 8px; z-index: 9999; font-weight: bold; font-size: 0.8em; animation: slideIn 0.3s ease; }
+    .toast-success { background: #28a745; } @keyframes slideIn { from { top: -50px; opacity: 0; } to { top: 15px; opacity: 1; } }
+
+    @media (max-width: 768px) { .welcome-banner h1 { font-size: 1.4em; } .branch-tab { padding: 10px 22px; font-size: 0.9em; } .category-name { font-size: 0.95em; } .car-image { height: 100px; } .action-btn { font-size: 0.62em; } .install-banner { flex-direction: column; text-align: center; } }
+</style>
+
+</head>
+<body class="rustaq">
+    
+<div class="notify-banner" id="notifyBanner">
+    <span>🔔</span><span class="notify-text" data-i18n="notify_text">احصل على إشعارات بأحدث السيارات والعروض</span>
+    <button class="notify-btn" onclick="enableNotifications()" data-i18n="notify_enable">تفعيل</button>
+    <button class="notify-close" onclick="closeNotifyBanner()">✕</button>
+</div>
+
+<div class="install-banner" id="installBanner">
+    <span class="install-text"><strong data-i18n="install_now" data-ar="ثبّت التطبيق الآن" data-en="Install the app now">ثبّت التطبيق الآن</strong></span>
+    <button class="install-btn" onclick="installApp()" data-i18n="install" data-ar="تثبيت" data-en="Install">تثبيت</button>
+</div>
+
+<button class="side-menu-tab" onclick="toggleSideMenu()">◀</button>
+<div class="side-menu-overlay" id="sideMenuOverlay" onclick="toggleSideMenu()"></div>
+<div class="side-menu" id="sideMenu">
+    <div class="side-menu-title" data-i18n="menu_title" data-ar="🔗 روابط سريعة" data-en="🔗 Quick Links">🔗 روابط سريعة</div>
+    <div class="lang-section"><div class="lang-section-label" data-i18n="menu_language" data-ar="اللغة" data-en="Language">اللغة</div><div class="lang-buttons"><button class="lang-btn active" onclick="setLang('ar')">🇴🇲 عربي</button><button class="lang-btn" onclick="setLang('en')">🇬🇧 English</button></div></div>
+    <a href="https://maps.app.goo.gl/9cKpPNdt1FX8q5cj6" target="_blank" class="side-menu-item"><span class="menu-icon">📍</span> <span data-i18n="menu_map_rustaq" data-ar="موقع معرض الرستاق" data-en="Rustaq Showroom">موقع معرض الرستاق</span></a>
+    <a href="https://maps.app.goo.gl/QfPrKgZBmfB62yHJ6" target="_blank" class="side-menu-item"><span class="menu-icon">📍</span> <span data-i18n="menu_map_mabela" data-ar="موقع معرض المعبيله" data-en="Mabela Showroom">موقع معرض المعبيله</span></a>
+    <a href="https://wa.me/96872222242" target="_blank" class="side-menu-item whatsapp"><span class="menu-icon">💬</span> <span data-i18n="menu_contact" data-ar="للإستفسار - مروان سالم الخاطري" data-en="Inquiry - Marwan Al Khatri">للإستفسار - مروان سالم الخاطري</span></a>
+</div>
+
+<div class="welcome-banner"><h1 data-i18n="app_title">الدبلوماسي للسيارات</h1><div class="subtitle">● DIPLOMAT CARS ●</div></div>
+
+<div class="search-bar"><div class="search-input-wrapper"><span class="search-icon">🔍</span><input type="text" class="search-input" id="searchInput" placeholder="ابحث عن مركبة..." data-i18n-placeholder="search_placeholder" oninput="handleSearch()"><button class="clear-search" id="clearSearch" onclick="clearSearch()">✕</button></div><div class="search-results-count" id="searchResultsCount"></div></div>
+<div class="branch-tabs"><div class="branch-tab active" onclick="switchBranch('rustaq')" id="tab-rustaq">🏛️ <span data-i18n="branch_rustaq_name">فرع الرستاق</span> <span class="car-count" id="count-rustaq">0</span></div><div class="branch-tab" onclick="switchBranch('mabela')" id="tab-mabela">🏛️ <span data-i18n="branch_mabela_name">فرع المعبيلة</span> <span class="car-count" id="count-mabela">0</span></div></div>
+<div class="branch-title" id="branchTitle">🚗 سيارات فرع الرستاق</div>
+<div class="container" id="carsContainer"><div class="loading-section" data-i18n="loading_cars">جاري تحميل السيارات...</div></div>
+<div class="footer" data-i18n="footer">© 2026 الدبلوماسي للسيارات - جميع الحقوق محفوظة</div>
+
+<script>
+    console.log('🚀 نظام الدبلوماسي للسيارات يبدأ التشغيل...');
+    
+    const SHEETS = { rustaq: '1KIgAoTO0sbKtvVNt775ZCyuSAW8Bf8HbFyUXCY9pIV0', mabela: '1C_zsV_9l_SN0O5YN118OT49ng9H67sFIBWvk1Qr_3Gg' };
+    const PHONES_DEFAULT = { rustaq: ['96872222242', '96898825877', '96895096865'], mabela: ['96892256223', '96878080132'] };
+    const PHONES = { rustaq: ['96872222242', '96898825877', '96895096865'], mabela: ['96892256223', '96878080132'] };
+    const BASE_URL = 'https://drder1.github.io/Diplomat_Cars/';
+    
+    // ✅ قاموس الترجمة للنصوص الثابتة في الواجهة
+    const I18N = {
+        app_title:        { ar: 'الدبلوماسي للسيارات',                     en: 'Diplomat Cars' },
+        search_placeholder:{ ar: 'ابحث عن مركبة...',                        en: 'Search for a vehicle...' },
+        branch_rustaq_name:{ ar: 'فرع الرستاق',                             en: 'Rustaq Branch' },
+        branch_mabela_name:{ ar: 'فرع المعبيلة',                            en: 'Mabela Branch' },
+        branch_title_rustaq:{ ar: '🚗 سيارات فرع الرستاق',                  en: '🚗 Rustaq Branch Cars' },
+        branch_title_mabela:{ ar: '🚗 سيارات فرع المعبيلة',                 en: '🚗 Mabela Branch Cars' },
+        loading_cars:     { ar: 'جاري تحميل السيارات...',                   en: 'Loading cars...' },
+        no_cars:          { ar: '🚫 لا توجد سيارات في المعرض حالياً',        en: '🚫 No cars available at the showroom currently' },
+        load_error:       { ar: '❌ خطأ في تحميل البيانات',                 en: '❌ Error loading data' },
+        footer:           { ar: '© 2026 الدبلوماسي للسيارات - جميع الحقوق محفوظة', en: '© 2026 Diplomat Cars - All rights reserved' },
+        notify_text:      { ar: 'احصل على إشعارات بأحدث السيارات والعروض',   en: 'Get notifications about latest cars and offers' },
+        notify_enable:    { ar: 'تفعيل',                                    en: 'Enable' },
+        notify_success:   { ar: '✅ تم تفعيل الإشعارات بنجاح!',              en: '✅ Notifications enabled successfully!' },
+        notify_unsupported:{ ar: 'متصفحك لا يدعم الإشعارات',                 en: 'Your browser does not support notifications' },
+        notify_denied:    { ar: 'يرجى السماح بالإشعارات من إعدادات المتصفح', en: 'Please allow notifications from browser settings' },
+        install_now:      { ar: 'ثبّت التطبيق الآن',                         en: 'Install the app now' },
+        install:          { ar: 'تثبيت',                                    en: 'Install' },
+        install_hint:     { ar: 'للتثبيت: أندرويد ⁝ → إضافة للشاشة | آيفون ↩ → Add to Home Screen', en: 'To install: Android ⁝ → Add to Home Screen | iPhone ↩ → Add to Home Screen' },
+        toast_link_copied:{ ar: '✅ تم نسخ الرابط',                          en: '✅ Link copied' },
+        menu_title:       { ar: '🔗 روابط سريعة',                            en: '🔗 Quick Links' },
+        menu_language:    { ar: 'اللغة',                                    en: 'Language' },
+        label_name:       { ar: 'اسم المركبة',                              en: 'Name' },
+        label_model:      { ar: 'الموديل',                                  en: 'Model' },
+        label_color:      { ar: 'اللون',                                    en: 'Color' },
+        label_share:      { ar: 'مشاركة على واتساب',                        en: 'Share on WhatsApp' },
+        label_copy:       { ar: 'نسخ الرابط',                               en: 'Copy Link' },
+        label_wa:         { ar: 'واتساب',                                   en: 'WhatsApp' },
+        currency:         { ar: 'ر.ع',                                      en: 'OMR' },
+        cars_unit:        { ar: 'سيارة',                                    en: 'cars' }
+    };
+
+    const dict = {
+        'تويوتا':'Toyota','نيسان':'Nissan','لكزس':'Lexus','هوندا':'Honda','هونداي':'Hyundai','هايونداي':'Hyundai','هاييونداي':'Hyundai','كيا':'Kia','مرسيدس':'Mercedes','شيفروليه':'Chevrolet','فورد':'Ford','لينكولن':'Lincoln','كامري':'Camry','أخرى':'Other','فوورد':'Ford','بي ام دبليو':'BMW','ميتسوبيشي':'Mitsubishi','موستبيشي':'Mitsubishi','سوزوكي':'Suzuki','جيب':'Jeep','رنج روفر':'Range Rover','اودي':'Audi','انفينيتي':'Infiniti','انفنتي':'Infinity','إنفينيتي':'Infiniti','كاديلاك':'Cadillac','كادليك':'Cadillac','بورش':'Porsche','دودج':'Dodge','كرايسلر':'Chrysler','جمس':'GMC','جي ام سي':'GMC','بيوك':'Buick','لاند روفر':'Land Rover','مازدا':'Mazda','رام':'Ram','لكزوس':'Lexus','MG':'MG','رينولت':'Renault','JETOR':'Jetour','جيتور':'Jetour',
+        'ابيض':'White','أبيض':'White','اسود':'Black','أسود':'Black','فضي':'Silver','سلفر':'Silver','رصاصي':'Gray','رمادي':'Gray','احمر':'Red','أحمر':'Red','ازرق':'Blue','أزرق':'Blue','اخضر':'Green','أخضر':'Green','ذهبي':'Gold','بني':'Brown','عنابي':'Dark Red','نبيذي':'Burgundy','كحلي':'Navy','بيج':'Beige','برتقالي':'Orange','أصفر':'Yellow','بنفسجي':'Purple','برونزي':'Bronze','بحري':'Navy Blue',
+        'راف فور':'RAV4','رافور':'RAV4','كامري':'Camry','لاند كروزر':'Land Cruiser','لاندكروزر':'Land Cruiser','كورولا':'Corolla','كرولا':'Corolla','يارس':'Yaris','بريوس':'Prius','هايلكس':'Hilux','فورتشنر':'Fortuner','برادو':'Prado','افالون':'Avalon','تندرا':'Tundra','تكوما':'Tacoma','86':'GT86',
+        'باترول':'Patrol','التيما':'Altima','ألتيما':'Altima','صني':'Sunny','مكسيما':'Maxima','اكس تريل':'X-Trail','باثفايندر':'Pathfinder','جوك':'Juke','قشقاي':'Qashqai','مورانو':'Murano','كويست':'Quest','روج':'Rogue','ميكرا':'Micra','تيتان':'Titan','ارمادا':'Armada','سنترا':'Sentra','فيرسا':'Versa','اكستيرا':'Xterra','أكستيرا':'Xterra',
+        'النترا':'Elantra','ألنترا':'Elantra','توسان':'Tucson','سانتافي':'Santa Fe','سينتافي':'Santa Fe','اكسنت':'Accent','كريتا':'Creta','سوناتا':'Sonata','فيلوستر':'Veloster','جينسس':'Genesis','فيراكروز':'Veracruz',
+        'سبورتاج':'Sportage','سيراتو':'Cerato','سورينتو':'Sorento','بيكانتو':'Picanto','ستينجر':'Stinger','K5':'K5',
+        'سيفيك':'Civic','اكورد':'Accord','أكورد':'Accord','سي ار في':'CR-V',
+        'باجيرو':'Pajero','لانسر':'Lancer','اوتلاندر':'Outlander','اكليبس':'Eclipse','أكلبس':'Eclipse','جيمني':'Jimny','فيتارا':'Vitara','رانجلر':'Wrangler','تاهو':'Tahoe','اكسبلورر':'Explorer','اكسبلور':'Explorer','موستنج':'Mustang','ماليبو':'Malibu','ايفوك':'Evoque','اكاديا':'Acadia','فيلار':'Velar','بيكاب':'Pickup','رام':'Ram','تشالنجر':'Challenger','تشالينجر':'Challenger','يوكن':'Yukon','سلفرادو':'Silverado','سوبربان':'Suburban','سيرا':'Sierra','كمارو':'Camaro','فيوجن':'Fusion','سياز':'Ciaz','فوج':'Vogue','ميني كوبر':'Mini Cooper','كيو 50':'Q50','QX80':'QX80','QX60':'QX60','XT6':'XT6','BMW535':'BMW 535','BMW325':'BMW 325','ZS':'ZS','تشارجر':'Charger',
+        'خليجي':'GCC','ليمتد':'Limited','بلاتينيوم':'Platinum','فل':'Full','فول':'Full','دينالي':'Denali','هايبرد':'Hybrid','بانوراما':'Panorama','هاتشباك':'Hatchback','سبورت':'Sport','هاي كنتري':'High Country','تورينج':'Touring','ريبكون':'Rubicon','كوبيه':'Coupe','شاحنة':'Truck','شاحنه':'Truck','صغيرة':'Small','فول اوبشن':'Full Option','نص فل':'Mid Option','دفع رباعي':'4WD','دبل':'4x4','اوتوماتيك':'Automatic','عادي':'Manual',
+        'SV':'SV','SR':'SR','SL':'SL','LE':'LE','SE':'SE','XLE':'XLE','XSE':'XSE','SEL':'SEL','V6':'V6','v6':'V6','N':'N','S':'S','ES':'ES','C300':'C300','c300':'C300','E350':'E350','GLA250':'GLA250','rx350':'RX350','IS250':'IS250','ls460':'LS460','UX':'UX'
+    };
+
+    // مفاتيح مرتبة من الأطول إلى الأقصر لتفادي الترجمة الجزئية الخاطئة
+    const dictKeysSorted = Object.keys(dict).sort((a, b) => b.length - a.length);
+
+    function getTranslation(key, lang) {
+        if (!key) return '';
+        var entry = I18N[key];
+        if (!entry) return key;
+        return entry[lang] || entry.ar || key;
+    }
+
+    function updatePageDirection(lang) {
+        document.documentElement.lang = lang;
+        document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    }
+
+    function translatePage() {
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+            var key = el.getAttribute('data-i18n');
+            var val = getTranslation(key, currentLang);
+            if (val) el.textContent = val;
+        });
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+            var key = el.getAttribute('data-i18n-placeholder');
+            var val = getTranslation(key, currentLang);
+            if (val) el.setAttribute('placeholder', val);
+        });
+    }
+
+    function t(text) {
+        if (currentLang === 'ar' || !text) return text || '';
+        const s = String(text).trim();
+        if (!s) return text || '';
+        if (dict[s]) return dict[s];
+        // مطابقة أطول مفتاح أولاً داخل النص
+        var result = s;
+        for (var i = 0; i < dictKeysSorted.length; i++) {
+            var k = dictKeysSorted[i];
+            if (k.length < 2) continue;
+            if (result.indexOf(k) !== -1) {
+                result = result.split(k).join(dict[k]);
+            }
+        }
+        // تجزئة على المسافات لمعالجة الكلمات المتبقية
+        return result.split(/\s+/).map(function(w) {
+            var c = w.replace(/[،,\/\-]/g, '').trim();
+            if (!c) return w;
+            if (dict[c]) return dict[c];
+            var lc = c.toLowerCase();
+            for (var j = 0; j < dictKeysSorted.length; j++) {
+                var kk = dictKeysSorted[j];
+                if (kk.toLowerCase().trim() === lc) return dict[kk];
+            }
+            return w;
+        }).join(' ');
+    }
+
+    let allCars = { rustaq: [], mabela: [] }, branch = 'rustaq', sq = '', currentLang = 'ar', carsData = {}, updateTimer = null, deferredPrompt = null, swReg = null;
+
+    function closeNotifyBanner() { 
+        document.getElementById('notifyBanner').classList.remove('show'); 
+        localStorage.setItem('notifyClosed', Date.now()); 
+        console.log('🔔 بانر الإشعارات مغلق'); 
+    }
+
+    async function enableNotifications() {
+        if (!('Notification' in window)) {
+            alert(getTranslation('notify_unsupported', currentLang));
+            return;
+        }
+        
+        try {
+            const permission = await Notification.requestPermission();
+            console.log('🔔 حالة الإذن:', permission);
+            
+            if (permission === 'granted') {
+                document.getElementById('notifyBanner').classList.remove('show');
+                localStorage.setItem('notificationsEnabled', 'true');
+                showToast(getTranslation('notify_success', currentLang));
+                
+                if (window.OneSignal) {
+                    try {
+                        await OneSignal.User.PushSubscription.optIn();
+                        console.log('✅ OneSignal Push Subscribed');
+                    } catch (e) {
+                        console.log('⚠️ OneSignal:', e);
+                    }
+                }
+            } else {
+                alert(getTranslation('notify_denied', currentLang));
+            }
+        } catch (e) {
+            console.error('❌ خطأ الإشعارات:', e);
+        }
+    }
+
+    window.addEventListener('beforeinstallprompt', e => { 
+        e.preventDefault(); 
+        deferredPrompt = e; 
+        setTimeout(() => document.getElementById('installBanner').classList.add('show'), 3000); 
+        console.log('📱 beforeinstallprompt'); 
+    });
+    
+    function installApp() { 
+        if (deferredPrompt) { 
+            deferredPrompt.prompt(); 
+            deferredPrompt.userChoice.then(() => { 
+                deferredPrompt = null; 
+                document.getElementById('installBanner').classList.remove('show'); 
+            }); 
+        } else { 
+            alert(getTranslation('install_hint', currentLang)); 
+        } 
+    }
+    
+    window.addEventListener('appinstalled', () => { 
+        document.getElementById('installBanner').classList.remove('show'); 
+        console.log('✅ تطبيق مثبت'); 
+    });
+
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/Diplomat_Cars/sw.js', { scope: '/Diplomat_Cars/' })
+            .then(r => { 
+                swReg = r; 
+                console.log('✅ SW مسجل:', r.scope); 
+            })
+            .catch(e => console.log('SW:', e));
+    }
+
+    setTimeout(() => {  
+        if (Notification.permission === 'default') { 
+            const lc = localStorage.getItem('notifyClosed'); 
+            if (!lc || Date.now() - lc > 86400000) {
+                document.getElementById('notifyBanner').classList.add('show'); 
+            }
+        }  
+        console.log('🔔 حالة الإشعارات:', Notification.permission);  
+    }, 5000);
+
+    function toggleSideMenu() { 
+        document.getElementById('sideMenu').classList.toggle('open'); 
+        document.getElementById('sideMenuOverlay').classList.toggle('show'); 
+    }
+
+    function setLang(lang) { 
+        currentLang = lang; 
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active')); 
+        const activeBtn = document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`);
+        if (activeBtn) activeBtn.classList.add('active');
+        updatePageDirection(lang);
+        translatePage();
+        document.getElementById('branchTitle').textContent = branch === 'rustaq' ? 
+            getTranslation('branch_title_rustaq', lang) : 
+            getTranslation('branch_title_mabela', lang);
+        displayCars(); 
+        console.log('🌐 اللغة:', lang); 
+    }
+
+    function handleSearch() { 
+        sq = document.getElementById('searchInput').value.toLowerCase().trim(); 
+        document.getElementById('clearSearch').style.display = sq ? 'block' : 'none'; 
+        displayCars(); 
+    }
+    
+    function clearSearch() { 
+        document.getElementById('searchInput').value = ''; 
+        document.getElementById('clearSearch').style.display = 'none'; 
+        document.getElementById('searchResultsCount').style.display = 'none'; 
+        sq = ''; 
+        displayCars(); 
+    }
+
+    function copyLink(car) { 
+        const link = `${BASE_URL}?car=${btoa(unescape(encodeURIComponent(`${car.name}|${car.model}|${car.category}`)))}&branch=${car.branch}`; 
+        navigator.clipboard.writeText(link).then(() => showToast(getTranslation('toast_link_copied', currentLang))).catch(() => showToast(getTranslation('toast_link_copied', currentLang))); 
+        console.log('📋 نسخ الرابط:', link); 
+    }
+    
+    function shareWA(car) { 
+        const link = `${BASE_URL}?car=${btoa(unescape(encodeURIComponent(`${car.name}|${car.model}|${car.category}`)))}&branch=${car.branch}`; 
+        const msg = `🚗 ${car.category} - ${car.name}\n📅 ${car.model} | 🎨 ${car.color} | 💰 ${car.priceText} ر.ع\n🔗 ${link}`; 
+        window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`, '_blank'); 
+        console.log('💬 مشاركة:', car.name); 
+    }
+
+    function showToast(msg) { 
+        const old = document.querySelector('.toast'); 
+        if (old) old.remove(); 
+        const el = document.createElement('div'); 
+        el.className = 'toast toast-success'; 
+        el.textContent = msg; 
+        document.body.appendChild(el); 
+        setTimeout(() => { 
+            el.style.opacity = '0'; 
+            el.style.transition = 'opacity 0.3s'; 
+            setTimeout(() => el.remove(), 300); 
+        }, 2500); 
+    }
+
+    async function loadAllCars() {  
+        console.log('📡 تحميل البيانات...');  
+        try {  
+            const [rd, md] = await Promise.all([
+                fetch(`https://docs.google.com/spreadsheets/d/${SHEETS.rustaq}/export?format=csv`).then(r => r.text()), 
+                fetch(`https://docs.google.com/spreadsheets/d/${SHEETS.mabela}/export?format=csv`).then(r => r.text())
+            ]);  
+            allCars.rustaq = parseCSV(rd, 'rustaq'); 
+            allCars.mabela = parseCSV(md, 'mabela');  
+            if (allCars.rustaq.length > 0) allCars.rustaq.pop(); 
+            if (allCars.mabela.length > 0) allCars.mabela.pop();  
+            document.getElementById('count-rustaq').textContent = `${allCars.rustaq.length} سيارة`;  
+            document.getElementById('count-mabela').textContent = `${allCars.mabela.length} سيارة`;  
+            console.log('✅ الرستاق:', allCars.rustaq.length, '| المعبيلة:', allCars.mabela.length);  
+            displayCars();  
+        } catch (e) { 
+            console.error('❌ تحميل:', e); 
+            document.getElementById('carsContainer').innerHTML = `<div class="loading-section">${getTranslation('load_error', currentLang)}</div>`; 
+        }  
+    }
+
+    function parseCSV(text, bn) { 
+        const cars = []; 
+        const lines = text.split('\n'); 
+        let cat = 'أخرى'; 
+        for (const line of lines) { 
+            const l = line.trim(); 
+            if (!l) continue; 
+            const c = l.split(',').map(x => x.replace(/^"|"$/g, '').trim()); 
+            const ne = c.filter(x => x !== ''); 
+            if (ne.length === 0) continue; 
+            if (ne.length === 1 && !/^\d+$/.test(c[0]) && !/^(19|20)\d{2}$/.test(c[0]) && c[0].length < 50) { 
+                cat = c[0].trim(); 
+                continue; 
+            } 
+            if (cat && ne.length >= 2) cars.push({ 
+                name: c[3]||'', 
+                model: c[2]||'', 
+                color: c[1]||'', 
+                priceText: c[0]||'', 
+                image: c[4]||'', 
+                category: cat, 
+                branch: bn 
+            }); 
+        } 
+        return cars; 
+    }
+
+    function displayCars() {  
+        console.log('🔄 عرض السيارات...');  
+        const cars = allCars[branch], container = document.getElementById('carsContainer');
+        var sharedPhones = window.diplomatSharedData && diplomatSharedData.getWhatsAppNumbers ? diplomatSharedData.getWhatsAppNumbers(branch) : null;
+        var phones;
+        if (sharedPhones && sharedPhones.length > 0) {
+            phones = sharedPhones.map(function(p) { return p.phone; });
+        } else {
+            phones = PHONES_DEFAULT[branch];
+        }
+        let filtered = sq ? cars.filter(c => 
+            (c.name&&c.name.includes(sq))||
+            (c.model&&c.model.includes(sq))||
+            (c.priceText&&c.priceText.includes(sq))||
+            (c.category&&c.category.includes(sq))||
+            (c.color&&c.color.includes(sq))
+        ) : cars;  
+        if (filtered.length === 0) { 
+            container.innerHTML = `<div class="loading-section">${getTranslation('no_cars', currentLang)}</div>`; 
+            return; 
+        }  
+        const grouped = {}; 
+        filtered.forEach(c => { 
+            const cat = c.category||'أخرى'; 
+            if (!grouped[cat]) grouped[cat] = []; 
+            grouped[cat].push(c); 
+        });  
+        const L = currentLang === 'ar' ? 
+            { name: getTranslation('label_name','ar'), model: getTranslation('label_model','ar'), color: getTranslation('label_color','ar'), wa: getTranslation('label_wa','ar'), cars: getTranslation('cars_unit','ar'), share: getTranslation('label_share','ar'), copy: getTranslation('label_copy','ar'), cur: getTranslation('currency','ar') } : 
+            { name: getTranslation('label_name','en'), model: getTranslation('label_model','en'), color: getTranslation('label_color','en'), wa: getTranslation('label_wa','en'), cars: getTranslation('cars_unit','en'), share: getTranslation('label_share','en'), copy: getTranslation('label_copy','en'), cur: getTranslation('currency','en') };  
+        let html = '', first = true;  
+        for (const [cat, catCars] of Object.entries(grouped)) {  
+            html += `<div class="category-accordion"><div class="category-header ${first?'active':''}" onclick="toggleCategory(this)"><div class="category-title-group"><span class="category-icon">▼</span><span class="category-name">🏭 ${t(cat)}</span></div><span class="category-badge">${catCars.length} ${L.cars}</span></div><div class="category-content ${first?'open':''}"><div class="cars-list">`;  
+            catCars.forEach((car, idx) => { 
+                const ck = `${branch}_${cat}_${idx}`; 
+                carsData[ck] = car; 
+                window['cd_'+ck] = car;
+                var sharedImg = window.diplomatSharedData && diplomatSharedData.getCarImageUrl ? diplomatSharedData.getCarImageUrl(car.name, car.category, car.model, car.branch) : null;
+                var img;
+                if (sharedImg) {
+                    img = `<img src="${sharedImg}" class="car-image" loading="lazy" onerror="this.style.display='none'">`;
+                } else if (car.image&&car.image.startsWith('http')) {
+                    img = `<img src="${car.image}" class="car-image" loading="lazy" onerror="this.style.display='none'">`;
+                } else {
+                    img = '<div class="car-image no-image">🚗</div>';
+                }
+                html += `<div class="car-item">${img}<div class="car-details"><div class="car-detail-row"><span class="car-detail-label">🚗 ${L.name}:</span><span class="car-detail-value">${t(car.name)}</span></div><div class="car-detail-row"><span class="car-detail-label">📅 ${L.model}:</span><span class="car-detail-value">${car.model||'---'}</span></div><div class="car-detail-row"><span class="car-detail-label">🎨 ${L.color}:</span><span class="car-detail-value">${t(car.color)}</span></div></div><div class="car-price-section"><span class="car-price-value">💰 ${car.priceText||'-'} ${L.cur}</span></div><div class="action-label">🔗 ${L.share}:</div><div class="action-buttons"><button class="action-btn btn-share" onclick="shareWA(window['cd_${ck}'])">💬 ${L.share}</button><button class="action-btn btn-copy" onclick="copyLink(window['cd_${ck}'])">📋 ${L.copy}</button></div><div class="action-label">📞 ${L.wa}:</div><div class="action-buttons">`;  
+                phones.forEach((phone, i) => { 
+                    html += `<button class="action-btn btn-wa${i>0?i+1:''}" onclick="openWA('${ck}',${i})">💬 ${L.wa} ${i+1}</button>`; 
+                });  
+                html += `</div></div>`; 
+            });  
+            html += '</div></div></div>'; 
+            first = false;  
+        }  
+        container.innerHTML = html;  
+        console.log('✅ تم عرض', filtered.length, 'سيارة');  
+    }
+
+    function toggleCategory(h) { 
+        const c = h.nextElementSibling; 
+        h.classList.toggle('active'); 
+        c.classList.toggle('open'); 
+    }
+    
+    function openWA(key, pi) { 
+        const car = carsData[key]; 
+        if (!car) return;
+        var sharedPhones = window.diplomatSharedData && diplomatSharedData.getWhatsAppNumbers ? diplomatSharedData.getWhatsAppNumbers(branch) : null;
+        var phones;
+        if (sharedPhones && sharedPhones.length > 0) {
+            phones = sharedPhones.map(function(p) { return p.phone; });
+        } else {
+            phones = PHONES_DEFAULT[branch];
+        }
+        if (pi >= phones.length) return;
+        const phone = phones[pi];
+        const names = { 
+            rustaq: currentLang==='ar'?'فرع الرستاق':'Rustaq Branch', 
+            mabela: currentLang==='ar'?'فرع المعبيلة':'Mabela Branch' 
+        }; 
+        const msg = currentLang==='ar' ? 
+            `السلام عليكم\n${names[car.branch]}\n🏭 ${car.category}\n🚗 ${car.name}\n📅 ${car.model}\n🎨 ${car.color}\n💰 ${car.priceText} ر.ع` : 
+            `Hello\n${names[car.branch]}\n🏭 ${t(car.category)}\n🚗 ${t(car.name)}\n📅 ${car.model}\n🎨 ${t(car.color)}\n💰 ${car.priceText} OMR`; 
+        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank'); 
+        console.log('📞 واتساب:', phone); 
+    }
+
+    function switchBranch(b) { 
+        branch = b; 
+        document.body.className = b; 
+        document.querySelectorAll('.branch-tab').forEach(t => t.classList.remove('active')); 
+        document.getElementById(`tab-${b}`).classList.add('active'); 
+        document.getElementById('branchTitle').textContent = b === 'rustaq' ? 
+            getTranslation('branch_title_rustaq', currentLang) : 
+            getTranslation('branch_title_mabela', currentLang); 
+        document.getElementById('searchInput').value = ''; 
+        document.getElementById('clearSearch').style.display = 'none'; 
+        sq = ''; 
+        displayCars(); 
+        console.log('🏛️ الفرع:', b); 
+    }
+
+    function startAutoUpdate() { 
+        if (updateTimer) clearInterval(updateTimer); 
+        updateTimer = setInterval(() => { 
+            try { 
+                loadAllCars(); 
+                console.log('🔄 تحديث تلقائي'); 
+            } catch(e) {} 
+        }, 600000); 
+        console.log('⏰ تحديث تلقائي كل 10 دقائق'); 
+    }
+
+    // ✅ ضبط الاتجاه واللغة عند التحميل الأول
+    updatePageDirection(currentLang);
+    translatePage();
+
+    loadAllCars(); 
+    startAutoUpdate();  
+    console.log('✅ النظام جاهز بالكامل');  
+    console.log('📱 PWA:', 'beforeinstallprompt' in window ? '✅' : '❌');  
+    console.log('🔔 إشعارات:', 'Notification' in window ? '✅' : '❌');  
+    console.log('📡 SW:', 'serviceWorker' in navigator ? '✅' : '❌');
+
+    document.addEventListener('click',(e)=>{
+        const m=document.getElementById('sideMenu');
+        const t=document.querySelector('.side-menu-tab');
+        if(m&&m.classList.contains('open')&&!m.contains(e.target)&&!t.contains(e.target)){
+            m.classList.remove('open');
+            document.getElementById('sideMenuOverlay').classList.remove('show');
+        }
+    });  
+</script>
+
+<script src="js/shared-data-loader.js"></script>
+<script>
+    window.onSharedDataLoaded = function() {
+        displayCars();
+    };
+    diplomatSharedData.loadSharedData();
+</script>
+
+</body>
+</html>

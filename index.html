@@ -31,33 +31,33 @@
 <body class="rustaq">
     
 <div class="notify-banner" id="notifyBanner">
-    <span>🔔</span><span class="notify-text" data-ar="احصل على إشعارات بأحدث السيارات والعروض" data-en="Get notifications about latest cars and offers">احصل على إشعارات بأحدث السيارات والعروض</span>
-    <button class="notify-btn" onclick="enableNotifications()" data-ar="تفعيل" data-en="Enable">تفعيل</button>
+    <span>🔔</span><span class="notify-text">احصل على إشعارات بأحدث السيارات والعروض</span>
+    <button class="notify-btn" onclick="enableNotifications()">تفعيل</button>
     <button class="notify-close" onclick="closeNotifyBanner()">✕</button>
 </div>
 
 <div class="install-banner" id="installBanner">
-    <span class="install-text"><strong data-ar="ثبّت التطبيق الآن" data-en="Install the app now">ثبّت التطبيق الآن</strong></span>
-    <button class="install-btn" onclick="installApp()" data-ar="تثبيت" data-en="Install">تثبيت</button>
+    <span class="install-text"><strong>ثبّت التطبيق الآن</strong></span>
+    <button class="install-btn" onclick="installApp()">تثبيت</button>
 </div>
 
 <button class="side-menu-tab" onclick="toggleSideMenu()">◀</button>
 <div class="side-menu-overlay" id="sideMenuOverlay" onclick="toggleSideMenu()"></div>
 <div class="side-menu" id="sideMenu">
-    <div class="side-menu-title" data-ar="🔗 روابط سريعة" data-en="🔗 Quick Links">🔗 روابط سريعة</div>
-    <div class="lang-section"><div class="lang-section-label" data-ar="اللغة" data-en="Language">اللغة</div><div class="lang-buttons"><button class="lang-btn active" onclick="setLang('ar')">🇴🇲 عربي</button><button class="lang-btn" onclick="setLang('en')">🇬🇧 English</button></div></div>
-    <a href="https://maps.app.goo.gl/9cKpPNdt1FX8q5cj6" target="_blank" class="side-menu-item"><span class="menu-icon">📍</span> <span data-ar="موقع معرض الرستاق" data-en="Rustaq Showroom">موقع معرض الرستاق</span></a>
-    <a href="https://maps.app.goo.gl/QfPrKgZBmfB62yHJ6" target="_blank" class="side-menu-item"><span class="menu-icon">📍</span> <span data-ar="موقع معرض المعبيله" data-en="Mabela Showroom">موقع معرض المعبيله</span></a>
-    <a href="https://wa.me/96872222242" target="_blank" class="side-menu-item whatsapp"><span class="menu-icon">💬</span> <span data-ar="للإستفسار - مروان سالم الخاطري" data-en="Inquiry - Marwan Al Khatri">للإستفسار - مروان سالم الخاطري</span></a>
+    <div class="side-menu-title">🔗 روابط سريعة</div>
+    <div class="lang-section"><div class="lang-section-label">اللغة</div><div class="lang-buttons"><button class="lang-btn active" onclick="setLang('ar')">🇴🇲 عربي</button><button class="lang-btn" onclick="setLang('en')">🇬🇧 English</button></div></div>
+    <a href="https://maps.app.goo.gl/9cKpPNdt1FX8q5cj6" target="_blank" class="side-menu-item"><span class="menu-icon">📍</span> <span>موقع معرض الرستاق</span></a>
+    <a href="https://maps.app.goo.gl/QfPrKgZBmfB62yHJ6" target="_blank" class="side-menu-item"><span class="menu-icon">📍</span> <span>موقع معرض المعبيله</span></a>
+    <a href="https://wa.me/96872222242" target="_blank" class="side-menu-item whatsapp"><span class="menu-icon">💬</span> <span>للإستفسار - مروان سالم الخاطري</span></a>
 </div>
 
-<div class="welcome-banner"><h1 data-ar="الدبلوماسي للسيارات" data-en="Diplomat Cars">الدبلوماسي للسيارات</h1><div class="subtitle">● DIPLOMAT CARS ●</div></div>
+<div class="welcome-banner"><h1>الدبلوماسي للسيارات</h1><div class="subtitle">● DIPLOMAT CARS ●</div></div>
 
-<div class="search-bar"><div class="search-input-wrapper"><span class="search-icon">🔍</span><input type="text" class="search-input" id="searchInput" placeholder="ابحث عن مركبة..." data-ar-placeholder="ابحث عن مركبة..." data-en-placeholder="Search for a vehicle..." oninput="handleSearch()"><button class="clear-search" id="clearSearch" onclick="clearSearch()">✕</button></div><div class="search-results-count" id="searchResultsCount"></div></div>
-<div class="branch-tabs"><div class="branch-tab active" onclick="switchBranch('rustaq')" id="tab-rustaq">🏛️ <span data-ar="فرع الرستاق" data-en="Rustaq Branch">فرع الرستاق</span> <span class="car-count" id="count-rustaq">0</span></div><div class="branch-tab" onclick="switchBranch('mabela')" id="tab-mabela">🏛️ <span data-ar="فرع المعبيلة" data-en="Mabela Branch">فرع المعبيلة</span> <span class="car-count" id="count-mabela">0</span></div></div>
+<div class="search-bar"><div class="search-input-wrapper"><span class="search-icon">🔍</span><input type="text" class="search-input" id="searchInput" placeholder="ابحث عن مركبة..." oninput="handleSearch()"><button class="clear-search" id="clearSearch" onclick="clearSearch()">✕</button></div><div class="search-results-count" id="searchResultsCount"></div></div>
+<div class="branch-tabs"><div class="branch-tab active" onclick="switchBranch('rustaq')" id="tab-rustaq">🏛️ <span>فرع الرستاق</span> <span class="car-count" id="count-rustaq">0</span></div><div class="branch-tab" onclick="switchBranch('mabela')" id="tab-mabela">🏛️ <span>فرع المعبيلة</span> <span class="car-count" id="count-mabela">0</span></div></div>
 <div class="branch-title" id="branchTitle">🚗 سيارات فرع الرستاق</div>
-<div class="container" id="carsContainer"><div class="loading-section" data-ar="جاري تحميل السيارات..." data-en="Loading cars...">جاري تحميل السيارات...</div></div>
-<div class="footer" data-ar="© 2026 الدبلوماسي للسيارات - جميع الحقوق محفوظة" data-en="© 2026 Diplomat Cars - All rights reserved">© 2026 الدبلوماسي للسيارات - جميع الحقوق محفوظة</div>
+<div class="container" id="carsContainer"><div class="loading-section">جاري تحميل السيارات...</div></div>
+<div class="footer">© 2026 الدبلوماسي للسيارات - جميع الحقوق محفوظة</div>
 
 <script>
     console.log('🚀 نظام الدبلوماسي للسيارات يبدأ التشغيل...');
@@ -67,77 +67,61 @@
     const PHONES = { rustaq: ['96872222242', '96898825877', '96895096865'], mabela: ['96892256223', '96878080132'] };
     const BASE_URL = 'https://drder1.github.io/Diplomat_Cars/';
     
-    const I18N = {
-        branch_title_rustaq: { ar: '🚗 سيارات فرع الرستاق', en: '🚗 Rustaq Branch Cars' },
-        branch_title_mabela: { ar: '🚗 سيارات فرع المعبيلة', en: '🚗 Mabela Branch Cars' },
-        loading_cars:  { ar: 'جاري تحميل السيارات...', en: 'Loading cars...' },
-        no_cars:       { ar: '🚫 لا توجد سيارات في المعرض حالياً', en: '🚫 No cars available at the showroom currently' },
-        load_error:    { ar: '❌ خطأ في تحميل البيانات', en: '❌ Error loading data' },
-        notify_success:{ ar: '✅ تم تفعيل الإشعارات بنجاح!', en: '✅ Notifications enabled successfully!' },
-        notify_unsupported:{ ar: 'متصفحك لا يدعم الإشعارات', en: 'Your browser does not support notifications' },
-        notify_denied: { ar: 'يرجى السماح بالإشعارات من إعدادات المتصفح', en: 'Please allow notifications from browser settings' },
-        install_hint:  { ar: 'للتثبيت: أندرويد ⁝ → إضافة للشاشة | آيفون ↩ → Add to Home Screen', en: 'To install: Android ⁝ → Add to Home Screen | iPhone ↩ → Add to Home Screen' },
-        toast_link_copied:{ ar: '✅ تم نسخ الرابط', en: '✅ Link copied' },
-        label_name:    { ar: 'اسم المركبة', en: 'Name' },
-        label_model:   { ar: 'الموديل', en: 'Model' },
-        label_color:   { ar: 'اللون', en: 'Color' },
-        label_share:   { ar: 'مشاركة على واتساب', en: 'Share on WhatsApp' },
-        label_copy:    { ar: 'نسخ الرابط', en: 'Copy Link' },
-        label_wa:      { ar: 'واتساب', en: 'WhatsApp' },
-        currency:      { ar: 'ر.ع', en: 'OMR' },
-        cars_unit:     { ar: 'سيارة', en: 'cars' }
-    };
-
+    // ✅ قاموس الترجمة - يشمل الكلمات المفردة والعبارات المركبة
     const dict = {
-        'تويوتا':'Toyota','نيسان':'Nissan','لكزس':'Lexus','هوندا':'Honda','هونداي':'Hyundai','هايونداي':'Hyundai','هاييونداي':'Hyundai','كيا':'Kia','مرسيدس':'Mercedes','شيفروليه':'Chevrolet','فورد':'Ford','لينكولن':'Lincoln','كامري':'Camry','أخرى':'Other','فوورد':'Ford','بي ام دبليو':'BMW','ميتسوبيشي':'Mitsubishi','موستبيشي':'Mitsubishi','سوزوكي':'Suzuki','جيب':'Jeep','رنج روفر':'Range Rover','اودي':'Audi','انفينيتي':'Infiniti','انفنتي':'Infinity','إنفينيتي':'Infiniti','كاديلاك':'Cadillac','كادليك':'Cadillac','بورش':'Porsche','دودج':'Dodge','كرايسلر':'Chrysler','جمس':'GMC','جي ام سي':'GMC','بيوك':'Buick','لاند روفر':'Land Rover','مازدا':'Mazda','رام':'Ram','لكزوس':'Lexus','MG':'MG','رينولت':'Renault','JETOR':'Jetour','جيتور':'Jetour',
+        // ماركات
+        'تويوتا':'Toyota','نيسان':'Nissan','لكزس':'Lexus','لكزوس':'Lexus','هوندا':'Honda','هونداي':'Hyundai','هايونداي':'Hyundai','هاييونداي':'Hyundai','كيا':'Kia','مرسيدس':'Mercedes','شيفروليه':'Chevrolet','فورد':'Ford','فوورد':'Ford','لينكولن':'Lincoln','بي ام دبليو':'BMW','ميتسوبيشي':'Mitsubishi','موستبيشي':'Mitsubishi','سوزوكي':'Suzuki','جيب':'Jeep','رنج روفر':'Range Rover','اودي':'Audi','انفينيتي':'Infiniti','انفنتي':'Infinity','إنفينيتي':'Infiniti','كاديلاك':'Cadillac','كادليك':'Cadillac','بورش':'Porsche','دودج':'Dodge','كرايسلر':'Chrysler','جمس':'GMC','جي ام سي':'GMC','بيوك':'Buick','لاند روفر':'Land Rover','مازدا':'Mazda','رام':'Ram','MG':'MG','رينولت':'Renault','جيتور':'Jetour',
+        // ألوان
         'ابيض':'White','أبيض':'White','اسود':'Black','أسود':'Black','فضي':'Silver','سلفر':'Silver','رصاصي':'Gray','رمادي':'Gray','احمر':'Red','أحمر':'Red','ازرق':'Blue','أزرق':'Blue','اخضر':'Green','أخضر':'Green','ذهبي':'Gold','بني':'Brown','عنابي':'Dark Red','نبيذي':'Burgundy','كحلي':'Navy','بيج':'Beige','برتقالي':'Orange','أصفر':'Yellow','بنفسجي':'Purple','برونزي':'Bronze','بحري':'Navy Blue',
-        'راف فور':'RAV4','رافور':'RAV4','كامري':'Camry','لاند كروزر':'Land Cruiser','لاندكروزر':'Land Cruiser','كورولا':'Corolla','كرولا':'Corolla','يارس':'Yaris','بريوس':'Prius','هايلكس':'Hilux','فورتشنر':'Fortuner','برادو':'Prado','افالون':'Avalon','تندرا':'Tundra','تكوما':'Tacoma','86':'GT86',
-        'باترول':'Patrol','التيما':'Altima','ألتيما':'Altima','صني':'Sunny','مكسيما':'Maxima','اكس تريل':'X-Trail','باثفايندر':'Pathfinder','جوك':'Juke','قشقاي':'Qashqai','مورانو':'Murano','كويست':'Quest','روج':'Rogue','ميكرا':'Micra','تيتان':'Titan','ارمادا':'Armada','سنترا':'Sentra','فيرسا':'Versa','اكستيرا':'Xterra','أكستيرا':'Xterra',
+        // موديلات
+        'راف فور':'RAV4','رافور':'RAV4','كامري':'Camry','لاند كروزر':'Land Cruiser','لاندكروزر':'Land Cruiser','كورولا':'Corolla','كرولا':'Corolla','يارس':'Yaris','بريوس':'Prius','هايلكس':'Hilux','فورتشنر':'Fortuner','برادو':'Prado','افالون':'Avalon','تندرا':'Tundra','تكوما':'Tacoma',
+        'باترول':'Patrol','التيما':'Altima','ألتيما':'Altima','صني':'Sunny','مكسيما':'Maxima','اكس تريل':'X-Trail','باثفايندر':'Pathfinder','جوك':'Juke','قشقاي':'Qashqai','مورانو':'Murano','روج':'Rogue','ميكرا':'Micra','تيتان':'Titan','ارمادا':'Armada','سنترا':'Sentra','فيرسا':'Versa','اكستيرا':'Xterra','أكستيرا':'Xterra',
         'النترا':'Elantra','ألنترا':'Elantra','توسان':'Tucson','سانتافي':'Santa Fe','سينتافي':'Santa Fe','اكسنت':'Accent','كريتا':'Creta','سوناتا':'Sonata','فيلوستر':'Veloster','جينسس':'Genesis','فيراكروز':'Veracruz',
-        'سبورتاج':'Sportage','سيراتو':'Cerato','سورينتو':'Sorento','بيكانتو':'Picanto','ستينجر':'Stinger','K5':'K5',
+        'سبورتاج':'Sportage','سيراتو':'Cerato','سورينتو':'Sorento','بيكانتو':'Picanto','ستينجر':'Stinger',
         'سيفيك':'Civic','اكورد':'Accord','أكورد':'Accord','سي ار في':'CR-V',
-        'باجيرو':'Pajero','لانسر':'Lancer','اوتلاندر':'Outlander','اكليبس':'Eclipse','أكلبس':'Eclipse','جيمني':'Jimny','فيتارا':'Vitara','رانجلر':'Wrangler','تاهو':'Tahoe','اكسبلورر':'Explorer','اكسبلور':'Explorer','موستنج':'Mustang','ماليبو':'Malibu','ايفوك':'Evoque','اكاديا':'Acadia','فيلار':'Velar','بيكاب':'Pickup','رام':'Ram','تشالنجر':'Challenger','تشالينجر':'Challenger','يوكن':'Yukon','سلفرادو':'Silverado','سوبربان':'Suburban','سيرا':'Sierra','كمارو':'Camaro','فيوجن':'Fusion','سياز':'Ciaz','فوج':'Vogue','ميني كوبر':'Mini Cooper','كيو 50':'Q50','QX80':'QX80','QX60':'QX60','XT6':'XT6','BMW535':'BMW 535','BMW325':'BMW 325','ZS':'ZS','تشارجر':'Charger',
+        'باجيرو':'Pajero','لانسر':'Lancer','اوتلاندر':'Outlander','اكليبس':'Eclipse','أكلبس':'Eclipse','جيمني':'Jimny','فيتارا':'Vitara','رانجلر':'Wrangler','تاهو':'Tahoe','اكسبلورر':'Explorer','اكسبلور':'Explorer','موستنج':'Mustang','ماليبو':'Malibu','ايفوك':'Evoque','اكاديا':'Acadia','فيلار':'Velar','بيكاب':'Pickup','تشالنجر':'Challenger','تشالينجر':'Challenger','يوكن':'Yukon','سلفرادو':'Silverado','سوبربان':'Suburban','سيرا':'Sierra','كمارو':'Camaro','فيوجن':'Fusion','سياز':'Ciaz','فوج':'Vogue','ميني كوبر':'Mini Cooper','كيو 50':'Q50','تشارجر':'Charger',
+        // مواصفات
         'خليجي':'GCC','ليمتد':'Limited','بلاتينيوم':'Platinum','فل':'Full','فول':'Full','دينالي':'Denali','هايبرد':'Hybrid','بانوراما':'Panorama','هاتشباك':'Hatchback','سبورت':'Sport','هاي كنتري':'High Country','تورينج':'Touring','ريبكون':'Rubicon','كوبيه':'Coupe','شاحنة':'Truck','شاحنه':'Truck','صغيرة':'Small','فول اوبشن':'Full Option','نص فل':'Mid Option','دفع رباعي':'4WD','دبل':'4x4','اوتوماتيك':'Automatic','عادي':'Manual',
-        'SV':'SV','SR':'SR','SL':'SL','LE':'LE','SE':'SE','XLE':'XLE','XSE':'XSE','SEL':'SEL','V6':'V6','v6':'V6','N':'N','S':'S','ES':'ES','C300':'C300','c300':'C300','E350':'E350','GLA250':'GLA250','rx350':'RX350','IS250':'IS250','ls460':'LS460','UX':'UX'
+        // نصوص الواجهة (ترجمة حرفية للكلمات المفردة)
+        'الدبلوماسي':'Diplomat','للسيارات':'Cars','سيارات':'Cars','سيارة':'Car','فرع':'Branch','الرستاق':'Rustaq','المعبيلة':'Mabela','المعبيله':'Mabela',
+        'ابحث':'Search','عن':'for','مركبة':'vehicle','جاري':'Loading','تحميل':'loading','البيانات':'data','لا':'No','توجد':'available','في':'in','المعرض':'showroom','حالياً':'currently','حاليا':'currently',
+        'خطأ':'Error','جميع':'All','الحقوق':'rights','محفوظة':'reserved',
+        'احصل':'Get','على':'on','إشعارات':'notifications','بأحدث':'latest','السيارات':'cars','العروض':'offers',
+        'تفعيل':'Enable','إغلاق':'Close','تثبيت':'Install','ثبّت':'Install','التطبيق':'app','الآن':'now',
+        'روابط':'Quick','سريعة':'Links','اللغة':'Language','عربي':'Arabic',
+        'موقع':'Location','معرض':'Showroom','للإستفسار':'Inquiry','مروان':'Marwan','سالم':'Salem','الخاطري':'Al Khatri',
+        'اسم':'Name','المركبة':'Vehicle','الموديل':'Model','اللون':'Color','السعر':'Price',
+        'مشاركة':'Share','نسخ':'Copy','الرابط':'Link','واتساب':'WhatsApp','تصفح':'Browse','الآن':'Now',
+        'تم':'Done','بنجاح':'successfully','يرجى':'Please','السماح':'allow','بالإشعارات':'notifications','من':'from','إعدادات':'settings','المتصفح':'browser','متصفحك':'Your browser','يدعم':'supports',
+        'للتثبيت':'To install','أندرويد':'Android','إضافة':'Add','للشاشة':'to screen','آيفون':'iPhone',
+        'ر.ع':'OMR','ريال':'OMR','بيسة':'Baisa',
+        'مشاركة على':'Share on','احصل على':'Get',
+        'أخرى':'Other','اخرى':'Other'
     };
 
     const dictKeysSorted = Object.keys(dict).sort((a, b) => b.length - a.length);
 
-    function getTranslation(key, lang) {
-        var entry = I18N[key];
-        if (!entry) return null;
-        return entry[lang] || entry.ar || null;
+    // عناصر لا نترجمها أبدًا
+    function shouldSkip(el) {
+        if (!el) return true;
+        var tag = el.tagName;
+        if (!tag) return true;
+        tag = tag.toUpperCase();
+        if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'NOSCRIPT' || tag === 'CODE' || tag === 'PRE') return true;
+        if (el.hasAttribute && el.hasAttribute('data-no-translate')) return true;
+        return false;
     }
 
-    function updatePageDirection(lang) {
-        document.documentElement.lang = lang;
-        document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
-    }
+    // ترجمة نص واحد (حرفي + قاموس)
+    function translateText(text) {
+        if (currentLang === 'ar') return text;
+        if (!text) return text;
+        var s = String(text);
+        // مطابقة الجملة كاملة أولاً (قاموس)
+        var trimmed = s.trim();
+        if (dict[trimmed]) return s.replace(trimmed, dict[trimmed]);
 
-    function translatePage() {
-        document.querySelectorAll('[data-ar][data-en]').forEach(function(el) {
-            var val = el.getAttribute('data-' + currentLang);
-            if (val !== null) el.textContent = val;
-        });
-        document.querySelectorAll('[data-ar-placeholder][data-en-placeholder]').forEach(function(el) {
-            var val = el.getAttribute('data-' + currentLang + '-placeholder');
-            if (val !== null) el.setAttribute('placeholder', val);
-        });
-        document.querySelectorAll('[data-i18n]').forEach(function(el) {
-            var val = getTranslation(el.getAttribute('data-i18n'), currentLang);
-            if (val) el.textContent = val;
-        });
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
-            var val = getTranslation(el.getAttribute('data-i18n-placeholder'), currentLang);
-            if (val) el.setAttribute('placeholder', val);
-        });
-    }
-
-    function t(text) {
-        if (currentLang === 'ar' || !text) return text || '';
-        const s = String(text).trim();
-        if (!s) return text || '';
-        if (dict[s]) return dict[s];
+        // مطابقة العبارات الطويلة داخل النص
         var result = s;
         for (var i = 0; i < dictKeysSorted.length; i++) {
             var k = dictKeysSorted[i];
@@ -146,17 +130,56 @@
                 result = result.split(k).join(dict[k]);
             }
         }
-        return result.split(/\s+/).map(function(w) {
-            var c = w.replace(/[،,\/\-]/g, '').trim();
-            if (!c) return w;
-            if (dict[c]) return dict[c];
-            var lc = c.toLowerCase();
-            for (var j = 0; j < dictKeysSorted.length; j++) {
-                var kk = dictKeysSorted[j];
-                if (kk.toLowerCase().trim() === lc) return dict[kk];
+        return result;
+    }
+
+    // المسح الشامل للصفحة
+    function translateDocument(root) {
+        root = root || document.body;
+        if (currentLang === 'ar') return;
+
+        // 1) النصوص في text nodes
+        var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+            acceptNode: function(node) {
+                var parent = node.parentNode;
+                if (shouldSkip(parent)) return NodeFilter.FILTER_REJECT;
+                var txt = node.nodeValue;
+                if (!txt) return NodeFilter.FILTER_REJECT;
+                // تجاهل النصوص التي لا تحوي حروفًا عربية
+                if (!/[\u0600-\u06FF]/.test(txt)) return NodeFilter.FILTER_REJECT;
+                return NodeFilter.FILTER_ACCEPT;
             }
-            return w;
-        }).join(' ');
+        });
+        var textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        textNodes.forEach(function(n) { n.nodeValue = translateText(n.nodeValue); });
+
+        // 2) placeholders
+        root.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(function(el) {
+            if (shouldSkip(el)) return;
+            var ph = el.getAttribute('placeholder');
+            if (ph && /[\u0600-\u06FF]/.test(ph)) el.setAttribute('placeholder', translateText(ph));
+        });
+
+        // 3) title / aria-label / alt
+        ['title', 'aria-label', 'alt'].forEach(function(attr) {
+            root.querySelectorAll('[' + attr + ']').forEach(function(el) {
+                if (shouldSkip(el)) return;
+                var v = el.getAttribute(attr);
+                if (v && /[\u0600-\u06FF]/.test(v)) el.setAttribute(attr, translateText(v));
+            });
+        });
+
+        // 4) meta description و og
+        document.querySelectorAll('meta[content]').forEach(function(el) {
+            var v = el.getAttribute('content');
+            if (v && /[\u0600-\u06FF]/.test(v)) el.setAttribute('content', translateText(v));
+        });
+    }
+
+    function updatePageDirection(lang) {
+        document.documentElement.lang = lang;
+        document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
     }
 
     let allCars = { rustaq: [], mabela: [] }, branch = 'rustaq', sq = '', currentLang = 'ar', carsData = {}, updateTimer = null, deferredPrompt = null, swReg = null;
@@ -169,7 +192,7 @@
 
     async function enableNotifications() {
         if (!('Notification' in window)) {
-            alert(getTranslation('notify_unsupported', currentLang) || 'متصفحك لا يدعم الإشعارات');
+            alert(currentLang === 'ar' ? 'متصفحك لا يدعم الإشعارات' : 'Your browser does not support notifications');
             return;
         }
         
@@ -180,7 +203,7 @@
             if (permission === 'granted') {
                 document.getElementById('notifyBanner').classList.remove('show');
                 localStorage.setItem('notificationsEnabled', 'true');
-                showToast(getTranslation('notify_success', currentLang) || '✅ تم تفعيل الإشعارات بنجاح!');
+                showToast(currentLang === 'ar' ? '✅ تم تفعيل الإشعارات بنجاح!' : '✅ Notifications enabled successfully!');
                 
                 if (window.OneSignal) {
                     try {
@@ -191,7 +214,7 @@
                     }
                 }
             } else {
-                alert(getTranslation('notify_denied', currentLang) || 'يرجى السماح بالإشعارات من إعدادات المتصفح');
+                alert(currentLang === 'ar' ? 'يرجى السماح بالإشعارات من إعدادات المتصفح' : 'Please allow notifications from browser settings');
             }
         } catch (e) {
             console.error('❌ خطأ الإشعارات:', e);
@@ -213,7 +236,9 @@
                 document.getElementById('installBanner').classList.remove('show'); 
             }); 
         } else { 
-            alert(getTranslation('install_hint', currentLang) || 'للتثبيت: أندرويد ⁝ → إضافة للشاشة | آيفون ↩ → Add to Home Screen'); 
+            alert(currentLang === 'ar' 
+                ? 'للتثبيت: أندرويد ⁝ → إضافة للشاشة | آيفون ↩ → Add to Home Screen' 
+                : 'To install: Android ⁝ → Add to Home Screen | iPhone ↩ → Add to Home Screen'); 
         } 
     }
     
@@ -246,18 +271,43 @@
         document.getElementById('sideMenuOverlay').classList.toggle('show'); 
     }
 
-    function setLang(lang) { 
-        currentLang = lang; 
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active')); 
+    function setLang(lang) {
+        var prevLang = currentLang;
+        currentLang = lang;
+
+        // أزرار اللغة
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
         const activeBtn = document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`);
         if (activeBtn) activeBtn.classList.add('active');
+
+        // الاتجاه واللغة
         updatePageDirection(lang);
-        translatePage();
-        document.getElementById('branchTitle').textContent = branch === 'rustaq' ? 
-            (getTranslation('branch_title_rustaq', lang) || '🚗 سيارات فرع الرستاق') : 
-            (getTranslation('branch_title_mabela', lang) || '🚗 سيارات فرع المعبيلة');
-        displayCars(); 
-        console.log('🌐 اللغة:', lang); 
+
+        // إعادة الصفحة للحالة العربية إذا رجعنا من الإنجليزية
+        if (prevLang === 'en' && lang === 'ar') {
+            location.reload();
+            return;
+        }
+
+        // ترجمة شاملة للصفحة
+        if (lang === 'en') {
+            translateDocument(document.body);
+        }
+
+        // عنوان الفرع
+        var bt = document.getElementById('branchTitle');
+        if (bt) {
+            if (branch === 'rustaq') {
+                bt.textContent = lang === 'ar' ? '🚗 سيارات فرع الرستاق' : '🚗 Rustaq Branch Cars';
+            } else {
+                bt.textContent = lang === 'ar' ? '🚗 سيارات فرع المعبيلة' : '🚗 Mabela Branch Cars';
+            }
+        }
+
+        // إعادة عرض السيارات بالترجمة الجديدة
+        displayCars();
+
+        console.log('🌐 اللغة:', lang);
     }
 
     function handleSearch() { 
@@ -276,7 +326,8 @@
 
     function copyLink(car) { 
         const link = `${BASE_URL}?car=${btoa(unescape(encodeURIComponent(`${car.name}|${car.model}|${car.category}`)))}&branch=${car.branch}`; 
-        navigator.clipboard.writeText(link).then(() => showToast(getTranslation('toast_link_copied', currentLang) || '✅ تم نسخ الرابط')).catch(() => showToast(getTranslation('toast_link_copied', currentLang) || '✅ تم نسخ الرابط')); 
+        var msg = currentLang === 'ar' ? '✅ تم نسخ الرابط' : '✅ Link copied';
+        navigator.clipboard.writeText(link).then(() => showToast(msg)).catch(() => showToast(msg)); 
         console.log('📋 نسخ الرابط:', link); 
     }
     
@@ -292,6 +343,7 @@
         if (old) old.remove(); 
         const el = document.createElement('div'); 
         el.className = 'toast toast-success'; 
+        el.setAttribute('data-no-translate', 'true');
         el.textContent = msg; 
         document.body.appendChild(el); 
         setTimeout(() => { 
@@ -312,13 +364,15 @@
             allCars.mabela = parseCSV(md, 'mabela');  
             if (allCars.rustaq.length > 0) allCars.rustaq.pop(); 
             if (allCars.mabela.length > 0) allCars.mabela.pop();  
-            document.getElementById('count-rustaq').textContent = `${allCars.rustaq.length} سيارة`;  
-            document.getElementById('count-mabela').textContent = `${allCars.mabela.length} سيارة`;  
+            var unit = currentLang === 'ar' ? 'سيارة' : 'cars';
+            document.getElementById('count-rustaq').textContent = `${allCars.rustaq.length} ${unit}`;  
+            document.getElementById('count-mabela').textContent = `${allCars.mabela.length} ${unit}`;  
             console.log('✅ الرستاق:', allCars.rustaq.length, '| المعبيلة:', allCars.mabela.length);  
             displayCars();  
         } catch (e) { 
             console.error('❌ تحميل:', e); 
-            document.getElementById('carsContainer').innerHTML = `<div class="loading-section">${getTranslation('load_error', currentLang) || '❌ خطأ في تحميل البيانات'}</div>`; 
+            var errMsg = currentLang === 'ar' ? '❌ خطأ في تحميل البيانات' : '❌ Error loading data';
+            document.getElementById('carsContainer').innerHTML = `<div class="loading-section">${errMsg}</div>`; 
         }  
     }
 
@@ -367,7 +421,8 @@
             (c.color&&c.color.includes(sq))
         ) : cars;  
         if (filtered.length === 0) { 
-            container.innerHTML = `<div class="loading-section">${getTranslation('no_cars', currentLang) || '🚫 لا توجد سيارات في المعرض حالياً'}</div>`; 
+            var noCarsMsg = currentLang === 'ar' ? '🚫 لا توجد سيارات في المعرض حالياً' : '🚫 No cars available at the showroom currently';
+            container.innerHTML = `<div class="loading-section">${noCarsMsg}</div>`; 
             return; 
         }  
         const grouped = {}; 
@@ -376,19 +431,13 @@
             if (!grouped[cat]) grouped[cat] = []; 
             grouped[cat].push(c); 
         });  
-        const L = {
-            name: getTranslation('label_name', currentLang) || 'اسم المركبة',
-            model: getTranslation('label_model', currentLang) || 'الموديل',
-            color: getTranslation('label_color', currentLang) || 'اللون',
-            wa: getTranslation('label_wa', currentLang) || 'واتساب',
-            cars: getTranslation('cars_unit', currentLang) || 'سيارة',
-            share: getTranslation('label_share', currentLang) || 'مشاركة على واتساب',
-            copy: getTranslation('label_copy', currentLang) || 'نسخ الرابط',
-            cur: getTranslation('currency', currentLang) || 'ر.ع'
-        };
+        const L = currentLang === 'ar' ? 
+            { name:'اسم المركبة', model:'الموديل', color:'اللون', wa:'واتساب', cars:'سيارة', share:'مشاركة على واتساب', copy:'نسخ الرابط', cur:'ر.ع' } : 
+            { name:'Vehicle Name', model:'Model', color:'Color', wa:'WhatsApp', cars:'cars', share:'Share on WhatsApp', copy:'Copy Link', cur:'OMR' };  
         let html = '', first = true;  
         for (const [cat, catCars] of Object.entries(grouped)) {  
-            html += `<div class="category-accordion"><div class="category-header ${first?'active':''}" onclick="toggleCategory(this)"><div class="category-title-group"><span class="category-icon">▼</span><span class="category-name">🏭 ${t(cat)}</span></div><span class="category-badge">${catCars.length} ${L.cars}</span></div><div class="category-content ${first?'open':''}"><div class="cars-list">`;  
+            var catTranslated = currentLang === 'ar' ? cat : (dict[cat] || cat);
+            html += `<div class="category-accordion"><div class="category-header ${first?'active':''}" onclick="toggleCategory(this)"><div class="category-title-group"><span class="category-icon">▼</span><span class="category-name">🏭 ${catTranslated}</span></div><span class="category-badge">${catCars.length} ${L.cars}</span></div><div class="category-content ${first?'open':''}"><div class="cars-list">`;  
             catCars.forEach((car, idx) => { 
                 const ck = `${branch}_${cat}_${idx}`; 
                 carsData[ck] = car; 
@@ -402,7 +451,9 @@
                 } else {
                     img = '<div class="car-image no-image">🚗</div>';
                 }
-                html += `<div class="car-item">${img}<div class="car-details"><div class="car-detail-row"><span class="car-detail-label">🚗 ${L.name}:</span><span class="car-detail-value">${t(car.name)}</span></div><div class="car-detail-row"><span class="car-detail-label">📅 ${L.model}:</span><span class="car-detail-value">${car.model||'---'}</span></div><div class="car-detail-row"><span class="car-detail-label">🎨 ${L.color}:</span><span class="car-detail-value">${t(car.color)}</span></div></div><div class="car-price-section"><span class="car-price-value">💰 ${car.priceText||'-'} ${L.cur}</span></div><div class="action-label">🔗 ${L.share}:</div><div class="action-buttons"><button class="action-btn btn-share" onclick="shareWA(window['cd_${ck}'])">💬 ${L.share}</button><button class="action-btn btn-copy" onclick="copyLink(window['cd_${ck}'])">📋 ${L.copy}</button></div><div class="action-label">📞 ${L.wa}:</div><div class="action-buttons">`;  
+                var carName = currentLang === 'ar' ? car.name : (dict[car.name] || car.name);
+                var carColor = currentLang === 'ar' ? car.color : (dict[car.color] || car.color);
+                html += `<div class="car-item" data-no-translate="true">${img}<div class="car-details"><div class="car-detail-row"><span class="car-detail-label">🚗 ${L.name}:</span><span class="car-detail-value">${carName}</span></div><div class="car-detail-row"><span class="car-detail-label">📅 ${L.model}:</span><span class="car-detail-value">${car.model||'---'}</span></div><div class="car-detail-row"><span class="car-detail-label">🎨 ${L.color}:</span><span class="car-detail-value">${carColor}</span></div></div><div class="car-price-section"><span class="car-price-value">💰 ${car.priceText||'-'} ${L.cur}</span></div><div class="action-label">🔗 ${L.share}:</div><div class="action-buttons"><button class="action-btn btn-share" onclick="shareWA(window['cd_${ck}'])">💬 ${L.share}</button><button class="action-btn btn-copy" onclick="copyLink(window['cd_${ck}'])">📋 ${L.copy}</button></div><div class="action-label">📞 ${L.wa}:</div><div class="action-buttons">`;  
                 phones.forEach((phone, i) => { 
                     html += `<button class="action-btn btn-wa${i>0?i+1:''}" onclick="openWA('${ck}',${i})">💬 ${L.wa} ${i+1}</button>`; 
                 });  
@@ -437,9 +488,12 @@
             rustaq: currentLang==='ar'?'فرع الرستاق':'Rustaq Branch', 
             mabela: currentLang==='ar'?'فرع المعبيلة':'Mabela Branch' 
         }; 
+        var carName = currentLang==='ar' ? car.name : (dict[car.name] || car.name);
+        var carCat = currentLang==='ar' ? car.category : (dict[car.category] || car.category);
+        var carCol = currentLang==='ar' ? car.color : (dict[car.color] || car.color);
         const msg = currentLang==='ar' ? 
-            `السلام عليكم\n${names[car.branch]}\n🏭 ${car.category}\n🚗 ${car.name}\n📅 ${car.model}\n🎨 ${car.color}\n💰 ${car.priceText} ر.ع` : 
-            `Hello\n${names[car.branch]}\n🏭 ${t(car.category)}\n🚗 ${t(car.name)}\n📅 ${car.model}\n🎨 ${t(car.color)}\n💰 ${car.priceText} OMR`; 
+            `السلام عليكم\n${names[car.branch]}\n🏭 ${carCat}\n🚗 ${carName}\n📅 ${car.model}\n🎨 ${carCol}\n💰 ${car.priceText} ر.ع` : 
+            `Hello\n${names[car.branch]}\n🏭 ${carCat}\n🚗 ${carName}\n📅 ${car.model}\n🎨 ${carCol}\n💰 ${car.priceText} OMR`; 
         window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank'); 
         console.log('📞 واتساب:', phone); 
     }
@@ -449,9 +503,12 @@
         document.body.className = b; 
         document.querySelectorAll('.branch-tab').forEach(t => t.classList.remove('active')); 
         document.getElementById(`tab-${b}`).classList.add('active'); 
-        document.getElementById('branchTitle').textContent = b === 'rustaq' ? 
-            (getTranslation('branch_title_rustaq', currentLang) || '🚗 سيارات فرع الرستاق') : 
-            (getTranslation('branch_title_mabela', currentLang) || '🚗 سيارات فرع المعبيلة');
+        var bt = document.getElementById('branchTitle');
+        if (b === 'rustaq') {
+            bt.textContent = currentLang === 'ar' ? '🚗 سيارات فرع الرستاق' : '🚗 Rustaq Branch Cars';
+        } else {
+            bt.textContent = currentLang === 'ar' ? '🚗 سيارات فرع المعبيلة' : '🚗 Mabela Branch Cars';
+        }
         document.getElementById('searchInput').value = ''; 
         document.getElementById('clearSearch').style.display = 'none'; 
         sq = ''; 
@@ -471,7 +528,6 @@
     }
 
     updatePageDirection(currentLang);
-    translatePage();
 
     loadAllCars(); 
     startAutoUpdate();  

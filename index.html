@@ -67,41 +67,203 @@
     const PHONES = { rustaq: ['96872222242', '96898825877', '96895096865'], mabela: ['96892256223', '96878080132'] };
     const BASE_URL = 'https://drder1.github.io/Diplomat_Cars/';
     
-    // ✅ قاموس الترجمة - يشمل الكلمات المفردة والعبارات المركبة
+    // ✅ القاموس الشامل - الكلمات المفردة + العبارات + الماركات + الموديلات + المواصفات
     const dict = {
-        // ماركات
-        'تويوتا':'Toyota','نيسان':'Nissan','لكزس':'Lexus','لكزوس':'Lexus','هوندا':'Honda','هونداي':'Hyundai','هايونداي':'Hyundai','هاييونداي':'Hyundai','كيا':'Kia','مرسيدس':'Mercedes','شيفروليه':'Chevrolet','فورد':'Ford','فوورد':'Ford','لينكولن':'Lincoln','بي ام دبليو':'BMW','ميتسوبيشي':'Mitsubishi','موستبيشي':'Mitsubishi','سوزوكي':'Suzuki','جيب':'Jeep','رنج روفر':'Range Rover','اودي':'Audi','انفينيتي':'Infiniti','انفنتي':'Infinity','إنفينيتي':'Infiniti','كاديلاك':'Cadillac','كادليك':'Cadillac','بورش':'Porsche','دودج':'Dodge','كرايسلر':'Chrysler','جمس':'GMC','جي ام سي':'GMC','بيوك':'Buick','لاند روفر':'Land Rover','مازدا':'Mazda','رام':'Ram','MG':'MG','رينولت':'Renault','جيتور':'Jetour',
-        // ألوان
-        'ابيض':'White','أبيض':'White','اسود':'Black','أسود':'Black','فضي':'Silver','سلفر':'Silver','رصاصي':'Gray','رمادي':'Gray','احمر':'Red','أحمر':'Red','ازرق':'Blue','أزرق':'Blue','اخضر':'Green','أخضر':'Green','ذهبي':'Gold','بني':'Brown','عنابي':'Dark Red','نبيذي':'Burgundy','كحلي':'Navy','بيج':'Beige','برتقالي':'Orange','أصفر':'Yellow','بنفسجي':'Purple','برونزي':'Bronze','بحري':'Navy Blue',
-        // موديلات
-        'راف فور':'RAV4','رافور':'RAV4','كامري':'Camry','لاند كروزر':'Land Cruiser','لاندكروزر':'Land Cruiser','كورولا':'Corolla','كرولا':'Corolla','يارس':'Yaris','بريوس':'Prius','هايلكس':'Hilux','فورتشنر':'Fortuner','برادو':'Prado','افالون':'Avalon','تندرا':'Tundra','تكوما':'Tacoma',
-        'باترول':'Patrol','التيما':'Altima','ألتيما':'Altima','صني':'Sunny','مكسيما':'Maxima','اكس تريل':'X-Trail','باثفايندر':'Pathfinder','جوك':'Juke','قشقاي':'Qashqai','مورانو':'Murano','روج':'Rogue','ميكرا':'Micra','تيتان':'Titan','ارمادا':'Armada','سنترا':'Sentra','فيرسا':'Versa','اكستيرا':'Xterra','أكستيرا':'Xterra',
-        'النترا':'Elantra','ألنترا':'Elantra','توسان':'Tucson','سانتافي':'Santa Fe','سينتافي':'Santa Fe','اكسنت':'Accent','كريتا':'Creta','سوناتا':'Sonata','فيلوستر':'Veloster','جينسس':'Genesis','فيراكروز':'Veracruz',
-        'سبورتاج':'Sportage','سيراتو':'Cerato','سورينتو':'Sorento','بيكانتو':'Picanto','ستينجر':'Stinger',
+        /* ================= العبارات المركبة (أولوية أعلى بسبب الطول) ================= */
+        'احصل على إشعارات بأحدث السيارات والعروض':'Get notifications about the latest cars and offers',
+        'جاري تحميل السيارات...':'Loading cars...',
+        'جاري تحميل السيارات':'Loading cars',
+        'لا توجد سيارات في المعرض حالياً':'No cars available in the showroom currently',
+        'لا توجد سيارات في المعرض حاليا':'No cars available in the showroom currently',
+        'خطأ في تحميل البيانات':'Error loading data',
+        'جميع الحقوق محفوظة':'All rights reserved',
+        'الدبلوماسي للسيارات':'Diplomat Cars',
+        'موقع معرض الرستاق':'Rustaq Showroom Location',
+        'موقع معرض المعبيله':'Mabela Showroom Location',
+        'موقع معرض المعبيلة':'Mabela Showroom Location',
+        'للإستفسار - مروان سالم الخاطري':'Inquiry - Marwan Salem Al Khatri',
+        'روابط سريعة':'Quick Links',
+        'ثبّت التطبيق الآن':'Install the app now',
+        'سيارات فرع الرستاق':'Rustaq Branch Cars',
+        'سيارات فرع المعبيلة':'Mabela Branch Cars',
+        'فرع الرستاق':'Rustaq Branch',
+        'فرع المعبيلة':'Mabela Branch',
+        'فرع المعبيله':'Mabela Branch',
+        'ابحث عن مركبة...':'Search for a vehicle...',
+        'ابحث عن مركبة':'Search for a vehicle',
+        'اسم المركبة':'Vehicle Name',
+        'مشاركة على واتساب':'Share on WhatsApp',
+        'نسخ الرابط':'Copy Link',
+        'تم نسخ الرابط':'Link copied',
+        'تم تفعيل الإشعارات بنجاح!':'Notifications enabled successfully!',
+        'متصفحك لا يدعم الإشعارات':'Your browser does not support notifications',
+        'يرجى السماح بالإشعارات من إعدادات المتصفح':'Please allow notifications from browser settings',
+        'للتثبيت: أندرويد ⁝ → إضافة للشاشة | آيفون ↩ → Add to Home Screen':'To install: Android ⁝ → Add to Home Screen | iPhone ↩ → Add to Home Screen',
+        'تصفح الآن':'Browse Now',
+        'سيارات جديدة بانتظارك!':'New cars waiting for you!',
+        
+        /* ================= ماركات السيارات ================= */
+        'تويوتا':'Toyota','نيسان':'Nissan','لكزس':'Lexus','لكزوس':'Lexus','هوندا':'Honda',
+        'هونداي':'Hyundai','هايونداي':'Hyundai','هاييونداي':'Hyundai','كيا':'Kia',
+        'مرسيدس':'Mercedes','شيفروليه':'Chevrolet','فورد':'Ford','فوورد':'Ford',
+        'لينكولن':'Lincoln','بي ام دبليو':'BMW','ميتسوبيشي':'Mitsubishi','موستبيشي':'Mitsubishi',
+        'سوزوكي':'Suzuki','جيب':'Jeep','رنج روفر':'Range Rover','اودي':'Audi',
+        'انفينيتي':'Infiniti','انفنتي':'Infinity','إنفينيتي':'Infiniti',
+        'كاديلاك':'Cadillac','كادليك':'Cadillac','بورش':'Porsche','دودج':'Dodge',
+        'كرايسلر':'Chrysler','جمس':'GMC','جي ام سي':'GMC','بيوك':'Buick',
+        'لاند روفر':'Land Rover','مازدا':'Mazda','رام':'Ram','MG':'MG',
+        'رينولت':'Renault','جيتور':'Jetour','جينسس':'Genesis','جينيسيس':'Genesis',
+        'شيري':'Chery','شانجان':'Changan','هافال':'Haval','جيلي':'Geely',
+        'تسلا':'Tesla','فولكس واجن':'Volkswagen','بيجو':'Peugeot','ستروين':'Citroen',
+        'فيات':'Fiat','رينو':'Renault','سكودا':'Skoda','سوبارو':'Subaru',
+        'ايسوزو':'Isuzu','ديهاتسو':'Daihatsu','اوبل':'Opel','بي ام دبليو موتورز':'BMW Motors',
+        
+        /* ================= موديلات شائعة ================= */
+        'راف فور':'RAV4','رافور':'RAV4','كامري':'Camry','لاند كروزر':'Land Cruiser',
+        'لاندكروزر':'Land Cruiser','كورولا':'Corolla','كرولا':'Corolla','يارس':'Yaris',
+        'بريوس':'Prius','هايلكس':'Hilux','فورتشنر':'Fortuner','برادو':'Prado',
+        'افالون':'Avalon','تندرا':'Tundra','تكوما':'Tacoma','سيينا':'Sienna',
+        'هايلاندر':'Highlander','سيكويا':'Sequoia','4runner':'4Runner',
+        'باترول':'Patrol','التيما':'Altima','ألتيما':'Altima','صني':'Sunny',
+        'مكسيما':'Maxima','اكس تريل':'X-Trail','باثفايندر':'Pathfinder','جوك':'Juke',
+        'قشقاي':'Qashqai','مورانو':'Murano','روج':'Rogue','ميكرا':'Micra',
+        'تيتان':'Titan','ارمادا':'Armada','سنترا':'Sentra','فيرسا':'Versa',
+        'اكستيرا':'Xterra','أكستيرا':'Xterra','كيكس':'Kicks',
+        'النترا':'Elantra','ألنترا':'Elantra','توسان':'Tucson','سانتافي':'Santa Fe',
+        'سينتافي':'Santa Fe','اكسنت':'Accent','كريتا':'Creta','سوناتا':'Sonata',
+        'فيلوستر':'Veloster','فيراكروز':'Veracruz','باليسيد':'Palisade',
+        'سبورتاج':'Sportage','سيراتو':'Cerato','سورينتو':'Sorento','بيكانتو':'Picanto',
+        'ستينجر':'Stinger','تيلورايد':'Telluride','كارنفال':'Carnival',
         'سيفيك':'Civic','اكورد':'Accord','أكورد':'Accord','سي ار في':'CR-V',
-        'باجيرو':'Pajero','لانسر':'Lancer','اوتلاندر':'Outlander','اكليبس':'Eclipse','أكلبس':'Eclipse','جيمني':'Jimny','فيتارا':'Vitara','رانجلر':'Wrangler','تاهو':'Tahoe','اكسبلورر':'Explorer','اكسبلور':'Explorer','موستنج':'Mustang','ماليبو':'Malibu','ايفوك':'Evoque','اكاديا':'Acadia','فيلار':'Velar','بيكاب':'Pickup','تشالنجر':'Challenger','تشالينجر':'Challenger','يوكن':'Yukon','سلفرادو':'Silverado','سوبربان':'Suburban','سيرا':'Sierra','كمارو':'Camaro','فيوجن':'Fusion','سياز':'Ciaz','فوج':'Vogue','ميني كوبر':'Mini Cooper','كيو 50':'Q50','تشارجر':'Charger',
-        // مواصفات
-        'خليجي':'GCC','ليمتد':'Limited','بلاتينيوم':'Platinum','فل':'Full','فول':'Full','دينالي':'Denali','هايبرد':'Hybrid','بانوراما':'Panorama','هاتشباك':'Hatchback','سبورت':'Sport','هاي كنتري':'High Country','تورينج':'Touring','ريبكون':'Rubicon','كوبيه':'Coupe','شاحنة':'Truck','شاحنه':'Truck','صغيرة':'Small','فول اوبشن':'Full Option','نص فل':'Mid Option','دفع رباعي':'4WD','دبل':'4x4','اوتوماتيك':'Automatic','عادي':'Manual',
-        // نصوص الواجهة (ترجمة حرفية للكلمات المفردة)
-        'الدبلوماسي':'Diplomat','للسيارات':'Cars','سيارات':'Cars','سيارة':'Car','فرع':'Branch','الرستاق':'Rustaq','المعبيلة':'Mabela','المعبيله':'Mabela',
-        'ابحث':'Search','عن':'for','مركبة':'vehicle','جاري':'Loading','تحميل':'loading','البيانات':'data','لا':'No','توجد':'available','في':'in','المعرض':'showroom','حالياً':'currently','حاليا':'currently',
+        'بايلوت':'Pilot','باسبورت':'Passport','هيريتاج':'Heritage',
+        'باجيرو':'Pajero','لانسر':'Lancer','اوتلاندر':'Outlander','اكليبس':'Eclipse',
+        'أكلبس':'Eclipse','جيمني':'Jimny','فيتارا':'Vitara','سويفت':'Swift',
+        'رانجلر':'Wrangler','تاهو':'Tahoe','اكسبلورر':'Explorer','اكسبلور':'Explorer',
+        'موستنج':'Mustang','ماليبو':'Malibu','ايفوك':'Evoque','اكاديا':'Acadia',
+        'فيلار':'Velar','بيكاب':'Pickup','تشالنجر':'Challenger','تشالينجر':'Challenger',
+        'يوكن':'Yukon','سلفرادو':'Silverado','سوبربان':'Suburban','سيرا':'Sierra',
+        'كمارو':'Camaro','فيوجن':'Fusion','سياز':'Ciaz','فوج':'Vogue',
+        'ميني كوبر':'Mini Cooper','تشارجر':'Charger','دورانجو':'Durango',
+        'رام 1500':'Ram 1500','F-150':'F-150','اكسبيدشن':'Expedition',
+        'كايين':'Cayenne','ماكان':'Macan','باناميرا':'Panamera',
+        'كورفيت':'Corvette','سيلفرادو':'Silverado',
+        
+        /* ================= ألوان ================= */
+        'ابيض':'White','أبيض':'White','اسود':'Black','أسود':'Black','فضي':'Silver',
+        'سلفر':'Silver','رصاصي':'Gray','رمادي':'Gray','احمر':'Red','أحمر':'Red',
+        'ازرق':'Blue','أزرق':'Blue','اخضر':'Green','أخضر':'Green','ذهبي':'Gold',
+        'بني':'Brown','عنابي':'Dark Red','نبيذي':'Burgundy','كحلي':'Navy','بيج':'Beige',
+        'برتقالي':'Orange','أصفر':'Yellow','اصفر':'Yellow','بنفسجي':'Purple',
+        'برونزي':'Bronze','بحري':'Navy Blue','نحاسي':'Copper','رمادي غامق':'Dark Gray',
+        'رمادي فاتح':'Light Gray','ازرق غامق':'Dark Blue','ازرق فاتح':'Light Blue',
+        'احمر غامق':'Dark Red','اخضر غامق':'Dark Green','اخضر فاتح':'Light Green',
+        'ابيض لؤلؤي':'Pearl White','اسود ميتاليك':'Metallic Black',
+        'فضي ميتاليك':'Metallic Silver','رصاصي ميتاليك':'Metallic Gray',
+        
+        /* ================= مواصفات وحالات ================= */
+        'خليجي':'GCC','ليمتد':'Limited','بلاتينيوم':'Platinum','فل':'Full',
+        'فول':'Full','دينالي':'Denali','هايبرد':'Hybrid','بانوراما':'Panorama',
+        'هاتشباك':'Hatchback','سبورت':'Sport','هاي كنتري':'High Country',
+        'تورينج':'Touring','ريبكون':'Rubicon','كوبيه':'Coupe','شاحنة':'Truck',
+        'شاحنه':'Truck','صغيرة':'Small','فول اوبشن':'Full Option',
+        'نص فل':'Mid Option','دفع رباعي':'4WD','دبل':'4x4','اوتوماتيك':'Automatic',
+        'عادي':'Manual','جديد':'New','مستعمل':'Used','مستعمله':'Used',
+        'وارد':'Imported','ماشي':'Mileage','كم':'km','كيلومتر':'km',
+        'ممشى':'Mileage','موديل':'Model','سنة':'Year','سنه':'Year',
+        'بنزين':'Petrol','ديزل':'Diesel','كهرباء':'Electric','هجين':'Hybrid',
+        'نظيف':'Clean','ممتاز':'Excellent','جيد':'Good','بحالة':'In condition',
+        'فحص':'Inspection','تأمين':'Insurance','مرخصة':'Registered',
+        'سجل':'Record','صيانة':'Maintenance','ضمان':'Warranty',
+        
+        /* ================= كلمات الواجهة المفردة ================= */
+        'الدبلوماسي':'Diplomat','للسيارات':'Cars','سيارات':'Cars','سيارة':'Car',
+        'فرع':'Branch','الرستاق':'Rustaq','المعبيلة':'Mabela','المعبيله':'Mabela',
+        'ابحث':'Search','عن':'for','مركبة':'vehicle','جاري':'Loading',
+        'تحميل':'loading','البيانات':'data','لا':'No','توجد':'available',
+        'في':'in','المعرض':'showroom','حالياً':'currently','حاليا':'currently',
         'خطأ':'Error','جميع':'All','الحقوق':'rights','محفوظة':'reserved',
-        'احصل':'Get','على':'on','إشعارات':'notifications','بأحدث':'latest','السيارات':'cars','العروض':'offers',
-        'تفعيل':'Enable','إغلاق':'Close','تثبيت':'Install','ثبّت':'Install','التطبيق':'app','الآن':'now',
-        'روابط':'Quick','سريعة':'Links','اللغة':'Language','عربي':'Arabic',
-        'موقع':'Location','معرض':'Showroom','للإستفسار':'Inquiry','مروان':'Marwan','سالم':'Salem','الخاطري':'Al Khatri',
-        'اسم':'Name','المركبة':'Vehicle','الموديل':'Model','اللون':'Color','السعر':'Price',
-        'مشاركة':'Share','نسخ':'Copy','الرابط':'Link','واتساب':'WhatsApp','تصفح':'Browse','الآن':'Now',
-        'تم':'Done','بنجاح':'successfully','يرجى':'Please','السماح':'allow','بالإشعارات':'notifications','من':'from','إعدادات':'settings','المتصفح':'browser','متصفحك':'Your browser','يدعم':'supports',
-        'للتثبيت':'To install','أندرويد':'Android','إضافة':'Add','للشاشة':'to screen','آيفون':'iPhone',
-        'ر.ع':'OMR','ريال':'OMR','بيسة':'Baisa',
-        'مشاركة على':'Share on','احصل على':'Get',
-        'أخرى':'Other','اخرى':'Other'
+        'احصل':'Get','على':'on','إشعارات':'notifications','اشعارات':'notifications',
+        'بأحدث':'latest','السيارات':'cars','العروض':'offers',
+        'تفعيل':'Enable','إغلاق':'Close','اغلاق':'Close','تثبيت':'Install',
+        'ثبّت':'Install','التطبيق':'app','الآن':'Now','الان':'Now',
+        'روابط':'Links','سريعة':'Quick','اللغة':'Language','عربي':'Arabic',
+        'موقع':'Location','معرض':'Showroom','للإستفسار':'Inquiry',
+        'للاستفسار':'Inquiry','مروان':'Marwan','سالم':'Salem','الخاطري':'Al Khatri',
+        'اسم':'Name','المركبة':'Vehicle','الموديل':'Model','اللون':'Color',
+        'السعر':'Price','مشاركة':'Share','نسخ':'Copy','الرابط':'Link',
+        'واتساب':'WhatsApp','تصفح':'Browse','تم':'Done','بنجاح':'successfully',
+        'يرجى':'Please','السماح':'allow','بالإشعارات':'notifications',
+        'من':'from','إعدادات':'settings','المتصفح':'browser','متصفحك':'Your browser',
+        'يدعم':'supports','للتثبيت':'To install','أندرويد':'Android',
+        'إضافة':'Add','للشاشة':'to screen','آيفون':'iPhone',
+        'ر.ع':'OMR','ريال':'OMR','ريال عماني':'OMR','بيسة':'Baisa',
+        'أخرى':'Other','اخرى':'Other','كل':'All','الكل':'All',
+        'سعر':'Price','الأسعار':'Prices','اسعار':'Prices',
+        'للبيع':'For Sale','بيع':'Sale','شراء':'Buy','استبدال':'Trade',
+        'معلومات':'Information','تفاصيل':'Details','تفصيل':'Details',
+        'صورة':'Image','صور':'Images','الصور':'Images',
+        'مميز':'Featured','مميزة':'Featured','جديدنا':'Our New',
+        'وصل حديثاً':'Just Arrived','وصل حديثا':'Just Arrived',
+        'متوفر':'Available','متوفرة':'Available','غير متوفر':'Not Available',
+        'بيع سريع':'Quick Sale','عرض خاص':'Special Offer','عروض':'Offers',
+        'تصنيف':'Category','التصنيفات':'Categories','قسم':'Section','الأقسام':'Sections',
+        'بحث':'Search','نتائج':'Results','النتائج':'Results',
+        'الرئيسية':'Home','رجوع':'Back','إغلاق':'Close','فتح':'Open',
+        'التالي':'Next','السابق':'Previous','المزيد':'More','أقل':'Less',
+        'حفظ':'Save','إلغاء':'Cancel','الغاء':'Cancel','موافق':'OK','تأكيد':'Confirm',
+        'نعم':'Yes','لا':'No','حسناً':'OK','حسنا':'OK',
+        'اليوم':'Today','أمس':'Yesterday','غداً':'Tomorrow','غدا':'Tomorrow',
+        'الآن':'Now','الان':'Now','لاحقاً':'Later','لاحقا':'Later',
+        'صباحاً':'AM','مساءً':'PM','صباحا':'AM','مساء':'PM',
+        'رجل':'Man','امرأة':'Woman','أولاد':'Kids','اطفال':'Kids',
+        'الاسم':'Name','الهاتف':'Phone','الجوال':'Mobile','رقم':'Number',
+        'العنوان':'Address','المدينة':'City','الدولة':'Country','سلطنة عمان':'Oman',
+        'مسقط':'Muscat','صلالة':'Salalah','صحار':'Sohar','نزوى':'Nizwa',
+        'الرستاق':'Rustaq','بركاء':'Barka','السيب':'Seeb','المعبيلة':'Mabela',
+        'السنة':'Year','الشهر':'Month','اليوم':'Day','الساعة':'Hour','الدقيقة':'Minute',
+        'صغير':'Small','كبير':'Large','متوسط':'Medium','طويل':'Long','قصير':'Short',
+        'جديد':'New','قديم':'Old','حديث':'Modern','تقليدي':'Traditional',
+        'سريع':'Fast','بطيء':'Slow','سهل':'Easy','صعب':'Difficult',
+        'مفتوح':'Open','مغلق':'Closed','متاح':'Available','غير متاح':'Unavailable',
+        'مجاني':'Free','مدفوع':'Paid','رخيص':'Cheap','غالي':'Expensive',
+        'أفضل':'Best','افضل':'Best','أسوأ':'Worst','اسوأ':'Worst',
+        'أكبر':'Biggest','اكبر':'Biggest','أصغر':'Smallest','اصغر':'Smallest',
+        'الأول':'First','الأخير':'Last','الاول':'First','الاخير':'Last',
+        'الكل':'All','البعض':'Some','معظم':'Most','قليل':'Few','كثير':'Many',
+        'جدا':'Very','جداً':'Very','أكثر':'More','أقل':'Less',
+        'أيضا':'Also','ايضا':'Also','فقط':'Only','حتى':'Even','لكن':'But',
+        'أو':'Or','او':'Or','و':'And','ثم':'Then','لأن':'Because','لان':'Because',
+        'إذا':'If','اذا':'If','متى':'When','أين':'Where','اين':'Where',
+        'كيف':'How','لماذا':'Why','ماذا':'What','من':'Who','أي':'Which','اي':'Which',
+        
+        /* ================= مصطلحات إضافية ================= */
+        'معرض':'Showroom','معارض':'Showrooms','المعارض':'Showrooms',
+        'عملاء':'Customers','عميل':'Customer','العميل':'Customer',
+        'مبيعات':'Sales','المبيعات':'Sales','تسويق':'Marketing',
+        'خدمة':'Service','الخدمة':'Service','خدمات':'Services',
+        'تواصل':'Contact','اتصال':'Call','اتصل':'Call','هاتف':'Phone',
+        'بريد':'Email','البريد':'Email','البريد الإلكتروني':'Email',
+        'عنوان':'Address','العنوان':'Address','الموقع':'Location',
+        'خريطة':'Map','الخريطة':'Map','خرائط':'Maps','الخرائط':'Maps',
+        'مفتاح':'Key','المفتاح':'Key','مفاتيح':'Keys',
+        'باب':'Door','الباب':'Door','أبواب':'Doors','ابواب':'Doors',
+        'مقعد':'Seat','المقعد':'Seat','مقاعد':'Seats',
+        'محرك':'Engine','المحرك':'Engine','محركات':'Engines',
+        'ناقل':'Transmission','الجير':'Gear','جير':'Gear','قير':'Gear',
+        'وقود':'Fuel','الوقود':'Fuel','بنزين':'Petrol','ديزل':'Diesel',
+        'إطارات':'Tires','اطارات':'Tires','كفرات':'Tires','عجلات':'Wheels',
+        'زجاج':'Glass','زجاجي':'Glass','مرايا':'Mirrors','مرآة':'Mirror',
+        'تكييف':'AC','مكيف':'AC','تبريد':'Cooling','تدفئة':'Heating',
+        'كاميرا':'Camera','كاميرات':'Cameras','حساسات':'Sensors','رادار':'Radar',
+        'شاشة':'Screen','ملاحة':'Navigation','نظام':'System','أنظمة':'Systems',
+        'بلوتوث':'Bluetooth','USB':'USB','شاحن':'Charger','شواحن':'Chargers',
+        'مثبت سرعة':'Cruise Control','ABS':'ABS','إيرباق':'Airbag','ايرباق':'Airbag',
+        'وسائد هوائية':'Airbags','مكابح':'Brakes','فرامل':'Brakes',
+        'مقود':'Steering','ستيرنج':'Steering','دركسون':'Steering'
     };
 
     const dictKeysSorted = Object.keys(dict).sort((a, b) => b.length - a.length);
 
-    // عناصر لا نترجمها أبدًا
     function shouldSkip(el) {
         if (!el) return true;
         var tag = el.tagName;
@@ -112,16 +274,13 @@
         return false;
     }
 
-    // ترجمة نص واحد (حرفي + قاموس)
     function translateText(text) {
         if (currentLang === 'ar') return text;
         if (!text) return text;
         var s = String(text);
-        // مطابقة الجملة كاملة أولاً (قاموس)
         var trimmed = s.trim();
         if (dict[trimmed]) return s.replace(trimmed, dict[trimmed]);
 
-        // مطابقة العبارات الطويلة داخل النص
         var result = s;
         for (var i = 0; i < dictKeysSorted.length; i++) {
             var k = dictKeysSorted[i];
@@ -133,19 +292,16 @@
         return result;
     }
 
-    // المسح الشامل للصفحة
     function translateDocument(root) {
         root = root || document.body;
         if (currentLang === 'ar') return;
 
-        // 1) النصوص في text nodes
         var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
             acceptNode: function(node) {
                 var parent = node.parentNode;
                 if (shouldSkip(parent)) return NodeFilter.FILTER_REJECT;
                 var txt = node.nodeValue;
                 if (!txt) return NodeFilter.FILTER_REJECT;
-                // تجاهل النصوص التي لا تحوي حروفًا عربية
                 if (!/[\u0600-\u06FF]/.test(txt)) return NodeFilter.FILTER_REJECT;
                 return NodeFilter.FILTER_ACCEPT;
             }
@@ -154,14 +310,12 @@
         while (walker.nextNode()) textNodes.push(walker.currentNode);
         textNodes.forEach(function(n) { n.nodeValue = translateText(n.nodeValue); });
 
-        // 2) placeholders
         root.querySelectorAll('input[placeholder], textarea[placeholder]').forEach(function(el) {
             if (shouldSkip(el)) return;
             var ph = el.getAttribute('placeholder');
             if (ph && /[\u0600-\u06FF]/.test(ph)) el.setAttribute('placeholder', translateText(ph));
         });
 
-        // 3) title / aria-label / alt
         ['title', 'aria-label', 'alt'].forEach(function(attr) {
             root.querySelectorAll('[' + attr + ']').forEach(function(el) {
                 if (shouldSkip(el)) return;
@@ -170,7 +324,6 @@
             });
         });
 
-        // 4) meta description و og
         document.querySelectorAll('meta[content]').forEach(function(el) {
             var v = el.getAttribute('content');
             if (v && /[\u0600-\u06FF]/.test(v)) el.setAttribute('content', translateText(v));
@@ -192,7 +345,7 @@
 
     async function enableNotifications() {
         if (!('Notification' in window)) {
-            alert(currentLang === 'ar' ? 'متصفحك لا يدعم الإشعارات' : 'Your browser does not support notifications');
+            alert(translateText('متصفحك لا يدعم الإشعارات'));
             return;
         }
         
@@ -203,7 +356,7 @@
             if (permission === 'granted') {
                 document.getElementById('notifyBanner').classList.remove('show');
                 localStorage.setItem('notificationsEnabled', 'true');
-                showToast(currentLang === 'ar' ? '✅ تم تفعيل الإشعارات بنجاح!' : '✅ Notifications enabled successfully!');
+                showToast(translateText('تم تفعيل الإشعارات بنجاح!'));
                 
                 if (window.OneSignal) {
                     try {
@@ -214,7 +367,7 @@
                     }
                 }
             } else {
-                alert(currentLang === 'ar' ? 'يرجى السماح بالإشعارات من إعدادات المتصفح' : 'Please allow notifications from browser settings');
+                alert(translateText('يرجى السماح بالإشعارات من إعدادات المتصفح'));
             }
         } catch (e) {
             console.error('❌ خطأ الإشعارات:', e);
@@ -236,9 +389,7 @@
                 document.getElementById('installBanner').classList.remove('show'); 
             }); 
         } else { 
-            alert(currentLang === 'ar' 
-                ? 'للتثبيت: أندرويد ⁝ → إضافة للشاشة | آيفون ↩ → Add to Home Screen' 
-                : 'To install: Android ⁝ → Add to Home Screen | iPhone ↩ → Add to Home Screen'); 
+            alert(translateText('للتثبيت: أندرويد ⁝ → إضافة للشاشة | آيفون ↩ → Add to Home Screen'));
         } 
     }
     
@@ -275,26 +426,21 @@
         var prevLang = currentLang;
         currentLang = lang;
 
-        // أزرار اللغة
         document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
         const activeBtn = document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`);
         if (activeBtn) activeBtn.classList.add('active');
 
-        // الاتجاه واللغة
         updatePageDirection(lang);
 
-        // إعادة الصفحة للحالة العربية إذا رجعنا من الإنجليزية
         if (prevLang === 'en' && lang === 'ar') {
             location.reload();
             return;
         }
 
-        // ترجمة شاملة للصفحة
         if (lang === 'en') {
             translateDocument(document.body);
         }
 
-        // عنوان الفرع
         var bt = document.getElementById('branchTitle');
         if (bt) {
             if (branch === 'rustaq') {
@@ -304,7 +450,6 @@
             }
         }
 
-        // إعادة عرض السيارات بالترجمة الجديدة
         displayCars();
 
         console.log('🌐 اللغة:', lang);
@@ -326,7 +471,9 @@
 
     function copyLink(car) { 
         const link = `${BASE_URL}?car=${btoa(unescape(encodeURIComponent(`${car.name}|${car.model}|${car.category}`)))}&branch=${car.branch}`; 
-        var msg = currentLang === 'ar' ? '✅ تم نسخ الرابط' : '✅ Link copied';
+        var msg = translateText('تم نسخ الرابط');
+        if (currentLang === 'ar') msg = '✅ تم نسخ الرابط';
+        else msg = '✅ Link copied';
         navigator.clipboard.writeText(link).then(() => showToast(msg)).catch(() => showToast(msg)); 
         console.log('📋 نسخ الرابط:', link); 
     }
@@ -436,7 +583,7 @@
             { name:'Vehicle Name', model:'Model', color:'Color', wa:'WhatsApp', cars:'cars', share:'Share on WhatsApp', copy:'Copy Link', cur:'OMR' };  
         let html = '', first = true;  
         for (const [cat, catCars] of Object.entries(grouped)) {  
-            var catTranslated = currentLang === 'ar' ? cat : (dict[cat] || cat);
+            var catTranslated = currentLang === 'ar' ? cat : (dict[cat] || translateText(cat));
             html += `<div class="category-accordion"><div class="category-header ${first?'active':''}" onclick="toggleCategory(this)"><div class="category-title-group"><span class="category-icon">▼</span><span class="category-name">🏭 ${catTranslated}</span></div><span class="category-badge">${catCars.length} ${L.cars}</span></div><div class="category-content ${first?'open':''}"><div class="cars-list">`;  
             catCars.forEach((car, idx) => { 
                 const ck = `${branch}_${cat}_${idx}`; 
@@ -451,8 +598,8 @@
                 } else {
                     img = '<div class="car-image no-image">🚗</div>';
                 }
-                var carName = currentLang === 'ar' ? car.name : (dict[car.name] || car.name);
-                var carColor = currentLang === 'ar' ? car.color : (dict[car.color] || car.color);
+                var carName = currentLang === 'ar' ? car.name : (dict[car.name] || translateText(car.name));
+                var carColor = currentLang === 'ar' ? car.color : (dict[car.color] || translateText(car.color));
                 html += `<div class="car-item" data-no-translate="true">${img}<div class="car-details"><div class="car-detail-row"><span class="car-detail-label">🚗 ${L.name}:</span><span class="car-detail-value">${carName}</span></div><div class="car-detail-row"><span class="car-detail-label">📅 ${L.model}:</span><span class="car-detail-value">${car.model||'---'}</span></div><div class="car-detail-row"><span class="car-detail-label">🎨 ${L.color}:</span><span class="car-detail-value">${carColor}</span></div></div><div class="car-price-section"><span class="car-price-value">💰 ${car.priceText||'-'} ${L.cur}</span></div><div class="action-label">🔗 ${L.share}:</div><div class="action-buttons"><button class="action-btn btn-share" onclick="shareWA(window['cd_${ck}'])">💬 ${L.share}</button><button class="action-btn btn-copy" onclick="copyLink(window['cd_${ck}'])">📋 ${L.copy}</button></div><div class="action-label">📞 ${L.wa}:</div><div class="action-buttons">`;  
                 phones.forEach((phone, i) => { 
                     html += `<button class="action-btn btn-wa${i>0?i+1:''}" onclick="openWA('${ck}',${i})">💬 ${L.wa} ${i+1}</button>`; 
@@ -488,9 +635,9 @@
             rustaq: currentLang==='ar'?'فرع الرستاق':'Rustaq Branch', 
             mabela: currentLang==='ar'?'فرع المعبيلة':'Mabela Branch' 
         }; 
-        var carName = currentLang==='ar' ? car.name : (dict[car.name] || car.name);
-        var carCat = currentLang==='ar' ? car.category : (dict[car.category] || car.category);
-        var carCol = currentLang==='ar' ? car.color : (dict[car.color] || car.color);
+        var carName = currentLang==='ar' ? car.name : (dict[car.name] || translateText(car.name));
+        var carCat = currentLang==='ar' ? car.category : (dict[car.category] || translateText(car.category));
+        var carCol = currentLang==='ar' ? car.color : (dict[car.color] || translateText(car.color));
         const msg = currentLang==='ar' ? 
             `السلام عليكم\n${names[car.branch]}\n🏭 ${carCat}\n🚗 ${carName}\n📅 ${car.model}\n🎨 ${carCol}\n💰 ${car.priceText} ر.ع` : 
             `Hello\n${names[car.branch]}\n🏭 ${carCat}\n🚗 ${carName}\n📅 ${car.model}\n🎨 ${carCol}\n💰 ${car.priceText} OMR`; 

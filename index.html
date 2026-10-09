@@ -120,33 +120,33 @@
 <body class="rustaq">
     
 <div class="notify-banner" id="notifyBanner">
-    <span>🔔</span><span class="notify-text" data-i18n="notify_text">احصل على إشعارات بأحدث السيارات والعروض</span>
-    <button class="notify-btn" onclick="enableNotifications()" data-i18n="notify_enable">تفعيل</button>
+    <span>🔔</span><span class="notify-text" data-ar="احصل على إشعارات بأحدث السيارات والعروض" data-en="Get notifications about latest cars and offers">احصل على إشعارات بأحدث السيارات والعروض</span>
+    <button class="notify-btn" onclick="enableNotifications()" data-ar="تفعيل" data-en="Enable">تفعيل</button>
     <button class="notify-close" onclick="closeNotifyBanner()">✕</button>
 </div>
 
 <div class="install-banner" id="installBanner">
-    <span class="install-text"><strong data-i18n="install_now" data-ar="ثبّت التطبيق الآن" data-en="Install the app now">ثبّت التطبيق الآن</strong></span>
-    <button class="install-btn" onclick="installApp()" data-i18n="install" data-ar="تثبيت" data-en="Install">تثبيت</button>
+    <span class="install-text"><strong data-ar="ثبّت التطبيق الآن" data-en="Install the app now">ثبّت التطبيق الآن</strong></span>
+    <button class="install-btn" onclick="installApp()" data-ar="تثبيت" data-en="Install">تثبيت</button>
 </div>
 
 <button class="side-menu-tab" onclick="toggleSideMenu()">◀</button>
 <div class="side-menu-overlay" id="sideMenuOverlay" onclick="toggleSideMenu()"></div>
 <div class="side-menu" id="sideMenu">
-    <div class="side-menu-title" data-i18n="menu_title" data-ar="🔗 روابط سريعة" data-en="🔗 Quick Links">🔗 روابط سريعة</div>
-    <div class="lang-section"><div class="lang-section-label" data-i18n="menu_language" data-ar="اللغة" data-en="Language">اللغة</div><div class="lang-buttons"><button class="lang-btn active" onclick="setLang('ar')">🇴🇲 عربي</button><button class="lang-btn" onclick="setLang('en')">🇬🇧 English</button></div></div>
-    <a href="https://maps.app.goo.gl/9cKpPNdt1FX8q5cj6" target="_blank" class="side-menu-item"><span class="menu-icon">📍</span> <span data-i18n="menu_map_rustaq" data-ar="موقع معرض الرستاق" data-en="Rustaq Showroom">موقع معرض الرستاق</span></a>
-    <a href="https://maps.app.goo.gl/QfPrKgZBmfB62yHJ6" target="_blank" class="side-menu-item"><span class="menu-icon">📍</span> <span data-i18n="menu_map_mabela" data-ar="موقع معرض المعبيله" data-en="Mabela Showroom">موقع معرض المعبيله</span></a>
-    <a href="https://wa.me/96872222242" target="_blank" class="side-menu-item whatsapp"><span class="menu-icon">💬</span> <span data-i18n="menu_contact" data-ar="للإستفسار - مروان سالم الخاطري" data-en="Inquiry - Marwan Al Khatri">للإستفسار - مروان سالم الخاطري</span></a>
+    <div class="side-menu-title" data-ar="🔗 روابط سريعة" data-en="🔗 Quick Links">🔗 روابط سريعة</div>
+    <div class="lang-section"><div class="lang-section-label" data-ar="اللغة" data-en="Language">اللغة</div><div class="lang-buttons"><button class="lang-btn active" onclick="setLang('ar')">🇴🇲 عربي</button><button class="lang-btn" onclick="setLang('en')">🇬🇧 English</button></div></div>
+    <a href="https://maps.app.goo.gl/9cKpPNdt1FX8q5cj6" target="_blank" class="side-menu-item"><span class="menu-icon">📍</span> <span data-ar="موقع معرض الرستاق" data-en="Rustaq Showroom">موقع معرض الرستاق</span></a>
+    <a href="https://maps.app.goo.gl/QfPrKgZBmfB62yHJ6" target="_blank" class="side-menu-item"><span class="menu-icon">📍</span> <span data-ar="موقع معرض المعبيله" data-en="Mabela Showroom">موقع معرض المعبيله</span></a>
+    <a href="https://wa.me/96872222242" target="_blank" class="side-menu-item whatsapp"><span class="menu-icon">💬</span> <span data-ar="للإستفسار - مروان سالم الخاطري" data-en="Inquiry - Marwan Al Khatri">للإستفسار - مروان سالم الخاطري</span></a>
 </div>
 
-<div class="welcome-banner"><h1 data-i18n="app_title">الدبلوماسي للسيارات</h1><div class="subtitle">● DIPLOMAT CARS ●</div></div>
+<div class="welcome-banner"><h1 data-ar="الدبلوماسي للسيارات" data-en="Diplomat Cars">الدبلوماسي للسيارات</h1><div class="subtitle">● DIPLOMAT CARS ●</div></div>
 
-<div class="search-bar"><div class="search-input-wrapper"><span class="search-icon">🔍</span><input type="text" class="search-input" id="searchInput" placeholder="ابحث عن مركبة..." data-i18n-placeholder="search_placeholder" oninput="handleSearch()"><button class="clear-search" id="clearSearch" onclick="clearSearch()">✕</button></div><div class="search-results-count" id="searchResultsCount"></div></div>
-<div class="branch-tabs"><div class="branch-tab active" onclick="switchBranch('rustaq')" id="tab-rustaq">🏛️ <span data-i18n="branch_rustaq_name">فرع الرستاق</span> <span class="car-count" id="count-rustaq">0</span></div><div class="branch-tab" onclick="switchBranch('mabela')" id="tab-mabela">🏛️ <span data-i18n="branch_mabela_name">فرع المعبيلة</span> <span class="car-count" id="count-mabela">0</span></div></div>
+<div class="search-bar"><div class="search-input-wrapper"><span class="search-icon">🔍</span><input type="text" class="search-input" id="searchInput" placeholder="ابحث عن مركبة..." data-ar-placeholder="ابحث عن مركبة..." data-en-placeholder="Search for a vehicle..." oninput="handleSearch()"><button class="clear-search" id="clearSearch" onclick="clearSearch()">✕</button></div><div class="search-results-count" id="searchResultsCount"></div></div>
+<div class="branch-tabs"><div class="branch-tab active" onclick="switchBranch('rustaq')" id="tab-rustaq">🏛️ <span data-ar="فرع الرستاق" data-en="Rustaq Branch">فرع الرستاق</span> <span class="car-count" id="count-rustaq">0</span></div><div class="branch-tab" onclick="switchBranch('mabela')" id="tab-mabela">🏛️ <span data-ar="فرع المعبيلة" data-en="Mabela Branch">فرع المعبيلة</span> <span class="car-count" id="count-mabela">0</span></div></div>
 <div class="branch-title" id="branchTitle">🚗 سيارات فرع الرستاق</div>
-<div class="container" id="carsContainer"><div class="loading-section" data-i18n="loading_cars">جاري تحميل السيارات...</div></div>
-<div class="footer" data-i18n="footer">© 2026 الدبلوماسي للسيارات - جميع الحقوق محفوظة</div>
+<div class="container" id="carsContainer"><div class="loading-section" data-ar="جاري تحميل السيارات..." data-en="Loading cars...">جاري تحميل السيارات...</div></div>
+<div class="footer" data-ar="© 2026 الدبلوماسي للسيارات - جميع الحقوق محفوظة" data-en="© 2026 Diplomat Cars - All rights reserved">© 2026 الدبلوماسي للسيارات - جميع الحقوق محفوظة</div>
 
 <script>
     console.log('🚀 نظام الدبلوماسي للسيارات يبدأ التشغيل...');
@@ -156,37 +156,25 @@
     const PHONES = { rustaq: ['96872222242', '96898825877', '96895096865'], mabela: ['96892256223', '96878080132'] };
     const BASE_URL = 'https://drder1.github.io/Diplomat_Cars/';
     
-    // ✅ قاموس الترجمة للنصوص الثابتة في الواجهة
     const I18N = {
-        app_title:        { ar: 'الدبلوماسي للسيارات',                     en: 'Diplomat Cars' },
-        search_placeholder:{ ar: 'ابحث عن مركبة...',                        en: 'Search for a vehicle...' },
-        branch_rustaq_name:{ ar: 'فرع الرستاق',                             en: 'Rustaq Branch' },
-        branch_mabela_name:{ ar: 'فرع المعبيلة',                            en: 'Mabela Branch' },
-        branch_title_rustaq:{ ar: '🚗 سيارات فرع الرستاق',                  en: '🚗 Rustaq Branch Cars' },
-        branch_title_mabela:{ ar: '🚗 سيارات فرع المعبيلة',                 en: '🚗 Mabela Branch Cars' },
-        loading_cars:     { ar: 'جاري تحميل السيارات...',                   en: 'Loading cars...' },
-        no_cars:          { ar: '🚫 لا توجد سيارات في المعرض حالياً',        en: '🚫 No cars available at the showroom currently' },
-        load_error:       { ar: '❌ خطأ في تحميل البيانات',                 en: '❌ Error loading data' },
-        footer:           { ar: '© 2026 الدبلوماسي للسيارات - جميع الحقوق محفوظة', en: '© 2026 Diplomat Cars - All rights reserved' },
-        notify_text:      { ar: 'احصل على إشعارات بأحدث السيارات والعروض',   en: 'Get notifications about latest cars and offers' },
-        notify_enable:    { ar: 'تفعيل',                                    en: 'Enable' },
-        notify_success:   { ar: '✅ تم تفعيل الإشعارات بنجاح!',              en: '✅ Notifications enabled successfully!' },
-        notify_unsupported:{ ar: 'متصفحك لا يدعم الإشعارات',                 en: 'Your browser does not support notifications' },
-        notify_denied:    { ar: 'يرجى السماح بالإشعارات من إعدادات المتصفح', en: 'Please allow notifications from browser settings' },
-        install_now:      { ar: 'ثبّت التطبيق الآن',                         en: 'Install the app now' },
-        install:          { ar: 'تثبيت',                                    en: 'Install' },
-        install_hint:     { ar: 'للتثبيت: أندرويد ⁝ → إضافة للشاشة | آيفون ↩ → Add to Home Screen', en: 'To install: Android ⁝ → Add to Home Screen | iPhone ↩ → Add to Home Screen' },
-        toast_link_copied:{ ar: '✅ تم نسخ الرابط',                          en: '✅ Link copied' },
-        menu_title:       { ar: '🔗 روابط سريعة',                            en: '🔗 Quick Links' },
-        menu_language:    { ar: 'اللغة',                                    en: 'Language' },
-        label_name:       { ar: 'اسم المركبة',                              en: 'Name' },
-        label_model:      { ar: 'الموديل',                                  en: 'Model' },
-        label_color:      { ar: 'اللون',                                    en: 'Color' },
-        label_share:      { ar: 'مشاركة على واتساب',                        en: 'Share on WhatsApp' },
-        label_copy:       { ar: 'نسخ الرابط',                               en: 'Copy Link' },
-        label_wa:         { ar: 'واتساب',                                   en: 'WhatsApp' },
-        currency:         { ar: 'ر.ع',                                      en: 'OMR' },
-        cars_unit:        { ar: 'سيارة',                                    en: 'cars' }
+        branch_title_rustaq: { ar: '🚗 سيارات فرع الرستاق', en: '🚗 Rustaq Branch Cars' },
+        branch_title_mabela: { ar: '🚗 سيارات فرع المعبيلة', en: '🚗 Mabela Branch Cars' },
+        loading_cars:  { ar: 'جاري تحميل السيارات...', en: 'Loading cars...' },
+        no_cars:       { ar: '🚫 لا توجد سيارات في المعرض حالياً', en: '🚫 No cars available at the showroom currently' },
+        load_error:    { ar: '❌ خطأ في تحميل البيانات', en: '❌ Error loading data' },
+        notify_success:{ ar: '✅ تم تفعيل الإشعارات بنجاح!', en: '✅ Notifications enabled successfully!' },
+        notify_unsupported:{ ar: 'متصفحك لا يدعم الإشعارات', en: 'Your browser does not support notifications' },
+        notify_denied: { ar: 'يرجى السماح بالإشعارات من إعدادات المتصفح', en: 'Please allow notifications from browser settings' },
+        install_hint:  { ar: 'للتثبيت: أندرويد ⁝ → إضافة للشاشة | آيفون ↩ → Add to Home Screen', en: 'To install: Android ⁝ → Add to Home Screen | iPhone ↩ → Add to Home Screen' },
+        toast_link_copied:{ ar: '✅ تم نسخ الرابط', en: '✅ Link copied' },
+        label_name:    { ar: 'اسم المركبة', en: 'Name' },
+        label_model:   { ar: 'الموديل', en: 'Model' },
+        label_color:   { ar: 'اللون', en: 'Color' },
+        label_share:   { ar: 'مشاركة على واتساب', en: 'Share on WhatsApp' },
+        label_copy:    { ar: 'نسخ الرابط', en: 'Copy Link' },
+        label_wa:      { ar: 'واتساب', en: 'WhatsApp' },
+        currency:      { ar: 'ر.ع', en: 'OMR' },
+        cars_unit:     { ar: 'سيارة', en: 'cars' }
     };
 
     const dict = {
@@ -202,14 +190,12 @@
         'SV':'SV','SR':'SR','SL':'SL','LE':'LE','SE':'SE','XLE':'XLE','XSE':'XSE','SEL':'SEL','V6':'V6','v6':'V6','N':'N','S':'S','ES':'ES','C300':'C300','c300':'C300','E350':'E350','GLA250':'GLA250','rx350':'RX350','IS250':'IS250','ls460':'LS460','UX':'UX'
     };
 
-    // مفاتيح مرتبة من الأطول إلى الأقصر لتفادي الترجمة الجزئية الخاطئة
     const dictKeysSorted = Object.keys(dict).sort((a, b) => b.length - a.length);
 
     function getTranslation(key, lang) {
-        if (!key) return '';
         var entry = I18N[key];
-        if (!entry) return key;
-        return entry[lang] || entry.ar || key;
+        if (!entry) return null;
+        return entry[lang] || entry.ar || null;
     }
 
     function updatePageDirection(lang) {
@@ -218,14 +204,23 @@
     }
 
     function translatePage() {
+        // 1) العناصر التي تحمل data-ar/data-en (السلوك الأصلي)
+        document.querySelectorAll('[data-ar][data-en]').forEach(function(el) {
+            var val = el.getAttribute('data-' + currentLang);
+            if (val !== null) el.textContent = val;
+        });
+        // 2) العناصر التي تحمل data-ar-placeholder/data-en-placeholder
+        document.querySelectorAll('[data-ar-placeholder][data-en-placeholder]').forEach(function(el) {
+            var val = el.getAttribute('data-' + currentLang + '-placeholder');
+            if (val !== null) el.setAttribute('placeholder', val);
+        });
+        // 3) العناصر التي تحمل data-i18n (لن تُستبدل إلا إذا كان المفتاح موجودًا فعلًا)
         document.querySelectorAll('[data-i18n]').forEach(function(el) {
-            var key = el.getAttribute('data-i18n');
-            var val = getTranslation(key, currentLang);
+            var val = getTranslation(el.getAttribute('data-i18n'), currentLang);
             if (val) el.textContent = val;
         });
         document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
-            var key = el.getAttribute('data-i18n-placeholder');
-            var val = getTranslation(key, currentLang);
+            var val = getTranslation(el.getAttribute('data-i18n-placeholder'), currentLang);
             if (val) el.setAttribute('placeholder', val);
         });
     }
@@ -235,7 +230,6 @@
         const s = String(text).trim();
         if (!s) return text || '';
         if (dict[s]) return dict[s];
-        // مطابقة أطول مفتاح أولاً داخل النص
         var result = s;
         for (var i = 0; i < dictKeysSorted.length; i++) {
             var k = dictKeysSorted[i];
@@ -244,7 +238,6 @@
                 result = result.split(k).join(dict[k]);
             }
         }
-        // تجزئة على المسافات لمعالجة الكلمات المتبقية
         return result.split(/\s+/).map(function(w) {
             var c = w.replace(/[،,\/\-]/g, '').trim();
             if (!c) return w;
@@ -268,7 +261,7 @@
 
     async function enableNotifications() {
         if (!('Notification' in window)) {
-            alert(getTranslation('notify_unsupported', currentLang));
+            alert(getTranslation('notify_unsupported', currentLang) || 'متصفحك لا يدعم الإشعارات');
             return;
         }
         
@@ -279,7 +272,7 @@
             if (permission === 'granted') {
                 document.getElementById('notifyBanner').classList.remove('show');
                 localStorage.setItem('notificationsEnabled', 'true');
-                showToast(getTranslation('notify_success', currentLang));
+                showToast(getTranslation('notify_success', currentLang) || '✅ تم تفعيل الإشعارات بنجاح!');
                 
                 if (window.OneSignal) {
                     try {
@@ -290,7 +283,7 @@
                     }
                 }
             } else {
-                alert(getTranslation('notify_denied', currentLang));
+                alert(getTranslation('notify_denied', currentLang) || 'يرجى السماح بالإشعارات من إعدادات المتصفح');
             }
         } catch (e) {
             console.error('❌ خطأ الإشعارات:', e);
@@ -312,7 +305,7 @@
                 document.getElementById('installBanner').classList.remove('show'); 
             }); 
         } else { 
-            alert(getTranslation('install_hint', currentLang)); 
+            alert(getTranslation('install_hint', currentLang) || 'للتثبيت: أندرويد ⁝ → إضافة للشاشة | آيفون ↩ → Add to Home Screen'); 
         } 
     }
     
@@ -353,8 +346,8 @@
         updatePageDirection(lang);
         translatePage();
         document.getElementById('branchTitle').textContent = branch === 'rustaq' ? 
-            getTranslation('branch_title_rustaq', lang) : 
-            getTranslation('branch_title_mabela', lang);
+            (getTranslation('branch_title_rustaq', lang) || '🚗 سيارات فرع الرستاق') : 
+            (getTranslation('branch_title_mabela', lang) || '🚗 سيارات فرع المعبيلة');
         displayCars(); 
         console.log('🌐 اللغة:', lang); 
     }
@@ -375,7 +368,7 @@
 
     function copyLink(car) { 
         const link = `${BASE_URL}?car=${btoa(unescape(encodeURIComponent(`${car.name}|${car.model}|${car.category}`)))}&branch=${car.branch}`; 
-        navigator.clipboard.writeText(link).then(() => showToast(getTranslation('toast_link_copied', currentLang))).catch(() => showToast(getTranslation('toast_link_copied', currentLang))); 
+        navigator.clipboard.writeText(link).then(() => showToast(getTranslation('toast_link_copied', currentLang) || '✅ تم نسخ الرابط')).catch(() => showToast(getTranslation('toast_link_copied', currentLang) || '✅ تم نسخ الرابط')); 
         console.log('📋 نسخ الرابط:', link); 
     }
     
@@ -417,7 +410,7 @@
             displayCars();  
         } catch (e) { 
             console.error('❌ تحميل:', e); 
-            document.getElementById('carsContainer').innerHTML = `<div class="loading-section">${getTranslation('load_error', currentLang)}</div>`; 
+            document.getElementById('carsContainer').innerHTML = `<div class="loading-section">${getTranslation('load_error', currentLang) || '❌ خطأ في تحميل البيانات'}</div>`; 
         }  
     }
 
@@ -466,7 +459,7 @@
             (c.color&&c.color.includes(sq))
         ) : cars;  
         if (filtered.length === 0) { 
-            container.innerHTML = `<div class="loading-section">${getTranslation('no_cars', currentLang)}</div>`; 
+            container.innerHTML = `<div class="loading-section">${getTranslation('no_cars', currentLang) || '🚫 لا توجد سيارات في المعرض حالياً'}</div>`; 
             return; 
         }  
         const grouped = {}; 
@@ -475,9 +468,16 @@
             if (!grouped[cat]) grouped[cat] = []; 
             grouped[cat].push(c); 
         });  
-        const L = currentLang === 'ar' ? 
-            { name: getTranslation('label_name','ar'), model: getTranslation('label_model','ar'), color: getTranslation('label_color','ar'), wa: getTranslation('label_wa','ar'), cars: getTranslation('cars_unit','ar'), share: getTranslation('label_share','ar'), copy: getTranslation('label_copy','ar'), cur: getTranslation('currency','ar') } : 
-            { name: getTranslation('label_name','en'), model: getTranslation('label_model','en'), color: getTranslation('label_color','en'), wa: getTranslation('label_wa','en'), cars: getTranslation('cars_unit','en'), share: getTranslation('label_share','en'), copy: getTranslation('label_copy','en'), cur: getTranslation('currency','en') };  
+        const L = {
+            name: getTranslation('label_name', currentLang) || 'اسم المركبة',
+            model: getTranslation('label_model', currentLang) || 'الموديل',
+            color: getTranslation('label_color', currentLang) || 'اللون',
+            wa: getTranslation('label_wa', currentLang) || 'واتساب',
+            cars: getTranslation('cars_unit', currentLang) || 'سيارة',
+            share: getTranslation('label_share', currentLang) || 'مشاركة على واتساب',
+            copy: getTranslation('label_copy', currentLang) || 'نسخ الرابط',
+            cur: getTranslation('currency', currentLang) || 'ر.ع'
+        };
         let html = '', first = true;  
         for (const [cat, catCars] of Object.entries(grouped)) {  
             html += `<div class="category-accordion"><div class="category-header ${first?'active':''}" onclick="toggleCategory(this)"><div class="category-title-group"><span class="category-icon">▼</span><span class="category-name">🏭 ${t(cat)}</span></div><span class="category-badge">${catCars.length} ${L.cars}</span></div><div class="category-content ${first?'open':''}"><div class="cars-list">`;  
@@ -542,8 +542,8 @@
         document.querySelectorAll('.branch-tab').forEach(t => t.classList.remove('active')); 
         document.getElementById(`tab-${b}`).classList.add('active'); 
         document.getElementById('branchTitle').textContent = b === 'rustaq' ? 
-            getTranslation('branch_title_rustaq', currentLang) : 
-            getTranslation('branch_title_mabela', currentLang); 
+            (getTranslation('branch_title_rustaq', currentLang) || '🚗 سيارات فرع الرستاق') : 
+            (getTranslation('branch_title_mabela', currentLang) || '🚗 سيارات فرع المعبيلة');
         document.getElementById('searchInput').value = ''; 
         document.getElementById('clearSearch').style.display = 'none'; 
         sq = ''; 
@@ -562,7 +562,6 @@
         console.log('⏰ تحديث تلقائي كل 10 دقائق'); 
     }
 
-    // ✅ ضبط الاتجاه واللغة عند التحميل الأول
     updatePageDirection(currentLang);
     translatePage();
 

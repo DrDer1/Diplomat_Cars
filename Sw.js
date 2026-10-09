@@ -1,22 +1,42 @@
-const CACHE = 'diplomat-v1';
-const URLS = ['/Diplomat_Cars/', '/Diplomat_Cars/index.html', '/Diplomat_Cars/manifest.json'];
+const CACHE = 'diplomat-v2';
+const URLS = [
+    '/Diplomat_Cars/',
+    '/Diplomat_Cars/index.html',
+    '/Diplomat_Cars/style.css',
+    '/Diplomat_Cars/manifest.json'
+];
 
 const NOTIF_ICON = 'https://i.ibb.co/QFKYPWBc/IMG-20260622-WA0006.jpg';
 
 self.addEventListener('install', e => {
-    e.waitUntil(caches.open(CACHE).then(c => c.addAll(URLS)));
+    e.waitUntil(
+        caches.open(CACHE).then(c => c.addAll(URLS).catch(err => {
+            console.warn('⚠️ فشل تخزين بعض الملفات:', err);
+        }))
+    );
     self.skipWaiting();
 });
 
 self.addEventListener('activate', e => {
-    e.waitUntil(self.clients.claim());
+    e.waitUntil(
+        caches.keys().then(keys => Promise.all(
+            keys.filter(k => k !== CACHE).map(k => caches.delete(k))
+        )).then(() => self.clients.claim())
+    );
 });
 
 self.addEventListener('fetch', e => {
-    e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
+    e.respondWith(
+        caches.match(e.request).then(r => r || fetch(e.request).then(resp => {
+            if (e.request.method === 'GET' && resp && resp.status === 200 && resp.type === 'basic') {
+                const respClone = resp.clone();
+                caches.open(CACHE).then(c => c.put(e.request, respClone));
+            }
+            return resp;
+        }).catch(() => caches.match('/Diplomat_Cars/index.html')))
+    );
 });
 
-// ✅ إشعارات الدفع من OneSignal
 self.addEventListener('push', e => {
     let data = {};
     try {
@@ -51,7 +71,6 @@ self.addEventListener('push', e => {
     e.waitUntil(self.registration.showNotification(title, options));
 });
 
-// ✅ عند النقر على الإشعار
 self.addEventListener('notificationclick', e => {
     e.notification.close();
     const urlToOpen = e.notification.data?.url || '/Diplomat_Cars/';

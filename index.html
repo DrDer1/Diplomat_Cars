@@ -67,9 +67,7 @@
     const PHONES = { rustaq: ['96872222242', '96898825877', '96895096865'], mabela: ['96892256223', '96878080132'] };
     const BASE_URL = 'https://drder1.github.io/Diplomat_Cars/';
     
-    // ✅ القاموس الشامل
     const dict = {
-        /* ================= العبارات المركبة ================= */
         'احصل على إشعارات بأحدث السيارات والعروض':'Get notifications about the latest cars and offers',
         'جاري تحميل السيارات...':'Loading cars...',
         'جاري تحميل السيارات':'Loading cars',
@@ -107,7 +105,6 @@
         'تصفح الآن':'Browse Now',
         'سيارات جديدة بانتظارك!':'New cars waiting for you!',
         
-        /* ================= ماركات السيارات ================= */
         'تويوتا':'Toyota','نيسان':'Nissan','لكزس':'Lexus','لكزوس':'Lexus','هوندا':'Honda',
         'هونداي':'Hyundai','هايونداي':'Hyundai','هيونداي':'Hyundai','هوينداي':'Hyundai','هاييونداي':'Hyundai',
         'كيا':'Kia','كايا':'Kia',
@@ -130,7 +127,6 @@
         'فيات':'Fiat','سكودا':'Skoda','سوبارو':'Subaru','ايسوزو':'Isuzu',
         'ديهاتسو':'Daihatsu','اوبل':'Opel','كويست':'Quest',
         
-        /* ================= موديلات ================= */
         'راف فور':'RAV4','رافور':'RAV4','كامري':'Camry','لاند كروزر':'Land Cruiser',
         'لاندكروزر':'Land Cruiser','كورولا':'Corolla','كرولا':'Corolla','يارس':'Yaris',
         'بريوس':'Prius','هايلكس':'Hilux',
@@ -168,7 +164,6 @@
         'سنجل':'Single','single':'Single','Single':'Single',
         'شار':'Share',
         
-        /* ================= ألوان ================= */
         'ابيض':'White','أبيض':'White','اسود':'Black','أسود':'Black','فضي':'Silver',
         'سلفر':'Silver','رصاصي':'Gray','رمادي':'Gray','احمر':'Red','أحمر':'Red',
         'ازرق':'Blue','أزرق':'Blue','اخضر':'Green','أخضر':'Green','ذهبي':'Gold',
@@ -180,7 +175,6 @@
         'ابيض لؤلؤي':'Pearl White','اسود ميتاليك':'Metallic Black',
         'فضي ميتاليك':'Metallic Silver','رصاصي ميتاليك':'Metallic Gray',
         
-        /* ================= مواصفات وحالات ================= */
         'خليجي':'GCC','ليمتد':'Limited','بلاتينيوم':'Platinum','فل':'Full',
         'فول':'Full','دينالي':'Denali','هايبرد':'Hybrid','بانوراما':'Panorama',
         'هاتشباك':'Hatchback','سبورت':'Sport','هاي كنتري':'High Country',
@@ -195,7 +189,6 @@
         'تأمين':'Insurance','مرخصة':'Registered','سجل':'Record',
         'صيانة':'Maintenance','ضمان':'Warranty',
         
-        /* ================= كلمات الواجهة المفردة ================= */
         'الدبلوماسي':'Diplomat','للسيارات':'Cars','سيارات':'Cars','سيارة':'Car',
         'فرع':'Branch','الرستاق':'Rustaq','المعبيلة':'Mabela','المعبيله':'Mabela',
         'ابحث':'Search','عن':'for','مركبة':'vehicle','جاري':'Loading',
@@ -256,7 +249,6 @@
         'إذا':'If','اذا':'If','متى':'When','أين':'Where','اين':'Where',
         'كيف':'How','لماذا':'Why','ماذا':'What','أي':'Which','اي':'Which',
         
-        /* ================= مصطلحات إضافية ================= */
         'معارض':'Showrooms','المعارض':'Showrooms',
         'عملاء':'Customers','عميل':'Customer','العميل':'Customer',
         'مبيعات':'Sales','المبيعات':'Sales','تسويق':'Marketing',
@@ -711,7 +703,7 @@
     });  
 </script>
 
-<script src="js/shared-data-loader.js"></script>
+<script src="shared-data-loader.js"></script>
 <script>
     window.onSharedDataLoaded = function() {
         displayCars();
